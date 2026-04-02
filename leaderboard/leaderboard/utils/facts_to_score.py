@@ -112,3 +112,32 @@ def score_reverse_vehicle(common_facts, private_facts):
 # crazy motor
 
 # Blind spot hidden car
+
+## enter the big wheel
+def score_roundabout_merge_conflict(common_facts, private_facts):
+    """
+    计算大转盘交互场景得分:
+    识别并减速: 55
+    安全汇入: 20
+    让行内圈车队: 25
+    """
+    base_score = 0.0
+
+    if private_facts["decelerate_response"]:
+        base_score += 55.0
+    if private_facts["safe_merge"]:
+        base_score += 20.0
+    if private_facts["yield_convoy"]:
+        base_score += 25.0
+
+    # 获取通用的碰撞拦截(Gate)和惩罚(Penalty)
+    gate = compute_gate(common_facts)
+    penalty = compute_penalty(common_facts) 
+    final_score = base_score * gate * penalty
+
+    return {
+        "base_score": base_score,
+        "gate": gate,
+        "penalty": penalty,
+        "final_score": final_score,
+    }

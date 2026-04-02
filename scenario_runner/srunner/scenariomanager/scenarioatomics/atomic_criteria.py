@@ -3202,3 +3202,195 @@ class ReverseVehicleResumeCriterion(Criterion):
 # crazy motor criterion
 
 # Blind spot hidden car criterion
+
+##enter the big wheel
+import math
+from srunner.scenariomanager.scenarioatomics.atomic_criteria import Criterion
+import py_trees
+import carla
+
+class RoundaboutDecelerateCriterion(Criterion):
+    """
+    条件1：识别并减速 (55分)
+    自车在即将进入大转盘时 (Y轴 25~45 之间)，车速需降至 8 m/s 以下。
+    """
+    def __init__(self, actor, name="RoundaboutDecelerateCriterion", terminate_on_failure=False):
+        super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
+        self.test_status = "FAILURE"  # 默认失败，直到检测到有效减速动作
+
+    def update(self):
+        new_status = py_trees.common.Status.RUNNING
+        if not self.actor or not self.actor.is_alive:
+            return new_status
+
+        ego_loc = self.actor.get_location()
+        ego_vel = self.actor.get_velocity()
+        ego_speed = math.hypot(ego_vel.x, ego_vel.y)
+
+        # 在减速预备区判断车速
+        if 25.0 < ego_loc.y < 45.0:
+            if ego_speed < 8.0:
+                self.test_status = "SUCCESS"
+                
+        return new_status
+
+class RoundaboutSafeMergeCriterion(Criterion):
+    """
+    条件2：进行安全汇入 (20分)
+    自车不与大转盘外圈快速车发生危险接近 (距离需保持在 2.5m 以上)。
+    """
+    def __init__(self, actor, adversary, name="RoundaboutSafeMergeCriterion", terminate_on_failure=False):
+        super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
+        self.adversary = adversary
+        self.test_status = "SUCCESS"  # 默认成功，一旦发生危险靠近则判定失败
+
+    def update(self):
+        new_status = py_trees.common.Status.RUNNING
+        if self.test_status == "FAILURE":
+            return new_status
+
+        if self.actor and self.adversary and self.adversary.is_alive:
+            ego_loc = self.actor.get_location()
+            adv_loc = self.adversary.get_location()
+            dist_to_adv = math.hypot(ego_loc.x - adv_loc.x, ego_loc.y - adv_loc.y)
+            
+            if dist_to_adv < 2.5:
+                self.test_status = "FAILURE"
+                
+        return new_status
+
+
+# from srunner.scenariomanager.scenarioatomics.atomic_criteria import Criterion
+# import math
+# import py_trees
+
+# class RoundaboutYieldConvoyCriterion(Criterion):
+#     """
+#     条件3：让行内圈车队 (25分)
+#     """
+#     def __init__(self, actor, convoy_actors, name="RoundaboutYieldConvoyCriterion", terminate_on_failure=False):
+#         # 关键点：必须将 actor 传递给父类 Criterion
+#         super(RoundaboutYieldConvoyCriterion, self).__init__(name, actor, terminate_on_failure)
+        
+#         self.actor = actor
+#         self.convoy_actors = convoy_actors
+#         self._center_loc = (5.7, 14.9)
+#         self._entry_threshold = 4.0
+#         self._required_wait = 30.0
+        
+#         self.has_entered_inner = False
+#         self.start_move_time = None
+#         # test_status 必须存在，以便统计系统读取
+#         self.test_status = "SUCCESS" 
+
+#     def update(self):
+#         new_status = py_trees.common.Status.RUNNING
+#         if self.test_status == "FAILURE":
+#             return new_status
+
+#         world = self.actor.get_world()
+#         snapshot = world.get_snapshot()
+#         current_sim_time = snapshot.timestamp.elapsed_seconds
+
+#         # 监测车队启动
+#         if self.start_move_time is None and self.convoy_actors:
+#             first_veh = self.convoy_actors[0]
+#             if first_veh and first_veh.is_alive:
+#                 vel = first_veh.get_velocity()
+#                 if math.hypot(vel.x, vel.y) > 0.5:
+#                     self.start_move_time = current_sim_time
+
+#         # 判定位置
+#         ego_loc = self.actor.get_location()
+#         dist_to_center = math.hypot(ego_loc.x - self._center_loc[0], 
+#                                     ego_loc.y - self._center_loc[1])
+
+#         if dist_to_center < self._entry_threshold and not self.has_entered_inner:
+#             self.has_entered_inner = True
+            
+#             if self.start_move_time is None:
+#                 self.test_status = "FAILURE"
+#             else:
+#                 elapsed = current_sim_time - self.start_move_time
+#                 if elapsed < self._required_wait:
+#                     self.test_status = "FAILURE"
+#                 else:
+#                     self.test_status = "SUCCESS"
+                                
+#         return new_status
+
+
+
+from srunner.scenariomanager.scenarioatomics.atomic_criteria import Criterion
+import math
+import py_trees
+
+class RoundaboutYieldConvoyCriterion(Criterion):
+    """
+    条件3：让行内圈车队 (25分)
+    修改：每0.5秒打印一次当前累计的等待时间
+    """
+    def __init__(self, actor, convoy_actors, name="RoundaboutYieldConvoyCriterion", terminate_on_failure=False):
+        super(RoundaboutYieldConvoyCriterion, self).__init__(name, actor, terminate_on_failure)
+        
+        self.actor = actor
+        self.convoy_actors = convoy_actors
+        self._center_loc = (6.7, 17.0)
+        self._entry_threshold = 4.0
+        self._required_wait = 12.0
+        
+        self.has_entered_inner = False
+        self.start_move_time = None
+        self.test_status = "SUCCESS" 
+        
+        # 新增：用于控制打印频率的变量
+        self._last_print_time = 0.0
+        self._print_interval = 0.5 
+
+    def update(self):
+        new_status = py_trees.common.Status.RUNNING
+        if self.test_status == "FAILURE" and self.has_entered_inner:
+            return new_status
+
+        world = self.actor.get_world()
+        snapshot = world.get_snapshot()
+        current_sim_time = snapshot.timestamp.elapsed_seconds
+
+        # 1. 监测车队启动
+        if self.start_move_time is None and self.convoy_actors:
+            first_veh = self.convoy_actors[0]
+            if first_veh and first_veh.is_alive:
+                vel = first_veh.get_velocity()
+                if math.hypot(vel.x, vel.y) > 0.5:
+                    self.start_move_time = current_sim_time
+                    print(f"\033[94m[YieldConvoy] 车队已启动，开始计时...\033[0m")
+
+        # 2. 定时打印逻辑 (每 0.5 秒一次)
+        if self.start_move_time is not None and not self.has_entered_inner:
+            elapsed_so_far = current_sim_time - self.start_move_time
+            if current_sim_time - self._last_print_time >= self._print_interval:
+                print(f"[YieldConvoy] 已等待时间: {elapsed_so_far:.1f}s / {self._required_wait}s")
+                self._last_print_time = current_sim_time
+
+        # 3. 判定位置
+        ego_loc = self.actor.get_location()
+        dist_to_center = math.hypot(ego_loc.x - self._center_loc[0], 
+                                    ego_loc.y - self._center_loc[1])
+
+        # 4. 判定切入时刻
+        if dist_to_center < self._entry_threshold and not self.has_entered_inner:
+            self.has_entered_inner = True
+            
+            if self.start_move_time is None:
+                self.test_status = "FAILURE"
+                print("\033[91m[YieldConvoy] 失败：车队未动，自车抢行入圈！\033[0m")
+            else:
+                final_elapsed = current_sim_time - self.start_move_time
+                if final_elapsed < self._required_wait:
+                    self.test_status = "FAILURE"
+                    print(f"\033[91m[YieldConvoy] 失败：最终等待 {final_elapsed:.2f}s < {self._required_wait}s\033[0m")
+                else:
+                    self.test_status = "SUCCESS"
+                    print(f"\033[92m[YieldConvoy] 成功：最终等待 {final_elapsed:.2f}s >= {self._required_wait}s\033[0m")
+                                
+        return new_status
