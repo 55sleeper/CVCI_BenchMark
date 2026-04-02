@@ -2197,7 +2197,7 @@ class ScenarioTimeoutTest(Criterion):
         super().terminate(new_status)
 
 #--------------------新增Criterion类---------------------------
-# common minttc Criterion
+# minTTC criterion
 class MinTTCAutoCriterion(Criterion):
 
     def __init__(self,
@@ -2391,6 +2391,24 @@ class MinTTCAutoCriterion(Criterion):
         self.logger.debug("%s.terminate()[%s->%s]" % (
             self.__class__.__name__, self.status, new_status))
 
+# missing car criterion
+
+# High speed temporary construction criterion
+
+# High-speed reckless lane cutting criterion
+
+# Highway accident vehicle criterion
+
+# Trucks encountered during construction criterion
+
+# Drive into the roundabout criterion
+
+# Four students crossing the road criterion
+
+# avoid a disabled vehicle criterion
+
+# Slanted motor and children criterion
+
 #reverse_vehicle private criterion
 class ReverseVehicleBrakeCriterion(Criterion):
     """
@@ -2561,3 +2579,6 @@ class ReverseVehicleResumeCriterion(Criterion):
 
         return new_status
     
+# crazy motor criterion
+
+# Blind spot hidden car criterion
