@@ -2709,7 +2709,310 @@ class HighSpeedResumeCriterion(Criterion):
 
         return new_status
 # Trucks encountered during construction criterion
+class DecelerationForConstructionTest(Criterion):
+    """
+    检测自车在接近施工区域时的减速行为
 
+    Important parameters:
+    - actor: CARLA actor to be used for this test
+    - start_distance: Start distance to check for deceleration (meters)
+    - end_distance: End distance to check for deceleration (meters)
+    - initial_speed_kmh: Initial speed in km/h
+    - target_speed_reduction: Target speed reduction in km/h to consider as successful deceleration
+
+    The test will check if the vehicle decelerates by at least target_speed_reduction km/h
+    when driving through the detection zone [start_distance, end_distance].
+    """
+
+    def __init__(self, actor, start_distance=30.0, end_distance=55.0,
+                 initial_speed_kmh=130.0, target_speed_reduction=40.0,
+                 name="DecelerationForConstructionTest", optional=False):
+        super(DecelerationForConstructionTest, self).__init__(name, actor, optional)
+        self.start_distance = start_distance
+        self.end_distance = end_distance
+        self.initial_speed_kmh = initial_speed_kmh
+        self.target_speed_reduction = target_speed_reduction
+
+        self._initial_location = None
+        self._max_speed = 0.0
+        self._min_speed = float('inf')
+        self._has_entered_zone = False
+        self._has_exited_zone = False
+        self._deceleration_detected = False
+
+        self.units = "km/h"
+
+        # Only monitor for AGENT-INITIATED deceleration (not collision-induced)
+        self._agent_brake_detected = False  # Track if agent applied brake
+        self._collision_in_zone = False  # Track if collision occurred in detection zone
+        self._previous_speed = None  # Track previous speed to detect sudden drops (collision)
+        self._sudden_deceleration_threshold = 20.0  # km/h per tick threshold for collision-induced deceleration
+
+    def initialise(self):
+        self._initial_location = CarlaDataProvider.get_location(self.actor)
+        super(DecelerationForConstructionTest, self).initialise()
+
+    def update(self):
+        new_status = py_trees.common.Status.RUNNING
+
+        if self.actor is None:
+            return new_status
+
+        current_location = CarlaDataProvider.get_location(self.actor)
+        if current_location is None or self._initial_location is None:
+            return new_status
+
+        # Calculate distance
+        distance = current_location.distance(self._initial_location)
+
+        # =======================================================
+        # Monitor for AGENT-INITIATED deceleration in detection zone (30-55m)
+        # =======================================================
+        # Get current speed
+        current_speed_ms = CarlaDataProvider.get_velocity(self.actor)
+        current_speed_kmh = current_speed_ms * 3.6
+
+        # Record max speed before entering detection zone
+        if distance < self.start_distance:
+            self._max_speed = max(self._max_speed, current_speed_kmh)
+            self._previous_speed = current_speed_kmh
+        elif self.start_distance <= distance <= self.end_distance:
+            # Inside detection zone - check for AGENT control
+            self._has_entered_zone = True
+
+            # Detect collision-induced sudden deceleration (speed drop > threshold per tick)
+            if self._previous_speed is not None:
+                speed_drop = self._previous_speed - current_speed_kmh
+                if speed_drop > self._sudden_deceleration_threshold:
+                    self._collision_in_zone = True
+                    print(f"[DecelerationForConstructionTest] Sudden deceleration detected ({speed_drop:.1f} km/h drop) - likely collision-induced", flush=True)
+
+            # Check if agent is applying brake (get actual vehicle control)
+            try:
+                vehicle_control = self.actor.get_control()
+                if vehicle_control.brake > 0.1:  # Agent is actively braking
+                    self._agent_brake_detected = True
+                    print(f"[DecelerationForConstructionTest] Agent brake detected at {distance:.1f}m - brake={vehicle_control.brake:.2f}", flush=True)
+            except Exception as e:
+                pass  # If we can't get control, skip this check
+
+            # Record minimum speed
+            self._min_speed = min(self._min_speed, current_speed_kmh)
+            self._previous_speed = current_speed_kmh
+
+            # Check if speed has reduced by target amount AND agent applied brake AND no collision
+            speed_reduction = self._max_speed - current_speed_kmh
+            if speed_reduction >= self.target_speed_reduction and self._agent_brake_detected and not self._collision_in_zone:
+                self._deceleration_detected = True
+                print(f"[DecelerationForConstructionTest] Agent-initiated deceleration confirmed: {speed_reduction:.1f} km/h reduction (no collision)", flush=True)
+            elif speed_reduction >= self.target_speed_reduction and self._collision_in_zone:
+                print(f"[DecelerationForConstructionTest] Speed reduction detected but COLLISION occurred - deceleration NOT counted", flush=True)
+        elif distance > self.end_distance:
+            # Exited detection zone
+            self._has_exited_zone = True
+
+        # Update actual_value as speed reduction
+        if self._max_speed > 0:
+            self.actual_value = round(self._max_speed - self._min_speed, 2)
+
+        # Update test status
+        if self._has_exited_zone:
+            if self._deceleration_detected:
+                self.test_status = "SUCCESS"
+            else:
+                self.test_status = "FAILURE"
+            new_status = py_trees.common.Status.SUCCESS
+
+        self.logger.debug("%s.update()[%s->%s]" % (self.__class__.__name__, self.status, new_status))
+        return new_status
+
+    def terminate(self, new_status):
+        if not self._has_exited_zone and self._has_entered_zone:
+            # If terminated while inside zone, check if deceleration was detected
+            if self._deceleration_detected:
+                self.test_status = "SUCCESS"
+            else:
+                self.test_status = "FAILURE"
+
+        if self._max_speed > 0:
+            self.actual_value = round(self._max_speed - self._min_speed, 2)
+
+        super(DecelerationForConstructionTest, self).terminate(new_status)
+
+
+class MinTTCTest(Criterion):
+    """
+    计算自车与所有障碍物之间的最小Time To Collision (TTC)
+
+    TTC计算公式:
+    TTC = distance / relative_velocity
+
+    Important parameters:
+    - actor: CARLA actor (ego vehicle)
+    - target_actors: List of target actors to calculate TTC against (optional)
+    - name: Name of the test
+    - optional: If True, result is not considered for overall pass/fail
+
+    The test continuously calculates TTC throughout the scenario and stores the minimum value.
+    """
+
+    def __init__(self, actor, target_actors=None, name="MinTTCTest", optional=False):
+        super(MinTTCTest, self).__init__(name, actor, optional)
+        self.target_actors = target_actors if target_actors else []
+        self._min_ttc = float('inf')
+        self.units = "seconds"
+
+    def initialise(self):
+        self._min_ttc = float('inf')
+        super(MinTTCTest, self).initialise()
+
+    def update(self):
+        new_status = py_trees.common.Status.RUNNING
+
+        if self.actor is None:
+            return new_status
+
+        # Get ego vehicle location and velocity
+        ego_location = CarlaDataProvider.get_location(self.actor)
+        ego_velocity = CarlaDataProvider.get_velocity(self.actor)
+
+        if ego_location is None:
+            return new_status
+
+        # Calculate TTC with each target actor
+        world = CarlaDataProvider.get_world()
+
+        # If no specific targets provided, use all actors in the scenario
+        targets = self.target_actors
+        if not targets:
+            # Get all actors in the world
+            actor_list = world.get_actors().filter('vehicle.*')
+            targets = [actor for actor in actor_list if actor.id != self.actor.id]
+
+        for target in targets:
+            target_location = target.get_location()
+            target_velocity = target.get_velocity()
+
+            if target_location is None:
+                continue
+
+            # Calculate distance
+            distance_vector = ego_location - target_location
+            distance = distance_vector.length()
+
+            # Skip if too far (optimization)
+            if distance > 200:  # Only consider objects within 200m
+                continue
+
+            # Calculate relative velocity (approach speed)
+            # Vector from target to ego
+            direction_to_ego = distance_vector / (distance + 1e-6)
+
+            # Get velocity vectors
+            try:
+                ego_vel_vector = self.actor.get_velocity()
+                target_vel_vector = target.get_velocity()
+
+                # For simplicity, use scalar velocities and project onto direction
+                # Relative speed along the line connecting the vehicles
+                ego_vel_mag = ego_vel_vector
+                target_vel_mag = target_vel_vector
+
+                # If target is ahead and moving away, or behind and moving away, TTC is large
+                # For simplicity, calculate relative speed in 3D
+                rel_velocity = abs(ego_vel_mag - target_vel_mag)
+
+                # Calculate TTC
+                if rel_velocity > 0.1:  # Only calculate if actually approaching
+                    ttc = distance / rel_velocity
+                    self._min_ttc = min(self._min_ttc, ttc)
+            except Exception as e:
+                # Skip if velocity calculation fails
+                pass
+
+        # Update actual_value with minimum TTC
+        if self._min_ttc != float('inf'):
+            self.actual_value = round(self._min_ttc, 3)
+            self.test_status = "SUCCESS"
+        else:
+            self.actual_value = float('inf')
+            self.test_status = "RUNNING"
+
+        self.logger.debug("%s.update()[min_ttc=%.3f][%s->%s]" %
+                         (self.__class__.__name__, self._min_ttc, self.status, new_status))
+
+        return new_status
+
+    def terminate(self, new_status):
+        # Store the final minimum TTC
+        if self._min_ttc != float('inf'):
+            self.actual_value = round(self._min_ttc, 3)
+            print(f"[MinTTCTest] Final minimum TTC: {self.actual_value:.3f}s", flush=True)
+        else:
+            self.actual_value = float('inf')
+            print(f"[MinTTCTest] No TTC data collected", flush=True)
+
+        super(MinTTCTest, self).terminate(new_status)
+
+
+class RoutePassCompletionTest(Criterion):
+    """
+    检测自车是否成功通过整个施工路段
+
+    Important parameters:
+    - actor: CARLA actor to be used for this test
+    - pass_distance: Distance required to consider the route as passed (meters)
+
+    The test is a success if the actor reaches the specified distance.
+    """
+
+    def __init__(self, actor, pass_distance=125.0, name="RoutePassCompletionTest", optional=False):
+        super(RoutePassCompletionTest, self).__init__(name, actor, optional)
+        self.pass_distance = pass_distance
+        self._initial_location = None
+        self._has_passed = False
+
+        self.units = "meters"
+
+    def initialise(self):
+        self._initial_location = CarlaDataProvider.get_location(self.actor)
+        super(RoutePassCompletionTest, self).initialise()
+
+    def update(self):
+        new_status = py_trees.common.Status.RUNNING
+
+        if self.actor is None:
+            return new_status
+
+        current_location = CarlaDataProvider.get_location(self.actor)
+        if current_location is None or self._initial_location is None:
+            return new_status
+
+        # Calculate distance traveled
+        distance = current_location.distance(self._initial_location)
+        self.actual_value = round(distance, 2)
+
+        # Check if passed
+        if distance >= self.pass_distance:
+            self._has_passed = True
+            self.test_status = "SUCCESS"
+            new_status = py_trees.common.Status.SUCCESS
+
+        self.logger.debug("%s.update()[%s->%s]" % (self.__class__.__name__, self.status, new_status))
+        return new_status
+
+    def terminate(self, new_status):
+        if self._has_passed:
+            self.test_status = "SUCCESS"
+        else:
+            self.test_status = "FAILURE"
+
+        if self._initial_location:
+            current_location = CarlaDataProvider.get_location(self.actor)
+            if current_location:
+                self.actual_value = round(current_location.distance(self._initial_location), 2)
+
+        super(RoutePassCompletionTest, self).terminate(new_status)
 # Drive into the roundabout criterion
 
 # Four students crossing the road criterion
