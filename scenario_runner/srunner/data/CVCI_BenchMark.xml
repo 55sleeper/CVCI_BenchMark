@@ -1255,7 +1255,1879 @@
         </scenarios>
     </route>
     <!-- ========== scenario_class 5:Trucks encountered during construction ========== -->
+    
+    <route id="0" town="Town04">
+        <weathers>
+            <!-- night&rain -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60.0" precipitation_deposits="50.0" wetness="70.0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
+        </weathers>
+        <waypoints>
+            <position x="100.22" y="244.91" z="0.0" />
+            <position x="102.03" y="244.05" z="0.0" />
+            <position x="103.83" y="243.19" z="0.0" />
+            <position x="105.64" y="242.33" z="0.0" />
+            <position x="107.44" y="241.47" z="0.0" />
+            <position x="109.25" y="240.60" z="0.0" />
+            <position x="111.05" y="239.74" z="0.0" />
+            <position x="112.86" y="238.88" z="0.0" />
+            <position x="114.66" y="238.02" z="0.0" />
+            <position x="116.47" y="237.16" z="0.0" />
+            <position x="118.27" y="236.30" z="0.0" />
+            <position x="120.08" y="235.44" z="0.0" />
+            <position x="121.88" y="234.58" z="0.0" />
+            <position x="123.69" y="233.72" z="0.0" />
+            <position x="125.49" y="232.85" z="0.0" />
+            <position x="127.30" y="231.99" z="0.0" />
+            <position x="129.10" y="231.13" z="0.0" />
+            <position x="130.91" y="230.27" z="0.0" />
+            <position x="132.71" y="229.41" z="0.0" />
+            <position x="134.52" y="228.55" z="0.0" />
+            <position x="136.32" y="227.69" z="0.0" />
+            <position x="138.13" y="226.83" z="0.0" />
+            <position x="139.93" y="225.97" z="0.0" />
+            <position x="141.74" y="225.11" z="0.0" />
+            <position x="143.54" y="224.24" z="0.0" />
+            <position x="145.35" y="223.38" z="0.0" />
+            <position x="147.15" y="222.52" z="0.0" />
+            <position x="148.96" y="221.66" z="0.0" />
+            <position x="150.76" y="220.80" z="0.0" />
+            <position x="152.57" y="219.94" z="0.0" />
+            <position x="154.37" y="219.08" z="0.0" />
+            <position x="156.18" y="218.22" z="0.0" />
+            <position x="157.98" y="217.36" z="0.0" />
+            <position x="159.79" y="216.49" z="0.0" />
+            <position x="161.59" y="215.63" z="0.0" />
+            <position x="163.40" y="214.77" z="0.0" />
+            <position x="165.21" y="213.91" z="0.0" />
+            <position x="167.01" y="213.05" z="0.0" />
+            <position x="168.82" y="212.19" z="0.0" />
+            <position x="170.62" y="211.33" z="0.0" />
+            <position x="172.43" y="210.47" z="0.0" />
+            <position x="174.23" y="209.61" z="0.0" />
+            <position x="176.04" y="208.74" z="0.0" />
+            <position x="177.84" y="207.88" z="0.0" />
+            <position x="179.65" y="207.02" z="0.0" />
+            <position x="181.45" y="206.16" z="0.0" />
+            <position x="183.26" y="205.30" z="0.0" />
+            <position x="185.06" y="204.44" z="0.0" />
+            <position x="186.87" y="203.58" z="0.0" />
+            <position x="188.67" y="202.72" z="0.0" />
+            <position x="190.48" y="201.86" z="0.0" />
+            <position x="192.28" y="201.00" z="0.0" />
+            <position x="194.09" y="200.13" z="0.0" />
+            <position x="195.89" y="199.27" z="0.0" />
+            <position x="197.70" y="198.41" z="0.0" />
+            <position x="199.50" y="197.55" z="0.0" />
+            <position x="201.31" y="196.69" z="0.0" />
+            <position x="203.11" y="195.83" z="0.0" />
+            <position x="204.92" y="194.97" z="0.0" />
+            <position x="206.72" y="194.11" z="0.0" />
+            <position x="208.53" y="193.25" z="0.0" />
+            <position x="210.33" y="192.38" z="0.0" />
+            <position x="212.14" y="191.52" z="0.0" />
+            <position x="213.94" y="190.66" z="0.0" />
+            <position x="215.75" y="189.80" z="0.0" />
+            <position x="217.55" y="188.94" z="0.0" />
+            <position x="219.36" y="188.08" z="0.0" />
+            <position x="221.16" y="187.22" z="0.0" />
+            <position x="222.97" y="186.36" z="0.0" />
+            <position x="224.78" y="185.50" z="0.0" />
+            <position x="226.58" y="184.63" z="0.0" />
+            <position x="228.39" y="183.77" z="0.0" />
+            <position x="230.19" y="182.91" z="0.0" />
+            <position x="232.00" y="182.05" z="0.0" />
+            <position x="233.80" y="181.19" z="0.0" />
+            <position x="235.61" y="180.33" z="0.0" />
+            <position x="237.41" y="179.47" z="0.0" />
+            <position x="239.22" y="178.61" z="0.0" />
+            <position x="241.02" y="177.75" z="0.0" />
+            <position x="242.83" y="176.89" z="0.0" />
+            <position x="244.63" y="176.02" z="0.0" />
+            <position x="246.44" y="175.16" z="0.0" />
+            <position x="248.24" y="174.30" z="0.0" />
+            <position x="250.05" y="173.44" z="0.0" />
+            <position x="251.85" y="172.58" z="0.0" />
+            <position x="253.66" y="171.72" z="0.0" />
+            <position x="255.46" y="170.86" z="0.0" />
+            <position x="257.27" y="170.00" z="0.0" />
+            <position x="259.07" y="169.14" z="0.0" />
+            <position x="260.88" y="168.27" z="0.0" />
+            <position x="262.68" y="167.41" z="0.0" />
+            <position x="264.49" y="166.55" z="0.0" />
+            <position x="266.29" y="165.69" z="0.0" />
+            <position x="268.10" y="164.83" z="0.0" />
+            <position x="269.90" y="163.97" z="0.0" />
+            <position x="271.71" y="163.11" z="0.0" />
+            <position x="273.51" y="162.25" z="0.0" />
+            <position x="275.32" y="161.39" z="0.0" />
+            <position x="277.12" y="160.52" z="0.0" />
+            <position x="278.93" y="159.66" z="0.0" />
+            <position x="280.73" y="158.80" z="0.0" />
+            <position x="282.54" y="157.94" z="0.0" />
+            <position x="284.34" y="157.08" z="0.0" />
+            <position x="286.15" y="156.22" z="0.0" />
+            <position x="287.96" y="155.36" z="0.0" />
+            <position x="289.76" y="154.50" z="0.0" />
+            <position x="291.57" y="153.64" z="0.0" />
+            <position x="293.37" y="152.78" z="0.0" />
+            <position x="295.18" y="151.91" z="0.0" />
+            <position x="296.98" y="151.05" z="0.0" />
+            <position x="298.79" y="150.19" z="0.0" />
+            <position x="300.59" y="149.33" z="0.0" />
+            <position x="302.40" y="148.47" z="0.0" />
+            <position x="304.20" y="147.61" z="0.0" />
+            <position x="306.01" y="146.75" z="0.0" />
+            <position x="307.81" y="145.89" z="0.0" />
+            <position x="309.62" y="145.03" z="0.0" />
+            <position x="311.42" y="144.16" z="0.0" />
+            <position x="313.23" y="143.30" z="0.0" />
+            <position x="315.03" y="142.44" z="0.0" />
+            <position x="316.84" y="141.58" z="0.0" />
+            <position x="318.64" y="140.72" z="0.0" />
+            <position x="320.45" y="139.86" z="0.0" />
+            <position x="322.25" y="139.00" z="0.0" />
+            <position x="324.06" y="138.14" z="0.0" />
+            <position x="325.86" y="137.28" z="0.0" />
+            <position x="327.67" y="136.41" z="0.0" />
+            <position x="329.47" y="135.55" z="0.0" />
+            <position x="331.28" y="134.69" z="0.0" />
+            <position x="333.08" y="133.83" z="0.0" />
+            <position x="334.89" y="132.97" z="0.0" />
+            <position x="336.69" y="132.11" z="0.0" />
+            <position x="338.50" y="131.25" z="0.0" />
+            <position x="340.30" y="130.39" z="0.0" />
+            <position x="342.11" y="129.53" z="0.0" />
+            <position x="343.91" y="128.67" z="0.0" />
+            <position x="345.72" y="127.80" z="0.0" />
+            <position x="347.53" y="126.94" z="0.0" />
+            <position x="349.33" y="126.08" z="0.0" />
+            <position x="351.14" y="125.22" z="0.0" />
+            <position x="352.94" y="124.36" z="0.0" />
+        </waypoints>
 
+        <scenarios>
+            <scenario name="LaneClosureWithTruck_level1_night_rain" type="LaneClosureWithTruck">
+                <trigger_point x="173.22" y="207.91" z="0.0" pitch="0.0" yaw="-17.81" roll="0.0"/>
+                <init_speed value="90"/>
+            </scenario>
+        </scenarios>
+    </route>
+    <route id="0" town="Town04">
+        <weathers>
+            <!-- night&rain -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60.0" precipitation_deposits="50.0" wetness="70.0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
+        </weathers>
+        <waypoints>
+            <position x="100.22" y="244.91" z="0.0" />
+            <position x="102.03" y="244.05" z="0.0" />
+            <position x="103.83" y="243.19" z="0.0" />
+            <position x="105.64" y="242.33" z="0.0" />
+            <position x="107.44" y="241.47" z="0.0" />
+            <position x="109.25" y="240.60" z="0.0" />
+            <position x="111.05" y="239.74" z="0.0" />
+            <position x="112.86" y="238.88" z="0.0" />
+            <position x="114.66" y="238.02" z="0.0" />
+            <position x="116.47" y="237.16" z="0.0" />
+            <position x="118.27" y="236.30" z="0.0" />
+            <position x="120.08" y="235.44" z="0.0" />
+            <position x="121.88" y="234.58" z="0.0" />
+            <position x="123.69" y="233.72" z="0.0" />
+            <position x="125.49" y="232.85" z="0.0" />
+            <position x="127.30" y="231.99" z="0.0" />
+            <position x="129.10" y="231.13" z="0.0" />
+            <position x="130.91" y="230.27" z="0.0" />
+            <position x="132.71" y="229.41" z="0.0" />
+            <position x="134.52" y="228.55" z="0.0" />
+            <position x="136.32" y="227.69" z="0.0" />
+            <position x="138.13" y="226.83" z="0.0" />
+            <position x="139.93" y="225.97" z="0.0" />
+            <position x="141.74" y="225.11" z="0.0" />
+            <position x="143.54" y="224.24" z="0.0" />
+            <position x="145.35" y="223.38" z="0.0" />
+            <position x="147.15" y="222.52" z="0.0" />
+            <position x="148.96" y="221.66" z="0.0" />
+            <position x="150.76" y="220.80" z="0.0" />
+            <position x="152.57" y="219.94" z="0.0" />
+            <position x="154.37" y="219.08" z="0.0" />
+            <position x="156.18" y="218.22" z="0.0" />
+            <position x="157.98" y="217.36" z="0.0" />
+            <position x="159.79" y="216.49" z="0.0" />
+            <position x="161.59" y="215.63" z="0.0" />
+            <position x="163.40" y="214.77" z="0.0" />
+            <position x="165.21" y="213.91" z="0.0" />
+            <position x="167.01" y="213.05" z="0.0" />
+            <position x="168.82" y="212.19" z="0.0" />
+            <position x="170.62" y="211.33" z="0.0" />
+            <position x="172.43" y="210.47" z="0.0" />
+            <position x="174.23" y="209.61" z="0.0" />
+            <position x="176.04" y="208.74" z="0.0" />
+            <position x="177.84" y="207.88" z="0.0" />
+            <position x="179.65" y="207.02" z="0.0" />
+            <position x="181.45" y="206.16" z="0.0" />
+            <position x="183.26" y="205.30" z="0.0" />
+            <position x="185.06" y="204.44" z="0.0" />
+            <position x="186.87" y="203.58" z="0.0" />
+            <position x="188.67" y="202.72" z="0.0" />
+            <position x="190.48" y="201.86" z="0.0" />
+            <position x="192.28" y="201.00" z="0.0" />
+            <position x="194.09" y="200.13" z="0.0" />
+            <position x="195.89" y="199.27" z="0.0" />
+            <position x="197.70" y="198.41" z="0.0" />
+            <position x="199.50" y="197.55" z="0.0" />
+            <position x="201.31" y="196.69" z="0.0" />
+            <position x="203.11" y="195.83" z="0.0" />
+            <position x="204.92" y="194.97" z="0.0" />
+            <position x="206.72" y="194.11" z="0.0" />
+            <position x="208.53" y="193.25" z="0.0" />
+            <position x="210.33" y="192.38" z="0.0" />
+            <position x="212.14" y="191.52" z="0.0" />
+            <position x="213.94" y="190.66" z="0.0" />
+            <position x="215.75" y="189.80" z="0.0" />
+            <position x="217.55" y="188.94" z="0.0" />
+            <position x="219.36" y="188.08" z="0.0" />
+            <position x="221.16" y="187.22" z="0.0" />
+            <position x="222.97" y="186.36" z="0.0" />
+            <position x="224.78" y="185.50" z="0.0" />
+            <position x="226.58" y="184.63" z="0.0" />
+            <position x="228.39" y="183.77" z="0.0" />
+            <position x="230.19" y="182.91" z="0.0" />
+            <position x="232.00" y="182.05" z="0.0" />
+            <position x="233.80" y="181.19" z="0.0" />
+            <position x="235.61" y="180.33" z="0.0" />
+            <position x="237.41" y="179.47" z="0.0" />
+            <position x="239.22" y="178.61" z="0.0" />
+            <position x="241.02" y="177.75" z="0.0" />
+            <position x="242.83" y="176.89" z="0.0" />
+            <position x="244.63" y="176.02" z="0.0" />
+            <position x="246.44" y="175.16" z="0.0" />
+            <position x="248.24" y="174.30" z="0.0" />
+            <position x="250.05" y="173.44" z="0.0" />
+            <position x="251.85" y="172.58" z="0.0" />
+            <position x="253.66" y="171.72" z="0.0" />
+            <position x="255.46" y="170.86" z="0.0" />
+            <position x="257.27" y="170.00" z="0.0" />
+            <position x="259.07" y="169.14" z="0.0" />
+            <position x="260.88" y="168.27" z="0.0" />
+            <position x="262.68" y="167.41" z="0.0" />
+            <position x="264.49" y="166.55" z="0.0" />
+            <position x="266.29" y="165.69" z="0.0" />
+            <position x="268.10" y="164.83" z="0.0" />
+            <position x="269.90" y="163.97" z="0.0" />
+            <position x="271.71" y="163.11" z="0.0" />
+            <position x="273.51" y="162.25" z="0.0" />
+            <position x="275.32" y="161.39" z="0.0" />
+            <position x="277.12" y="160.52" z="0.0" />
+            <position x="278.93" y="159.66" z="0.0" />
+            <position x="280.73" y="158.80" z="0.0" />
+            <position x="282.54" y="157.94" z="0.0" />
+            <position x="284.34" y="157.08" z="0.0" />
+            <position x="286.15" y="156.22" z="0.0" />
+            <position x="287.96" y="155.36" z="0.0" />
+            <position x="289.76" y="154.50" z="0.0" />
+            <position x="291.57" y="153.64" z="0.0" />
+            <position x="293.37" y="152.78" z="0.0" />
+            <position x="295.18" y="151.91" z="0.0" />
+            <position x="296.98" y="151.05" z="0.0" />
+            <position x="298.79" y="150.19" z="0.0" />
+            <position x="300.59" y="149.33" z="0.0" />
+            <position x="302.40" y="148.47" z="0.0" />
+            <position x="304.20" y="147.61" z="0.0" />
+            <position x="306.01" y="146.75" z="0.0" />
+            <position x="307.81" y="145.89" z="0.0" />
+            <position x="309.62" y="145.03" z="0.0" />
+            <position x="311.42" y="144.16" z="0.0" />
+            <position x="313.23" y="143.30" z="0.0" />
+            <position x="315.03" y="142.44" z="0.0" />
+            <position x="316.84" y="141.58" z="0.0" />
+            <position x="318.64" y="140.72" z="0.0" />
+            <position x="320.45" y="139.86" z="0.0" />
+            <position x="322.25" y="139.00" z="0.0" />
+            <position x="324.06" y="138.14" z="0.0" />
+            <position x="325.86" y="137.28" z="0.0" />
+            <position x="327.67" y="136.41" z="0.0" />
+            <position x="329.47" y="135.55" z="0.0" />
+            <position x="331.28" y="134.69" z="0.0" />
+            <position x="333.08" y="133.83" z="0.0" />
+            <position x="334.89" y="132.97" z="0.0" />
+            <position x="336.69" y="132.11" z="0.0" />
+            <position x="338.50" y="131.25" z="0.0" />
+            <position x="340.30" y="130.39" z="0.0" />
+            <position x="342.11" y="129.53" z="0.0" />
+            <position x="343.91" y="128.67" z="0.0" />
+            <position x="345.72" y="127.80" z="0.0" />
+            <position x="347.53" y="126.94" z="0.0" />
+            <position x="349.33" y="126.08" z="0.0" />
+            <position x="351.14" y="125.22" z="0.0" />
+            <position x="352.94" y="124.36" z="0.0" />
+        </waypoints>
+
+        <scenarios>
+            <scenario name="LaneClosureWithTruck_level2_night_rain" type="LaneClosureWithTruck">
+                <trigger_point x="173.22" y="207.91" z="0.0" pitch="0.0" yaw="-17.81" roll="0.0"/>
+                <init_speed value="110"/>
+            </scenario>
+        </scenarios>
+    </route>
+    <route id="0" town="Town04">
+        <weathers>
+            <!-- night&rain -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60.0" precipitation_deposits="50.0" wetness="70.0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
+        </weathers>
+        <waypoints>
+            <position x="100.22" y="244.91" z="0.0" />
+            <position x="102.03" y="244.05" z="0.0" />
+            <position x="103.83" y="243.19" z="0.0" />
+            <position x="105.64" y="242.33" z="0.0" />
+            <position x="107.44" y="241.47" z="0.0" />
+            <position x="109.25" y="240.60" z="0.0" />
+            <position x="111.05" y="239.74" z="0.0" />
+            <position x="112.86" y="238.88" z="0.0" />
+            <position x="114.66" y="238.02" z="0.0" />
+            <position x="116.47" y="237.16" z="0.0" />
+            <position x="118.27" y="236.30" z="0.0" />
+            <position x="120.08" y="235.44" z="0.0" />
+            <position x="121.88" y="234.58" z="0.0" />
+            <position x="123.69" y="233.72" z="0.0" />
+            <position x="125.49" y="232.85" z="0.0" />
+            <position x="127.30" y="231.99" z="0.0" />
+            <position x="129.10" y="231.13" z="0.0" />
+            <position x="130.91" y="230.27" z="0.0" />
+            <position x="132.71" y="229.41" z="0.0" />
+            <position x="134.52" y="228.55" z="0.0" />
+            <position x="136.32" y="227.69" z="0.0" />
+            <position x="138.13" y="226.83" z="0.0" />
+            <position x="139.93" y="225.97" z="0.0" />
+            <position x="141.74" y="225.11" z="0.0" />
+            <position x="143.54" y="224.24" z="0.0" />
+            <position x="145.35" y="223.38" z="0.0" />
+            <position x="147.15" y="222.52" z="0.0" />
+            <position x="148.96" y="221.66" z="0.0" />
+            <position x="150.76" y="220.80" z="0.0" />
+            <position x="152.57" y="219.94" z="0.0" />
+            <position x="154.37" y="219.08" z="0.0" />
+            <position x="156.18" y="218.22" z="0.0" />
+            <position x="157.98" y="217.36" z="0.0" />
+            <position x="159.79" y="216.49" z="0.0" />
+            <position x="161.59" y="215.63" z="0.0" />
+            <position x="163.40" y="214.77" z="0.0" />
+            <position x="165.21" y="213.91" z="0.0" />
+            <position x="167.01" y="213.05" z="0.0" />
+            <position x="168.82" y="212.19" z="0.0" />
+            <position x="170.62" y="211.33" z="0.0" />
+            <position x="172.43" y="210.47" z="0.0" />
+            <position x="174.23" y="209.61" z="0.0" />
+            <position x="176.04" y="208.74" z="0.0" />
+            <position x="177.84" y="207.88" z="0.0" />
+            <position x="179.65" y="207.02" z="0.0" />
+            <position x="181.45" y="206.16" z="0.0" />
+            <position x="183.26" y="205.30" z="0.0" />
+            <position x="185.06" y="204.44" z="0.0" />
+            <position x="186.87" y="203.58" z="0.0" />
+            <position x="188.67" y="202.72" z="0.0" />
+            <position x="190.48" y="201.86" z="0.0" />
+            <position x="192.28" y="201.00" z="0.0" />
+            <position x="194.09" y="200.13" z="0.0" />
+            <position x="195.89" y="199.27" z="0.0" />
+            <position x="197.70" y="198.41" z="0.0" />
+            <position x="199.50" y="197.55" z="0.0" />
+            <position x="201.31" y="196.69" z="0.0" />
+            <position x="203.11" y="195.83" z="0.0" />
+            <position x="204.92" y="194.97" z="0.0" />
+            <position x="206.72" y="194.11" z="0.0" />
+            <position x="208.53" y="193.25" z="0.0" />
+            <position x="210.33" y="192.38" z="0.0" />
+            <position x="212.14" y="191.52" z="0.0" />
+            <position x="213.94" y="190.66" z="0.0" />
+            <position x="215.75" y="189.80" z="0.0" />
+            <position x="217.55" y="188.94" z="0.0" />
+            <position x="219.36" y="188.08" z="0.0" />
+            <position x="221.16" y="187.22" z="0.0" />
+            <position x="222.97" y="186.36" z="0.0" />
+            <position x="224.78" y="185.50" z="0.0" />
+            <position x="226.58" y="184.63" z="0.0" />
+            <position x="228.39" y="183.77" z="0.0" />
+            <position x="230.19" y="182.91" z="0.0" />
+            <position x="232.00" y="182.05" z="0.0" />
+            <position x="233.80" y="181.19" z="0.0" />
+            <position x="235.61" y="180.33" z="0.0" />
+            <position x="237.41" y="179.47" z="0.0" />
+            <position x="239.22" y="178.61" z="0.0" />
+            <position x="241.02" y="177.75" z="0.0" />
+            <position x="242.83" y="176.89" z="0.0" />
+            <position x="244.63" y="176.02" z="0.0" />
+            <position x="246.44" y="175.16" z="0.0" />
+            <position x="248.24" y="174.30" z="0.0" />
+            <position x="250.05" y="173.44" z="0.0" />
+            <position x="251.85" y="172.58" z="0.0" />
+            <position x="253.66" y="171.72" z="0.0" />
+            <position x="255.46" y="170.86" z="0.0" />
+            <position x="257.27" y="170.00" z="0.0" />
+            <position x="259.07" y="169.14" z="0.0" />
+            <position x="260.88" y="168.27" z="0.0" />
+            <position x="262.68" y="167.41" z="0.0" />
+            <position x="264.49" y="166.55" z="0.0" />
+            <position x="266.29" y="165.69" z="0.0" />
+            <position x="268.10" y="164.83" z="0.0" />
+            <position x="269.90" y="163.97" z="0.0" />
+            <position x="271.71" y="163.11" z="0.0" />
+            <position x="273.51" y="162.25" z="0.0" />
+            <position x="275.32" y="161.39" z="0.0" />
+            <position x="277.12" y="160.52" z="0.0" />
+            <position x="278.93" y="159.66" z="0.0" />
+            <position x="280.73" y="158.80" z="0.0" />
+            <position x="282.54" y="157.94" z="0.0" />
+            <position x="284.34" y="157.08" z="0.0" />
+            <position x="286.15" y="156.22" z="0.0" />
+            <position x="287.96" y="155.36" z="0.0" />
+            <position x="289.76" y="154.50" z="0.0" />
+            <position x="291.57" y="153.64" z="0.0" />
+            <position x="293.37" y="152.78" z="0.0" />
+            <position x="295.18" y="151.91" z="0.0" />
+            <position x="296.98" y="151.05" z="0.0" />
+            <position x="298.79" y="150.19" z="0.0" />
+            <position x="300.59" y="149.33" z="0.0" />
+            <position x="302.40" y="148.47" z="0.0" />
+            <position x="304.20" y="147.61" z="0.0" />
+            <position x="306.01" y="146.75" z="0.0" />
+            <position x="307.81" y="145.89" z="0.0" />
+            <position x="309.62" y="145.03" z="0.0" />
+            <position x="311.42" y="144.16" z="0.0" />
+            <position x="313.23" y="143.30" z="0.0" />
+            <position x="315.03" y="142.44" z="0.0" />
+            <position x="316.84" y="141.58" z="0.0" />
+            <position x="318.64" y="140.72" z="0.0" />
+            <position x="320.45" y="139.86" z="0.0" />
+            <position x="322.25" y="139.00" z="0.0" />
+            <position x="324.06" y="138.14" z="0.0" />
+            <position x="325.86" y="137.28" z="0.0" />
+            <position x="327.67" y="136.41" z="0.0" />
+            <position x="329.47" y="135.55" z="0.0" />
+            <position x="331.28" y="134.69" z="0.0" />
+            <position x="333.08" y="133.83" z="0.0" />
+            <position x="334.89" y="132.97" z="0.0" />
+            <position x="336.69" y="132.11" z="0.0" />
+            <position x="338.50" y="131.25" z="0.0" />
+            <position x="340.30" y="130.39" z="0.0" />
+            <position x="342.11" y="129.53" z="0.0" />
+            <position x="343.91" y="128.67" z="0.0" />
+            <position x="345.72" y="127.80" z="0.0" />
+            <position x="347.53" y="126.94" z="0.0" />
+            <position x="349.33" y="126.08" z="0.0" />
+            <position x="351.14" y="125.22" z="0.0" />
+            <position x="352.94" y="124.36" z="0.0" />
+        </waypoints>
+
+        <scenarios>
+            <scenario name="LaneClosureWithTruck_level3_night_rain" type="LaneClosureWithTruck">
+                <trigger_point x="173.22" y="207.91" z="0.0" pitch="0.0" yaw="-17.81" roll="0.0"/>
+                <init_speed value="130"/>
+            </scenario>
+        </scenarios>
+    </route>
+    <route id="0" town="Town04">
+        <weathers>
+            <!-- night&sunny -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
+        </weathers>
+        <waypoints>
+            <position x="100.22" y="244.91" z="0.0" />
+            <position x="102.03" y="244.05" z="0.0" />
+            <position x="103.83" y="243.19" z="0.0" />
+            <position x="105.64" y="242.33" z="0.0" />
+            <position x="107.44" y="241.47" z="0.0" />
+            <position x="109.25" y="240.60" z="0.0" />
+            <position x="111.05" y="239.74" z="0.0" />
+            <position x="112.86" y="238.88" z="0.0" />
+            <position x="114.66" y="238.02" z="0.0" />
+            <position x="116.47" y="237.16" z="0.0" />
+            <position x="118.27" y="236.30" z="0.0" />
+            <position x="120.08" y="235.44" z="0.0" />
+            <position x="121.88" y="234.58" z="0.0" />
+            <position x="123.69" y="233.72" z="0.0" />
+            <position x="125.49" y="232.85" z="0.0" />
+            <position x="127.30" y="231.99" z="0.0" />
+            <position x="129.10" y="231.13" z="0.0" />
+            <position x="130.91" y="230.27" z="0.0" />
+            <position x="132.71" y="229.41" z="0.0" />
+            <position x="134.52" y="228.55" z="0.0" />
+            <position x="136.32" y="227.69" z="0.0" />
+            <position x="138.13" y="226.83" z="0.0" />
+            <position x="139.93" y="225.97" z="0.0" />
+            <position x="141.74" y="225.11" z="0.0" />
+            <position x="143.54" y="224.24" z="0.0" />
+            <position x="145.35" y="223.38" z="0.0" />
+            <position x="147.15" y="222.52" z="0.0" />
+            <position x="148.96" y="221.66" z="0.0" />
+            <position x="150.76" y="220.80" z="0.0" />
+            <position x="152.57" y="219.94" z="0.0" />
+            <position x="154.37" y="219.08" z="0.0" />
+            <position x="156.18" y="218.22" z="0.0" />
+            <position x="157.98" y="217.36" z="0.0" />
+            <position x="159.79" y="216.49" z="0.0" />
+            <position x="161.59" y="215.63" z="0.0" />
+            <position x="163.40" y="214.77" z="0.0" />
+            <position x="165.21" y="213.91" z="0.0" />
+            <position x="167.01" y="213.05" z="0.0" />
+            <position x="168.82" y="212.19" z="0.0" />
+            <position x="170.62" y="211.33" z="0.0" />
+            <position x="172.43" y="210.47" z="0.0" />
+            <position x="174.23" y="209.61" z="0.0" />
+            <position x="176.04" y="208.74" z="0.0" />
+            <position x="177.84" y="207.88" z="0.0" />
+            <position x="179.65" y="207.02" z="0.0" />
+            <position x="181.45" y="206.16" z="0.0" />
+            <position x="183.26" y="205.30" z="0.0" />
+            <position x="185.06" y="204.44" z="0.0" />
+            <position x="186.87" y="203.58" z="0.0" />
+            <position x="188.67" y="202.72" z="0.0" />
+            <position x="190.48" y="201.86" z="0.0" />
+            <position x="192.28" y="201.00" z="0.0" />
+            <position x="194.09" y="200.13" z="0.0" />
+            <position x="195.89" y="199.27" z="0.0" />
+            <position x="197.70" y="198.41" z="0.0" />
+            <position x="199.50" y="197.55" z="0.0" />
+            <position x="201.31" y="196.69" z="0.0" />
+            <position x="203.11" y="195.83" z="0.0" />
+            <position x="204.92" y="194.97" z="0.0" />
+            <position x="206.72" y="194.11" z="0.0" />
+            <position x="208.53" y="193.25" z="0.0" />
+            <position x="210.33" y="192.38" z="0.0" />
+            <position x="212.14" y="191.52" z="0.0" />
+            <position x="213.94" y="190.66" z="0.0" />
+            <position x="215.75" y="189.80" z="0.0" />
+            <position x="217.55" y="188.94" z="0.0" />
+            <position x="219.36" y="188.08" z="0.0" />
+            <position x="221.16" y="187.22" z="0.0" />
+            <position x="222.97" y="186.36" z="0.0" />
+            <position x="224.78" y="185.50" z="0.0" />
+            <position x="226.58" y="184.63" z="0.0" />
+            <position x="228.39" y="183.77" z="0.0" />
+            <position x="230.19" y="182.91" z="0.0" />
+            <position x="232.00" y="182.05" z="0.0" />
+            <position x="233.80" y="181.19" z="0.0" />
+            <position x="235.61" y="180.33" z="0.0" />
+            <position x="237.41" y="179.47" z="0.0" />
+            <position x="239.22" y="178.61" z="0.0" />
+            <position x="241.02" y="177.75" z="0.0" />
+            <position x="242.83" y="176.89" z="0.0" />
+            <position x="244.63" y="176.02" z="0.0" />
+            <position x="246.44" y="175.16" z="0.0" />
+            <position x="248.24" y="174.30" z="0.0" />
+            <position x="250.05" y="173.44" z="0.0" />
+            <position x="251.85" y="172.58" z="0.0" />
+            <position x="253.66" y="171.72" z="0.0" />
+            <position x="255.46" y="170.86" z="0.0" />
+            <position x="257.27" y="170.00" z="0.0" />
+            <position x="259.07" y="169.14" z="0.0" />
+            <position x="260.88" y="168.27" z="0.0" />
+            <position x="262.68" y="167.41" z="0.0" />
+            <position x="264.49" y="166.55" z="0.0" />
+            <position x="266.29" y="165.69" z="0.0" />
+            <position x="268.10" y="164.83" z="0.0" />
+            <position x="269.90" y="163.97" z="0.0" />
+            <position x="271.71" y="163.11" z="0.0" />
+            <position x="273.51" y="162.25" z="0.0" />
+            <position x="275.32" y="161.39" z="0.0" />
+            <position x="277.12" y="160.52" z="0.0" />
+            <position x="278.93" y="159.66" z="0.0" />
+            <position x="280.73" y="158.80" z="0.0" />
+            <position x="282.54" y="157.94" z="0.0" />
+            <position x="284.34" y="157.08" z="0.0" />
+            <position x="286.15" y="156.22" z="0.0" />
+            <position x="287.96" y="155.36" z="0.0" />
+            <position x="289.76" y="154.50" z="0.0" />
+            <position x="291.57" y="153.64" z="0.0" />
+            <position x="293.37" y="152.78" z="0.0" />
+            <position x="295.18" y="151.91" z="0.0" />
+            <position x="296.98" y="151.05" z="0.0" />
+            <position x="298.79" y="150.19" z="0.0" />
+            <position x="300.59" y="149.33" z="0.0" />
+            <position x="302.40" y="148.47" z="0.0" />
+            <position x="304.20" y="147.61" z="0.0" />
+            <position x="306.01" y="146.75" z="0.0" />
+            <position x="307.81" y="145.89" z="0.0" />
+            <position x="309.62" y="145.03" z="0.0" />
+            <position x="311.42" y="144.16" z="0.0" />
+            <position x="313.23" y="143.30" z="0.0" />
+            <position x="315.03" y="142.44" z="0.0" />
+            <position x="316.84" y="141.58" z="0.0" />
+            <position x="318.64" y="140.72" z="0.0" />
+            <position x="320.45" y="139.86" z="0.0" />
+            <position x="322.25" y="139.00" z="0.0" />
+            <position x="324.06" y="138.14" z="0.0" />
+            <position x="325.86" y="137.28" z="0.0" />
+            <position x="327.67" y="136.41" z="0.0" />
+            <position x="329.47" y="135.55" z="0.0" />
+            <position x="331.28" y="134.69" z="0.0" />
+            <position x="333.08" y="133.83" z="0.0" />
+            <position x="334.89" y="132.97" z="0.0" />
+            <position x="336.69" y="132.11" z="0.0" />
+            <position x="338.50" y="131.25" z="0.0" />
+            <position x="340.30" y="130.39" z="0.0" />
+            <position x="342.11" y="129.53" z="0.0" />
+            <position x="343.91" y="128.67" z="0.0" />
+            <position x="345.72" y="127.80" z="0.0" />
+            <position x="347.53" y="126.94" z="0.0" />
+            <position x="349.33" y="126.08" z="0.0" />
+            <position x="351.14" y="125.22" z="0.0" />
+            <position x="352.94" y="124.36" z="0.0" />
+        </waypoints>
+
+        <scenarios>
+            <scenario name="LaneClosureWithTruck_level1_night_sunny" type="LaneClosureWithTruck">
+                <trigger_point x="173.22" y="207.91" z="0.0" pitch="0.0" yaw="-17.81" roll="0.0"/>
+                <init_speed value="90"/>
+            </scenario>
+        </scenarios>
+    </route>
+    <route id="0" town="Town04">
+        <weathers>
+            <!-- night&sunny -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
+        </weathers>
+        <waypoints>
+            <position x="100.22" y="244.91" z="0.0" />
+            <position x="102.03" y="244.05" z="0.0" />
+            <position x="103.83" y="243.19" z="0.0" />
+            <position x="105.64" y="242.33" z="0.0" />
+            <position x="107.44" y="241.47" z="0.0" />
+            <position x="109.25" y="240.60" z="0.0" />
+            <position x="111.05" y="239.74" z="0.0" />
+            <position x="112.86" y="238.88" z="0.0" />
+            <position x="114.66" y="238.02" z="0.0" />
+            <position x="116.47" y="237.16" z="0.0" />
+            <position x="118.27" y="236.30" z="0.0" />
+            <position x="120.08" y="235.44" z="0.0" />
+            <position x="121.88" y="234.58" z="0.0" />
+            <position x="123.69" y="233.72" z="0.0" />
+            <position x="125.49" y="232.85" z="0.0" />
+            <position x="127.30" y="231.99" z="0.0" />
+            <position x="129.10" y="231.13" z="0.0" />
+            <position x="130.91" y="230.27" z="0.0" />
+            <position x="132.71" y="229.41" z="0.0" />
+            <position x="134.52" y="228.55" z="0.0" />
+            <position x="136.32" y="227.69" z="0.0" />
+            <position x="138.13" y="226.83" z="0.0" />
+            <position x="139.93" y="225.97" z="0.0" />
+            <position x="141.74" y="225.11" z="0.0" />
+            <position x="143.54" y="224.24" z="0.0" />
+            <position x="145.35" y="223.38" z="0.0" />
+            <position x="147.15" y="222.52" z="0.0" />
+            <position x="148.96" y="221.66" z="0.0" />
+            <position x="150.76" y="220.80" z="0.0" />
+            <position x="152.57" y="219.94" z="0.0" />
+            <position x="154.37" y="219.08" z="0.0" />
+            <position x="156.18" y="218.22" z="0.0" />
+            <position x="157.98" y="217.36" z="0.0" />
+            <position x="159.79" y="216.49" z="0.0" />
+            <position x="161.59" y="215.63" z="0.0" />
+            <position x="163.40" y="214.77" z="0.0" />
+            <position x="165.21" y="213.91" z="0.0" />
+            <position x="167.01" y="213.05" z="0.0" />
+            <position x="168.82" y="212.19" z="0.0" />
+            <position x="170.62" y="211.33" z="0.0" />
+            <position x="172.43" y="210.47" z="0.0" />
+            <position x="174.23" y="209.61" z="0.0" />
+            <position x="176.04" y="208.74" z="0.0" />
+            <position x="177.84" y="207.88" z="0.0" />
+            <position x="179.65" y="207.02" z="0.0" />
+            <position x="181.45" y="206.16" z="0.0" />
+            <position x="183.26" y="205.30" z="0.0" />
+            <position x="185.06" y="204.44" z="0.0" />
+            <position x="186.87" y="203.58" z="0.0" />
+            <position x="188.67" y="202.72" z="0.0" />
+            <position x="190.48" y="201.86" z="0.0" />
+            <position x="192.28" y="201.00" z="0.0" />
+            <position x="194.09" y="200.13" z="0.0" />
+            <position x="195.89" y="199.27" z="0.0" />
+            <position x="197.70" y="198.41" z="0.0" />
+            <position x="199.50" y="197.55" z="0.0" />
+            <position x="201.31" y="196.69" z="0.0" />
+            <position x="203.11" y="195.83" z="0.0" />
+            <position x="204.92" y="194.97" z="0.0" />
+            <position x="206.72" y="194.11" z="0.0" />
+            <position x="208.53" y="193.25" z="0.0" />
+            <position x="210.33" y="192.38" z="0.0" />
+            <position x="212.14" y="191.52" z="0.0" />
+            <position x="213.94" y="190.66" z="0.0" />
+            <position x="215.75" y="189.80" z="0.0" />
+            <position x="217.55" y="188.94" z="0.0" />
+            <position x="219.36" y="188.08" z="0.0" />
+            <position x="221.16" y="187.22" z="0.0" />
+            <position x="222.97" y="186.36" z="0.0" />
+            <position x="224.78" y="185.50" z="0.0" />
+            <position x="226.58" y="184.63" z="0.0" />
+            <position x="228.39" y="183.77" z="0.0" />
+            <position x="230.19" y="182.91" z="0.0" />
+            <position x="232.00" y="182.05" z="0.0" />
+            <position x="233.80" y="181.19" z="0.0" />
+            <position x="235.61" y="180.33" z="0.0" />
+            <position x="237.41" y="179.47" z="0.0" />
+            <position x="239.22" y="178.61" z="0.0" />
+            <position x="241.02" y="177.75" z="0.0" />
+            <position x="242.83" y="176.89" z="0.0" />
+            <position x="244.63" y="176.02" z="0.0" />
+            <position x="246.44" y="175.16" z="0.0" />
+            <position x="248.24" y="174.30" z="0.0" />
+            <position x="250.05" y="173.44" z="0.0" />
+            <position x="251.85" y="172.58" z="0.0" />
+            <position x="253.66" y="171.72" z="0.0" />
+            <position x="255.46" y="170.86" z="0.0" />
+            <position x="257.27" y="170.00" z="0.0" />
+            <position x="259.07" y="169.14" z="0.0" />
+            <position x="260.88" y="168.27" z="0.0" />
+            <position x="262.68" y="167.41" z="0.0" />
+            <position x="264.49" y="166.55" z="0.0" />
+            <position x="266.29" y="165.69" z="0.0" />
+            <position x="268.10" y="164.83" z="0.0" />
+            <position x="269.90" y="163.97" z="0.0" />
+            <position x="271.71" y="163.11" z="0.0" />
+            <position x="273.51" y="162.25" z="0.0" />
+            <position x="275.32" y="161.39" z="0.0" />
+            <position x="277.12" y="160.52" z="0.0" />
+            <position x="278.93" y="159.66" z="0.0" />
+            <position x="280.73" y="158.80" z="0.0" />
+            <position x="282.54" y="157.94" z="0.0" />
+            <position x="284.34" y="157.08" z="0.0" />
+            <position x="286.15" y="156.22" z="0.0" />
+            <position x="287.96" y="155.36" z="0.0" />
+            <position x="289.76" y="154.50" z="0.0" />
+            <position x="291.57" y="153.64" z="0.0" />
+            <position x="293.37" y="152.78" z="0.0" />
+            <position x="295.18" y="151.91" z="0.0" />
+            <position x="296.98" y="151.05" z="0.0" />
+            <position x="298.79" y="150.19" z="0.0" />
+            <position x="300.59" y="149.33" z="0.0" />
+            <position x="302.40" y="148.47" z="0.0" />
+            <position x="304.20" y="147.61" z="0.0" />
+            <position x="306.01" y="146.75" z="0.0" />
+            <position x="307.81" y="145.89" z="0.0" />
+            <position x="309.62" y="145.03" z="0.0" />
+            <position x="311.42" y="144.16" z="0.0" />
+            <position x="313.23" y="143.30" z="0.0" />
+            <position x="315.03" y="142.44" z="0.0" />
+            <position x="316.84" y="141.58" z="0.0" />
+            <position x="318.64" y="140.72" z="0.0" />
+            <position x="320.45" y="139.86" z="0.0" />
+            <position x="322.25" y="139.00" z="0.0" />
+            <position x="324.06" y="138.14" z="0.0" />
+            <position x="325.86" y="137.28" z="0.0" />
+            <position x="327.67" y="136.41" z="0.0" />
+            <position x="329.47" y="135.55" z="0.0" />
+            <position x="331.28" y="134.69" z="0.0" />
+            <position x="333.08" y="133.83" z="0.0" />
+            <position x="334.89" y="132.97" z="0.0" />
+            <position x="336.69" y="132.11" z="0.0" />
+            <position x="338.50" y="131.25" z="0.0" />
+            <position x="340.30" y="130.39" z="0.0" />
+            <position x="342.11" y="129.53" z="0.0" />
+            <position x="343.91" y="128.67" z="0.0" />
+            <position x="345.72" y="127.80" z="0.0" />
+            <position x="347.53" y="126.94" z="0.0" />
+            <position x="349.33" y="126.08" z="0.0" />
+            <position x="351.14" y="125.22" z="0.0" />
+            <position x="352.94" y="124.36" z="0.0" />
+        </waypoints>
+
+        <scenarios>
+            <scenario name="LaneClosureWithTruck_level2_night_sunny" type="LaneClosureWithTruck">
+                <trigger_point x="173.22" y="207.91" z="0.0" pitch="0.0" yaw="-17.81" roll="0.0"/>
+                <init_speed value="110"/>
+            </scenario>
+        </scenarios>
+    </route>
+    <route id="0" town="Town04">
+        <weathers>
+            <!-- night&sunny -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
+        </weathers>
+        <waypoints>
+            <position x="100.22" y="244.91" z="0.0" />
+            <position x="102.03" y="244.05" z="0.0" />
+            <position x="103.83" y="243.19" z="0.0" />
+            <position x="105.64" y="242.33" z="0.0" />
+            <position x="107.44" y="241.47" z="0.0" />
+            <position x="109.25" y="240.60" z="0.0" />
+            <position x="111.05" y="239.74" z="0.0" />
+            <position x="112.86" y="238.88" z="0.0" />
+            <position x="114.66" y="238.02" z="0.0" />
+            <position x="116.47" y="237.16" z="0.0" />
+            <position x="118.27" y="236.30" z="0.0" />
+            <position x="120.08" y="235.44" z="0.0" />
+            <position x="121.88" y="234.58" z="0.0" />
+            <position x="123.69" y="233.72" z="0.0" />
+            <position x="125.49" y="232.85" z="0.0" />
+            <position x="127.30" y="231.99" z="0.0" />
+            <position x="129.10" y="231.13" z="0.0" />
+            <position x="130.91" y="230.27" z="0.0" />
+            <position x="132.71" y="229.41" z="0.0" />
+            <position x="134.52" y="228.55" z="0.0" />
+            <position x="136.32" y="227.69" z="0.0" />
+            <position x="138.13" y="226.83" z="0.0" />
+            <position x="139.93" y="225.97" z="0.0" />
+            <position x="141.74" y="225.11" z="0.0" />
+            <position x="143.54" y="224.24" z="0.0" />
+            <position x="145.35" y="223.38" z="0.0" />
+            <position x="147.15" y="222.52" z="0.0" />
+            <position x="148.96" y="221.66" z="0.0" />
+            <position x="150.76" y="220.80" z="0.0" />
+            <position x="152.57" y="219.94" z="0.0" />
+            <position x="154.37" y="219.08" z="0.0" />
+            <position x="156.18" y="218.22" z="0.0" />
+            <position x="157.98" y="217.36" z="0.0" />
+            <position x="159.79" y="216.49" z="0.0" />
+            <position x="161.59" y="215.63" z="0.0" />
+            <position x="163.40" y="214.77" z="0.0" />
+            <position x="165.21" y="213.91" z="0.0" />
+            <position x="167.01" y="213.05" z="0.0" />
+            <position x="168.82" y="212.19" z="0.0" />
+            <position x="170.62" y="211.33" z="0.0" />
+            <position x="172.43" y="210.47" z="0.0" />
+            <position x="174.23" y="209.61" z="0.0" />
+            <position x="176.04" y="208.74" z="0.0" />
+            <position x="177.84" y="207.88" z="0.0" />
+            <position x="179.65" y="207.02" z="0.0" />
+            <position x="181.45" y="206.16" z="0.0" />
+            <position x="183.26" y="205.30" z="0.0" />
+            <position x="185.06" y="204.44" z="0.0" />
+            <position x="186.87" y="203.58" z="0.0" />
+            <position x="188.67" y="202.72" z="0.0" />
+            <position x="190.48" y="201.86" z="0.0" />
+            <position x="192.28" y="201.00" z="0.0" />
+            <position x="194.09" y="200.13" z="0.0" />
+            <position x="195.89" y="199.27" z="0.0" />
+            <position x="197.70" y="198.41" z="0.0" />
+            <position x="199.50" y="197.55" z="0.0" />
+            <position x="201.31" y="196.69" z="0.0" />
+            <position x="203.11" y="195.83" z="0.0" />
+            <position x="204.92" y="194.97" z="0.0" />
+            <position x="206.72" y="194.11" z="0.0" />
+            <position x="208.53" y="193.25" z="0.0" />
+            <position x="210.33" y="192.38" z="0.0" />
+            <position x="212.14" y="191.52" z="0.0" />
+            <position x="213.94" y="190.66" z="0.0" />
+            <position x="215.75" y="189.80" z="0.0" />
+            <position x="217.55" y="188.94" z="0.0" />
+            <position x="219.36" y="188.08" z="0.0" />
+            <position x="221.16" y="187.22" z="0.0" />
+            <position x="222.97" y="186.36" z="0.0" />
+            <position x="224.78" y="185.50" z="0.0" />
+            <position x="226.58" y="184.63" z="0.0" />
+            <position x="228.39" y="183.77" z="0.0" />
+            <position x="230.19" y="182.91" z="0.0" />
+            <position x="232.00" y="182.05" z="0.0" />
+            <position x="233.80" y="181.19" z="0.0" />
+            <position x="235.61" y="180.33" z="0.0" />
+            <position x="237.41" y="179.47" z="0.0" />
+            <position x="239.22" y="178.61" z="0.0" />
+            <position x="241.02" y="177.75" z="0.0" />
+            <position x="242.83" y="176.89" z="0.0" />
+            <position x="244.63" y="176.02" z="0.0" />
+            <position x="246.44" y="175.16" z="0.0" />
+            <position x="248.24" y="174.30" z="0.0" />
+            <position x="250.05" y="173.44" z="0.0" />
+            <position x="251.85" y="172.58" z="0.0" />
+            <position x="253.66" y="171.72" z="0.0" />
+            <position x="255.46" y="170.86" z="0.0" />
+            <position x="257.27" y="170.00" z="0.0" />
+            <position x="259.07" y="169.14" z="0.0" />
+            <position x="260.88" y="168.27" z="0.0" />
+            <position x="262.68" y="167.41" z="0.0" />
+            <position x="264.49" y="166.55" z="0.0" />
+            <position x="266.29" y="165.69" z="0.0" />
+            <position x="268.10" y="164.83" z="0.0" />
+            <position x="269.90" y="163.97" z="0.0" />
+            <position x="271.71" y="163.11" z="0.0" />
+            <position x="273.51" y="162.25" z="0.0" />
+            <position x="275.32" y="161.39" z="0.0" />
+            <position x="277.12" y="160.52" z="0.0" />
+            <position x="278.93" y="159.66" z="0.0" />
+            <position x="280.73" y="158.80" z="0.0" />
+            <position x="282.54" y="157.94" z="0.0" />
+            <position x="284.34" y="157.08" z="0.0" />
+            <position x="286.15" y="156.22" z="0.0" />
+            <position x="287.96" y="155.36" z="0.0" />
+            <position x="289.76" y="154.50" z="0.0" />
+            <position x="291.57" y="153.64" z="0.0" />
+            <position x="293.37" y="152.78" z="0.0" />
+            <position x="295.18" y="151.91" z="0.0" />
+            <position x="296.98" y="151.05" z="0.0" />
+            <position x="298.79" y="150.19" z="0.0" />
+            <position x="300.59" y="149.33" z="0.0" />
+            <position x="302.40" y="148.47" z="0.0" />
+            <position x="304.20" y="147.61" z="0.0" />
+            <position x="306.01" y="146.75" z="0.0" />
+            <position x="307.81" y="145.89" z="0.0" />
+            <position x="309.62" y="145.03" z="0.0" />
+            <position x="311.42" y="144.16" z="0.0" />
+            <position x="313.23" y="143.30" z="0.0" />
+            <position x="315.03" y="142.44" z="0.0" />
+            <position x="316.84" y="141.58" z="0.0" />
+            <position x="318.64" y="140.72" z="0.0" />
+            <position x="320.45" y="139.86" z="0.0" />
+            <position x="322.25" y="139.00" z="0.0" />
+            <position x="324.06" y="138.14" z="0.0" />
+            <position x="325.86" y="137.28" z="0.0" />
+            <position x="327.67" y="136.41" z="0.0" />
+            <position x="329.47" y="135.55" z="0.0" />
+            <position x="331.28" y="134.69" z="0.0" />
+            <position x="333.08" y="133.83" z="0.0" />
+            <position x="334.89" y="132.97" z="0.0" />
+            <position x="336.69" y="132.11" z="0.0" />
+            <position x="338.50" y="131.25" z="0.0" />
+            <position x="340.30" y="130.39" z="0.0" />
+            <position x="342.11" y="129.53" z="0.0" />
+            <position x="343.91" y="128.67" z="0.0" />
+            <position x="345.72" y="127.80" z="0.0" />
+            <position x="347.53" y="126.94" z="0.0" />
+            <position x="349.33" y="126.08" z="0.0" />
+            <position x="351.14" y="125.22" z="0.0" />
+            <position x="352.94" y="124.36" z="0.0" />
+        </waypoints>
+
+        <scenarios>
+            <scenario name="LaneClosureWithTruck_level3_night_sunny" type="LaneClosureWithTruck">
+                <trigger_point x="173.22" y="207.91" z="0.0" pitch="0.0" yaw="-17.81" roll="0.0"/>
+                <init_speed value="130"/>
+            </scenario>
+        </scenarios>
+    </route>
+    <route id="0" town="Town04">
+        <weathers>
+            <!-- day&sunny -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100" />
+        </weathers>
+        <waypoints>
+            <position x="100.22" y="244.91" z="0.0" />
+            <position x="102.03" y="244.05" z="0.0" />
+            <position x="103.83" y="243.19" z="0.0" />
+            <position x="105.64" y="242.33" z="0.0" />
+            <position x="107.44" y="241.47" z="0.0" />
+            <position x="109.25" y="240.60" z="0.0" />
+            <position x="111.05" y="239.74" z="0.0" />
+            <position x="112.86" y="238.88" z="0.0" />
+            <position x="114.66" y="238.02" z="0.0" />
+            <position x="116.47" y="237.16" z="0.0" />
+            <position x="118.27" y="236.30" z="0.0" />
+            <position x="120.08" y="235.44" z="0.0" />
+            <position x="121.88" y="234.58" z="0.0" />
+            <position x="123.69" y="233.72" z="0.0" />
+            <position x="125.49" y="232.85" z="0.0" />
+            <position x="127.30" y="231.99" z="0.0" />
+            <position x="129.10" y="231.13" z="0.0" />
+            <position x="130.91" y="230.27" z="0.0" />
+            <position x="132.71" y="229.41" z="0.0" />
+            <position x="134.52" y="228.55" z="0.0" />
+            <position x="136.32" y="227.69" z="0.0" />
+            <position x="138.13" y="226.83" z="0.0" />
+            <position x="139.93" y="225.97" z="0.0" />
+            <position x="141.74" y="225.11" z="0.0" />
+            <position x="143.54" y="224.24" z="0.0" />
+            <position x="145.35" y="223.38" z="0.0" />
+            <position x="147.15" y="222.52" z="0.0" />
+            <position x="148.96" y="221.66" z="0.0" />
+            <position x="150.76" y="220.80" z="0.0" />
+            <position x="152.57" y="219.94" z="0.0" />
+            <position x="154.37" y="219.08" z="0.0" />
+            <position x="156.18" y="218.22" z="0.0" />
+            <position x="157.98" y="217.36" z="0.0" />
+            <position x="159.79" y="216.49" z="0.0" />
+            <position x="161.59" y="215.63" z="0.0" />
+            <position x="163.40" y="214.77" z="0.0" />
+            <position x="165.21" y="213.91" z="0.0" />
+            <position x="167.01" y="213.05" z="0.0" />
+            <position x="168.82" y="212.19" z="0.0" />
+            <position x="170.62" y="211.33" z="0.0" />
+            <position x="172.43" y="210.47" z="0.0" />
+            <position x="174.23" y="209.61" z="0.0" />
+            <position x="176.04" y="208.74" z="0.0" />
+            <position x="177.84" y="207.88" z="0.0" />
+            <position x="179.65" y="207.02" z="0.0" />
+            <position x="181.45" y="206.16" z="0.0" />
+            <position x="183.26" y="205.30" z="0.0" />
+            <position x="185.06" y="204.44" z="0.0" />
+            <position x="186.87" y="203.58" z="0.0" />
+            <position x="188.67" y="202.72" z="0.0" />
+            <position x="190.48" y="201.86" z="0.0" />
+            <position x="192.28" y="201.00" z="0.0" />
+            <position x="194.09" y="200.13" z="0.0" />
+            <position x="195.89" y="199.27" z="0.0" />
+            <position x="197.70" y="198.41" z="0.0" />
+            <position x="199.50" y="197.55" z="0.0" />
+            <position x="201.31" y="196.69" z="0.0" />
+            <position x="203.11" y="195.83" z="0.0" />
+            <position x="204.92" y="194.97" z="0.0" />
+            <position x="206.72" y="194.11" z="0.0" />
+            <position x="208.53" y="193.25" z="0.0" />
+            <position x="210.33" y="192.38" z="0.0" />
+            <position x="212.14" y="191.52" z="0.0" />
+            <position x="213.94" y="190.66" z="0.0" />
+            <position x="215.75" y="189.80" z="0.0" />
+            <position x="217.55" y="188.94" z="0.0" />
+            <position x="219.36" y="188.08" z="0.0" />
+            <position x="221.16" y="187.22" z="0.0" />
+            <position x="222.97" y="186.36" z="0.0" />
+            <position x="224.78" y="185.50" z="0.0" />
+            <position x="226.58" y="184.63" z="0.0" />
+            <position x="228.39" y="183.77" z="0.0" />
+            <position x="230.19" y="182.91" z="0.0" />
+            <position x="232.00" y="182.05" z="0.0" />
+            <position x="233.80" y="181.19" z="0.0" />
+            <position x="235.61" y="180.33" z="0.0" />
+            <position x="237.41" y="179.47" z="0.0" />
+            <position x="239.22" y="178.61" z="0.0" />
+            <position x="241.02" y="177.75" z="0.0" />
+            <position x="242.83" y="176.89" z="0.0" />
+            <position x="244.63" y="176.02" z="0.0" />
+            <position x="246.44" y="175.16" z="0.0" />
+            <position x="248.24" y="174.30" z="0.0" />
+            <position x="250.05" y="173.44" z="0.0" />
+            <position x="251.85" y="172.58" z="0.0" />
+            <position x="253.66" y="171.72" z="0.0" />
+            <position x="255.46" y="170.86" z="0.0" />
+            <position x="257.27" y="170.00" z="0.0" />
+            <position x="259.07" y="169.14" z="0.0" />
+            <position x="260.88" y="168.27" z="0.0" />
+            <position x="262.68" y="167.41" z="0.0" />
+            <position x="264.49" y="166.55" z="0.0" />
+            <position x="266.29" y="165.69" z="0.0" />
+            <position x="268.10" y="164.83" z="0.0" />
+            <position x="269.90" y="163.97" z="0.0" />
+            <position x="271.71" y="163.11" z="0.0" />
+            <position x="273.51" y="162.25" z="0.0" />
+            <position x="275.32" y="161.39" z="0.0" />
+            <position x="277.12" y="160.52" z="0.0" />
+            <position x="278.93" y="159.66" z="0.0" />
+            <position x="280.73" y="158.80" z="0.0" />
+            <position x="282.54" y="157.94" z="0.0" />
+            <position x="284.34" y="157.08" z="0.0" />
+            <position x="286.15" y="156.22" z="0.0" />
+            <position x="287.96" y="155.36" z="0.0" />
+            <position x="289.76" y="154.50" z="0.0" />
+            <position x="291.57" y="153.64" z="0.0" />
+            <position x="293.37" y="152.78" z="0.0" />
+            <position x="295.18" y="151.91" z="0.0" />
+            <position x="296.98" y="151.05" z="0.0" />
+            <position x="298.79" y="150.19" z="0.0" />
+            <position x="300.59" y="149.33" z="0.0" />
+            <position x="302.40" y="148.47" z="0.0" />
+            <position x="304.20" y="147.61" z="0.0" />
+            <position x="306.01" y="146.75" z="0.0" />
+            <position x="307.81" y="145.89" z="0.0" />
+            <position x="309.62" y="145.03" z="0.0" />
+            <position x="311.42" y="144.16" z="0.0" />
+            <position x="313.23" y="143.30" z="0.0" />
+            <position x="315.03" y="142.44" z="0.0" />
+            <position x="316.84" y="141.58" z="0.0" />
+            <position x="318.64" y="140.72" z="0.0" />
+            <position x="320.45" y="139.86" z="0.0" />
+            <position x="322.25" y="139.00" z="0.0" />
+            <position x="324.06" y="138.14" z="0.0" />
+            <position x="325.86" y="137.28" z="0.0" />
+            <position x="327.67" y="136.41" z="0.0" />
+            <position x="329.47" y="135.55" z="0.0" />
+            <position x="331.28" y="134.69" z="0.0" />
+            <position x="333.08" y="133.83" z="0.0" />
+            <position x="334.89" y="132.97" z="0.0" />
+            <position x="336.69" y="132.11" z="0.0" />
+            <position x="338.50" y="131.25" z="0.0" />
+            <position x="340.30" y="130.39" z="0.0" />
+            <position x="342.11" y="129.53" z="0.0" />
+            <position x="343.91" y="128.67" z="0.0" />
+            <position x="345.72" y="127.80" z="0.0" />
+            <position x="347.53" y="126.94" z="0.0" />
+            <position x="349.33" y="126.08" z="0.0" />
+            <position x="351.14" y="125.22" z="0.0" />
+            <position x="352.94" y="124.36" z="0.0" />
+        </waypoints>
+
+        <scenarios>
+            <scenario name="LaneClosureWithTruck_level1_day_sunny" type="LaneClosureWithTruck">
+                <trigger_point x="173.22" y="207.91" z="0.0" pitch="0.0" yaw="-17.81" roll="0.0"/>
+                <init_speed value="90"/>
+            </scenario>
+        </scenarios>
+    </route>
+    <route id="0" town="Town04">
+        <weathers>
+            <!-- day&sunny -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100" />
+        </weathers>
+        <waypoints>
+            <position x="100.22" y="244.91" z="0.0" />
+            <position x="102.03" y="244.05" z="0.0" />
+            <position x="103.83" y="243.19" z="0.0" />
+            <position x="105.64" y="242.33" z="0.0" />
+            <position x="107.44" y="241.47" z="0.0" />
+            <position x="109.25" y="240.60" z="0.0" />
+            <position x="111.05" y="239.74" z="0.0" />
+            <position x="112.86" y="238.88" z="0.0" />
+            <position x="114.66" y="238.02" z="0.0" />
+            <position x="116.47" y="237.16" z="0.0" />
+            <position x="118.27" y="236.30" z="0.0" />
+            <position x="120.08" y="235.44" z="0.0" />
+            <position x="121.88" y="234.58" z="0.0" />
+            <position x="123.69" y="233.72" z="0.0" />
+            <position x="125.49" y="232.85" z="0.0" />
+            <position x="127.30" y="231.99" z="0.0" />
+            <position x="129.10" y="231.13" z="0.0" />
+            <position x="130.91" y="230.27" z="0.0" />
+            <position x="132.71" y="229.41" z="0.0" />
+            <position x="134.52" y="228.55" z="0.0" />
+            <position x="136.32" y="227.69" z="0.0" />
+            <position x="138.13" y="226.83" z="0.0" />
+            <position x="139.93" y="225.97" z="0.0" />
+            <position x="141.74" y="225.11" z="0.0" />
+            <position x="143.54" y="224.24" z="0.0" />
+            <position x="145.35" y="223.38" z="0.0" />
+            <position x="147.15" y="222.52" z="0.0" />
+            <position x="148.96" y="221.66" z="0.0" />
+            <position x="150.76" y="220.80" z="0.0" />
+            <position x="152.57" y="219.94" z="0.0" />
+            <position x="154.37" y="219.08" z="0.0" />
+            <position x="156.18" y="218.22" z="0.0" />
+            <position x="157.98" y="217.36" z="0.0" />
+            <position x="159.79" y="216.49" z="0.0" />
+            <position x="161.59" y="215.63" z="0.0" />
+            <position x="163.40" y="214.77" z="0.0" />
+            <position x="165.21" y="213.91" z="0.0" />
+            <position x="167.01" y="213.05" z="0.0" />
+            <position x="168.82" y="212.19" z="0.0" />
+            <position x="170.62" y="211.33" z="0.0" />
+            <position x="172.43" y="210.47" z="0.0" />
+            <position x="174.23" y="209.61" z="0.0" />
+            <position x="176.04" y="208.74" z="0.0" />
+            <position x="177.84" y="207.88" z="0.0" />
+            <position x="179.65" y="207.02" z="0.0" />
+            <position x="181.45" y="206.16" z="0.0" />
+            <position x="183.26" y="205.30" z="0.0" />
+            <position x="185.06" y="204.44" z="0.0" />
+            <position x="186.87" y="203.58" z="0.0" />
+            <position x="188.67" y="202.72" z="0.0" />
+            <position x="190.48" y="201.86" z="0.0" />
+            <position x="192.28" y="201.00" z="0.0" />
+            <position x="194.09" y="200.13" z="0.0" />
+            <position x="195.89" y="199.27" z="0.0" />
+            <position x="197.70" y="198.41" z="0.0" />
+            <position x="199.50" y="197.55" z="0.0" />
+            <position x="201.31" y="196.69" z="0.0" />
+            <position x="203.11" y="195.83" z="0.0" />
+            <position x="204.92" y="194.97" z="0.0" />
+            <position x="206.72" y="194.11" z="0.0" />
+            <position x="208.53" y="193.25" z="0.0" />
+            <position x="210.33" y="192.38" z="0.0" />
+            <position x="212.14" y="191.52" z="0.0" />
+            <position x="213.94" y="190.66" z="0.0" />
+            <position x="215.75" y="189.80" z="0.0" />
+            <position x="217.55" y="188.94" z="0.0" />
+            <position x="219.36" y="188.08" z="0.0" />
+            <position x="221.16" y="187.22" z="0.0" />
+            <position x="222.97" y="186.36" z="0.0" />
+            <position x="224.78" y="185.50" z="0.0" />
+            <position x="226.58" y="184.63" z="0.0" />
+            <position x="228.39" y="183.77" z="0.0" />
+            <position x="230.19" y="182.91" z="0.0" />
+            <position x="232.00" y="182.05" z="0.0" />
+            <position x="233.80" y="181.19" z="0.0" />
+            <position x="235.61" y="180.33" z="0.0" />
+            <position x="237.41" y="179.47" z="0.0" />
+            <position x="239.22" y="178.61" z="0.0" />
+            <position x="241.02" y="177.75" z="0.0" />
+            <position x="242.83" y="176.89" z="0.0" />
+            <position x="244.63" y="176.02" z="0.0" />
+            <position x="246.44" y="175.16" z="0.0" />
+            <position x="248.24" y="174.30" z="0.0" />
+            <position x="250.05" y="173.44" z="0.0" />
+            <position x="251.85" y="172.58" z="0.0" />
+            <position x="253.66" y="171.72" z="0.0" />
+            <position x="255.46" y="170.86" z="0.0" />
+            <position x="257.27" y="170.00" z="0.0" />
+            <position x="259.07" y="169.14" z="0.0" />
+            <position x="260.88" y="168.27" z="0.0" />
+            <position x="262.68" y="167.41" z="0.0" />
+            <position x="264.49" y="166.55" z="0.0" />
+            <position x="266.29" y="165.69" z="0.0" />
+            <position x="268.10" y="164.83" z="0.0" />
+            <position x="269.90" y="163.97" z="0.0" />
+            <position x="271.71" y="163.11" z="0.0" />
+            <position x="273.51" y="162.25" z="0.0" />
+            <position x="275.32" y="161.39" z="0.0" />
+            <position x="277.12" y="160.52" z="0.0" />
+            <position x="278.93" y="159.66" z="0.0" />
+            <position x="280.73" y="158.80" z="0.0" />
+            <position x="282.54" y="157.94" z="0.0" />
+            <position x="284.34" y="157.08" z="0.0" />
+            <position x="286.15" y="156.22" z="0.0" />
+            <position x="287.96" y="155.36" z="0.0" />
+            <position x="289.76" y="154.50" z="0.0" />
+            <position x="291.57" y="153.64" z="0.0" />
+            <position x="293.37" y="152.78" z="0.0" />
+            <position x="295.18" y="151.91" z="0.0" />
+            <position x="296.98" y="151.05" z="0.0" />
+            <position x="298.79" y="150.19" z="0.0" />
+            <position x="300.59" y="149.33" z="0.0" />
+            <position x="302.40" y="148.47" z="0.0" />
+            <position x="304.20" y="147.61" z="0.0" />
+            <position x="306.01" y="146.75" z="0.0" />
+            <position x="307.81" y="145.89" z="0.0" />
+            <position x="309.62" y="145.03" z="0.0" />
+            <position x="311.42" y="144.16" z="0.0" />
+            <position x="313.23" y="143.30" z="0.0" />
+            <position x="315.03" y="142.44" z="0.0" />
+            <position x="316.84" y="141.58" z="0.0" />
+            <position x="318.64" y="140.72" z="0.0" />
+            <position x="320.45" y="139.86" z="0.0" />
+            <position x="322.25" y="139.00" z="0.0" />
+            <position x="324.06" y="138.14" z="0.0" />
+            <position x="325.86" y="137.28" z="0.0" />
+            <position x="327.67" y="136.41" z="0.0" />
+            <position x="329.47" y="135.55" z="0.0" />
+            <position x="331.28" y="134.69" z="0.0" />
+            <position x="333.08" y="133.83" z="0.0" />
+            <position x="334.89" y="132.97" z="0.0" />
+            <position x="336.69" y="132.11" z="0.0" />
+            <position x="338.50" y="131.25" z="0.0" />
+            <position x="340.30" y="130.39" z="0.0" />
+            <position x="342.11" y="129.53" z="0.0" />
+            <position x="343.91" y="128.67" z="0.0" />
+            <position x="345.72" y="127.80" z="0.0" />
+            <position x="347.53" y="126.94" z="0.0" />
+            <position x="349.33" y="126.08" z="0.0" />
+            <position x="351.14" y="125.22" z="0.0" />
+            <position x="352.94" y="124.36" z="0.0" />
+        </waypoints>
+
+        <scenarios>
+            <scenario name="LaneClosureWithTruck_level2_day_sunny" type="LaneClosureWithTruck">
+                <trigger_point x="173.22" y="207.91" z="0.0" pitch="0.0" yaw="-17.81" roll="0.0"/>
+                <init_speed value="110"/>
+            </scenario>
+        </scenarios>
+    </route>
+    <route id="0" town="Town04">
+        <weathers>
+            <!-- day&sunny -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100" />
+        </weathers>
+        <waypoints>
+            <position x="100.22" y="244.91" z="0.0" />
+            <position x="102.03" y="244.05" z="0.0" />
+            <position x="103.83" y="243.19" z="0.0" />
+            <position x="105.64" y="242.33" z="0.0" />
+            <position x="107.44" y="241.47" z="0.0" />
+            <position x="109.25" y="240.60" z="0.0" />
+            <position x="111.05" y="239.74" z="0.0" />
+            <position x="112.86" y="238.88" z="0.0" />
+            <position x="114.66" y="238.02" z="0.0" />
+            <position x="116.47" y="237.16" z="0.0" />
+            <position x="118.27" y="236.30" z="0.0" />
+            <position x="120.08" y="235.44" z="0.0" />
+            <position x="121.88" y="234.58" z="0.0" />
+            <position x="123.69" y="233.72" z="0.0" />
+            <position x="125.49" y="232.85" z="0.0" />
+            <position x="127.30" y="231.99" z="0.0" />
+            <position x="129.10" y="231.13" z="0.0" />
+            <position x="130.91" y="230.27" z="0.0" />
+            <position x="132.71" y="229.41" z="0.0" />
+            <position x="134.52" y="228.55" z="0.0" />
+            <position x="136.32" y="227.69" z="0.0" />
+            <position x="138.13" y="226.83" z="0.0" />
+            <position x="139.93" y="225.97" z="0.0" />
+            <position x="141.74" y="225.11" z="0.0" />
+            <position x="143.54" y="224.24" z="0.0" />
+            <position x="145.35" y="223.38" z="0.0" />
+            <position x="147.15" y="222.52" z="0.0" />
+            <position x="148.96" y="221.66" z="0.0" />
+            <position x="150.76" y="220.80" z="0.0" />
+            <position x="152.57" y="219.94" z="0.0" />
+            <position x="154.37" y="219.08" z="0.0" />
+            <position x="156.18" y="218.22" z="0.0" />
+            <position x="157.98" y="217.36" z="0.0" />
+            <position x="159.79" y="216.49" z="0.0" />
+            <position x="161.59" y="215.63" z="0.0" />
+            <position x="163.40" y="214.77" z="0.0" />
+            <position x="165.21" y="213.91" z="0.0" />
+            <position x="167.01" y="213.05" z="0.0" />
+            <position x="168.82" y="212.19" z="0.0" />
+            <position x="170.62" y="211.33" z="0.0" />
+            <position x="172.43" y="210.47" z="0.0" />
+            <position x="174.23" y="209.61" z="0.0" />
+            <position x="176.04" y="208.74" z="0.0" />
+            <position x="177.84" y="207.88" z="0.0" />
+            <position x="179.65" y="207.02" z="0.0" />
+            <position x="181.45" y="206.16" z="0.0" />
+            <position x="183.26" y="205.30" z="0.0" />
+            <position x="185.06" y="204.44" z="0.0" />
+            <position x="186.87" y="203.58" z="0.0" />
+            <position x="188.67" y="202.72" z="0.0" />
+            <position x="190.48" y="201.86" z="0.0" />
+            <position x="192.28" y="201.00" z="0.0" />
+            <position x="194.09" y="200.13" z="0.0" />
+            <position x="195.89" y="199.27" z="0.0" />
+            <position x="197.70" y="198.41" z="0.0" />
+            <position x="199.50" y="197.55" z="0.0" />
+            <position x="201.31" y="196.69" z="0.0" />
+            <position x="203.11" y="195.83" z="0.0" />
+            <position x="204.92" y="194.97" z="0.0" />
+            <position x="206.72" y="194.11" z="0.0" />
+            <position x="208.53" y="193.25" z="0.0" />
+            <position x="210.33" y="192.38" z="0.0" />
+            <position x="212.14" y="191.52" z="0.0" />
+            <position x="213.94" y="190.66" z="0.0" />
+            <position x="215.75" y="189.80" z="0.0" />
+            <position x="217.55" y="188.94" z="0.0" />
+            <position x="219.36" y="188.08" z="0.0" />
+            <position x="221.16" y="187.22" z="0.0" />
+            <position x="222.97" y="186.36" z="0.0" />
+            <position x="224.78" y="185.50" z="0.0" />
+            <position x="226.58" y="184.63" z="0.0" />
+            <position x="228.39" y="183.77" z="0.0" />
+            <position x="230.19" y="182.91" z="0.0" />
+            <position x="232.00" y="182.05" z="0.0" />
+            <position x="233.80" y="181.19" z="0.0" />
+            <position x="235.61" y="180.33" z="0.0" />
+            <position x="237.41" y="179.47" z="0.0" />
+            <position x="239.22" y="178.61" z="0.0" />
+            <position x="241.02" y="177.75" z="0.0" />
+            <position x="242.83" y="176.89" z="0.0" />
+            <position x="244.63" y="176.02" z="0.0" />
+            <position x="246.44" y="175.16" z="0.0" />
+            <position x="248.24" y="174.30" z="0.0" />
+            <position x="250.05" y="173.44" z="0.0" />
+            <position x="251.85" y="172.58" z="0.0" />
+            <position x="253.66" y="171.72" z="0.0" />
+            <position x="255.46" y="170.86" z="0.0" />
+            <position x="257.27" y="170.00" z="0.0" />
+            <position x="259.07" y="169.14" z="0.0" />
+            <position x="260.88" y="168.27" z="0.0" />
+            <position x="262.68" y="167.41" z="0.0" />
+            <position x="264.49" y="166.55" z="0.0" />
+            <position x="266.29" y="165.69" z="0.0" />
+            <position x="268.10" y="164.83" z="0.0" />
+            <position x="269.90" y="163.97" z="0.0" />
+            <position x="271.71" y="163.11" z="0.0" />
+            <position x="273.51" y="162.25" z="0.0" />
+            <position x="275.32" y="161.39" z="0.0" />
+            <position x="277.12" y="160.52" z="0.0" />
+            <position x="278.93" y="159.66" z="0.0" />
+            <position x="280.73" y="158.80" z="0.0" />
+            <position x="282.54" y="157.94" z="0.0" />
+            <position x="284.34" y="157.08" z="0.0" />
+            <position x="286.15" y="156.22" z="0.0" />
+            <position x="287.96" y="155.36" z="0.0" />
+            <position x="289.76" y="154.50" z="0.0" />
+            <position x="291.57" y="153.64" z="0.0" />
+            <position x="293.37" y="152.78" z="0.0" />
+            <position x="295.18" y="151.91" z="0.0" />
+            <position x="296.98" y="151.05" z="0.0" />
+            <position x="298.79" y="150.19" z="0.0" />
+            <position x="300.59" y="149.33" z="0.0" />
+            <position x="302.40" y="148.47" z="0.0" />
+            <position x="304.20" y="147.61" z="0.0" />
+            <position x="306.01" y="146.75" z="0.0" />
+            <position x="307.81" y="145.89" z="0.0" />
+            <position x="309.62" y="145.03" z="0.0" />
+            <position x="311.42" y="144.16" z="0.0" />
+            <position x="313.23" y="143.30" z="0.0" />
+            <position x="315.03" y="142.44" z="0.0" />
+            <position x="316.84" y="141.58" z="0.0" />
+            <position x="318.64" y="140.72" z="0.0" />
+            <position x="320.45" y="139.86" z="0.0" />
+            <position x="322.25" y="139.00" z="0.0" />
+            <position x="324.06" y="138.14" z="0.0" />
+            <position x="325.86" y="137.28" z="0.0" />
+            <position x="327.67" y="136.41" z="0.0" />
+            <position x="329.47" y="135.55" z="0.0" />
+            <position x="331.28" y="134.69" z="0.0" />
+            <position x="333.08" y="133.83" z="0.0" />
+            <position x="334.89" y="132.97" z="0.0" />
+            <position x="336.69" y="132.11" z="0.0" />
+            <position x="338.50" y="131.25" z="0.0" />
+            <position x="340.30" y="130.39" z="0.0" />
+            <position x="342.11" y="129.53" z="0.0" />
+            <position x="343.91" y="128.67" z="0.0" />
+            <position x="345.72" y="127.80" z="0.0" />
+            <position x="347.53" y="126.94" z="0.0" />
+            <position x="349.33" y="126.08" z="0.0" />
+            <position x="351.14" y="125.22" z="0.0" />
+            <position x="352.94" y="124.36" z="0.0" />
+        </waypoints>
+
+        <scenarios>
+            <scenario name="LaneClosureWithTruck_level3_day_sunny" type="LaneClosureWithTruck">
+                <trigger_point x="173.22" y="207.91" z="0.0" pitch="0.0" yaw="-17.81" roll="0.0"/>
+                <init_speed value="130"/>
+            </scenario>
+        </scenarios>
+    </route>
+    <route id="0" town="Town04">
+        <weathers>
+            <!-- day&rain -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60" precipitation_deposits="50" wetness="70" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100" />
+        </weathers>
+        <waypoints>
+            <position x="100.22" y="244.91" z="0.0" />
+            <position x="102.03" y="244.05" z="0.0" />
+            <position x="103.83" y="243.19" z="0.0" />
+            <position x="105.64" y="242.33" z="0.0" />
+            <position x="107.44" y="241.47" z="0.0" />
+            <position x="109.25" y="240.60" z="0.0" />
+            <position x="111.05" y="239.74" z="0.0" />
+            <position x="112.86" y="238.88" z="0.0" />
+            <position x="114.66" y="238.02" z="0.0" />
+            <position x="116.47" y="237.16" z="0.0" />
+            <position x="118.27" y="236.30" z="0.0" />
+            <position x="120.08" y="235.44" z="0.0" />
+            <position x="121.88" y="234.58" z="0.0" />
+            <position x="123.69" y="233.72" z="0.0" />
+            <position x="125.49" y="232.85" z="0.0" />
+            <position x="127.30" y="231.99" z="0.0" />
+            <position x="129.10" y="231.13" z="0.0" />
+            <position x="130.91" y="230.27" z="0.0" />
+            <position x="132.71" y="229.41" z="0.0" />
+            <position x="134.52" y="228.55" z="0.0" />
+            <position x="136.32" y="227.69" z="0.0" />
+            <position x="138.13" y="226.83" z="0.0" />
+            <position x="139.93" y="225.97" z="0.0" />
+            <position x="141.74" y="225.11" z="0.0" />
+            <position x="143.54" y="224.24" z="0.0" />
+            <position x="145.35" y="223.38" z="0.0" />
+            <position x="147.15" y="222.52" z="0.0" />
+            <position x="148.96" y="221.66" z="0.0" />
+            <position x="150.76" y="220.80" z="0.0" />
+            <position x="152.57" y="219.94" z="0.0" />
+            <position x="154.37" y="219.08" z="0.0" />
+            <position x="156.18" y="218.22" z="0.0" />
+            <position x="157.98" y="217.36" z="0.0" />
+            <position x="159.79" y="216.49" z="0.0" />
+            <position x="161.59" y="215.63" z="0.0" />
+            <position x="163.40" y="214.77" z="0.0" />
+            <position x="165.21" y="213.91" z="0.0" />
+            <position x="167.01" y="213.05" z="0.0" />
+            <position x="168.82" y="212.19" z="0.0" />
+            <position x="170.62" y="211.33" z="0.0" />
+            <position x="172.43" y="210.47" z="0.0" />
+            <position x="174.23" y="209.61" z="0.0" />
+            <position x="176.04" y="208.74" z="0.0" />
+            <position x="177.84" y="207.88" z="0.0" />
+            <position x="179.65" y="207.02" z="0.0" />
+            <position x="181.45" y="206.16" z="0.0" />
+            <position x="183.26" y="205.30" z="0.0" />
+            <position x="185.06" y="204.44" z="0.0" />
+            <position x="186.87" y="203.58" z="0.0" />
+            <position x="188.67" y="202.72" z="0.0" />
+            <position x="190.48" y="201.86" z="0.0" />
+            <position x="192.28" y="201.00" z="0.0" />
+            <position x="194.09" y="200.13" z="0.0" />
+            <position x="195.89" y="199.27" z="0.0" />
+            <position x="197.70" y="198.41" z="0.0" />
+            <position x="199.50" y="197.55" z="0.0" />
+            <position x="201.31" y="196.69" z="0.0" />
+            <position x="203.11" y="195.83" z="0.0" />
+            <position x="204.92" y="194.97" z="0.0" />
+            <position x="206.72" y="194.11" z="0.0" />
+            <position x="208.53" y="193.25" z="0.0" />
+            <position x="210.33" y="192.38" z="0.0" />
+            <position x="212.14" y="191.52" z="0.0" />
+            <position x="213.94" y="190.66" z="0.0" />
+            <position x="215.75" y="189.80" z="0.0" />
+            <position x="217.55" y="188.94" z="0.0" />
+            <position x="219.36" y="188.08" z="0.0" />
+            <position x="221.16" y="187.22" z="0.0" />
+            <position x="222.97" y="186.36" z="0.0" />
+            <position x="224.78" y="185.50" z="0.0" />
+            <position x="226.58" y="184.63" z="0.0" />
+            <position x="228.39" y="183.77" z="0.0" />
+            <position x="230.19" y="182.91" z="0.0" />
+            <position x="232.00" y="182.05" z="0.0" />
+            <position x="233.80" y="181.19" z="0.0" />
+            <position x="235.61" y="180.33" z="0.0" />
+            <position x="237.41" y="179.47" z="0.0" />
+            <position x="239.22" y="178.61" z="0.0" />
+            <position x="241.02" y="177.75" z="0.0" />
+            <position x="242.83" y="176.89" z="0.0" />
+            <position x="244.63" y="176.02" z="0.0" />
+            <position x="246.44" y="175.16" z="0.0" />
+            <position x="248.24" y="174.30" z="0.0" />
+            <position x="250.05" y="173.44" z="0.0" />
+            <position x="251.85" y="172.58" z="0.0" />
+            <position x="253.66" y="171.72" z="0.0" />
+            <position x="255.46" y="170.86" z="0.0" />
+            <position x="257.27" y="170.00" z="0.0" />
+            <position x="259.07" y="169.14" z="0.0" />
+            <position x="260.88" y="168.27" z="0.0" />
+            <position x="262.68" y="167.41" z="0.0" />
+            <position x="264.49" y="166.55" z="0.0" />
+            <position x="266.29" y="165.69" z="0.0" />
+            <position x="268.10" y="164.83" z="0.0" />
+            <position x="269.90" y="163.97" z="0.0" />
+            <position x="271.71" y="163.11" z="0.0" />
+            <position x="273.51" y="162.25" z="0.0" />
+            <position x="275.32" y="161.39" z="0.0" />
+            <position x="277.12" y="160.52" z="0.0" />
+            <position x="278.93" y="159.66" z="0.0" />
+            <position x="280.73" y="158.80" z="0.0" />
+            <position x="282.54" y="157.94" z="0.0" />
+            <position x="284.34" y="157.08" z="0.0" />
+            <position x="286.15" y="156.22" z="0.0" />
+            <position x="287.96" y="155.36" z="0.0" />
+            <position x="289.76" y="154.50" z="0.0" />
+            <position x="291.57" y="153.64" z="0.0" />
+            <position x="293.37" y="152.78" z="0.0" />
+            <position x="295.18" y="151.91" z="0.0" />
+            <position x="296.98" y="151.05" z="0.0" />
+            <position x="298.79" y="150.19" z="0.0" />
+            <position x="300.59" y="149.33" z="0.0" />
+            <position x="302.40" y="148.47" z="0.0" />
+            <position x="304.20" y="147.61" z="0.0" />
+            <position x="306.01" y="146.75" z="0.0" />
+            <position x="307.81" y="145.89" z="0.0" />
+            <position x="309.62" y="145.03" z="0.0" />
+            <position x="311.42" y="144.16" z="0.0" />
+            <position x="313.23" y="143.30" z="0.0" />
+            <position x="315.03" y="142.44" z="0.0" />
+            <position x="316.84" y="141.58" z="0.0" />
+            <position x="318.64" y="140.72" z="0.0" />
+            <position x="320.45" y="139.86" z="0.0" />
+            <position x="322.25" y="139.00" z="0.0" />
+            <position x="324.06" y="138.14" z="0.0" />
+            <position x="325.86" y="137.28" z="0.0" />
+            <position x="327.67" y="136.41" z="0.0" />
+            <position x="329.47" y="135.55" z="0.0" />
+            <position x="331.28" y="134.69" z="0.0" />
+            <position x="333.08" y="133.83" z="0.0" />
+            <position x="334.89" y="132.97" z="0.0" />
+            <position x="336.69" y="132.11" z="0.0" />
+            <position x="338.50" y="131.25" z="0.0" />
+            <position x="340.30" y="130.39" z="0.0" />
+            <position x="342.11" y="129.53" z="0.0" />
+            <position x="343.91" y="128.67" z="0.0" />
+            <position x="345.72" y="127.80" z="0.0" />
+            <position x="347.53" y="126.94" z="0.0" />
+            <position x="349.33" y="126.08" z="0.0" />
+            <position x="351.14" y="125.22" z="0.0" />
+            <position x="352.94" y="124.36" z="0.0" />
+        </waypoints>
+
+        <scenarios>
+            <scenario name="LaneClosureWithTruck_level1_day_rain" type="LaneClosureWithTruck">
+                <trigger_point x="173.22" y="207.91" z="0.0" pitch="0.0" yaw="-17.81" roll="0.0"/>
+                <init_speed value="90"/>
+            </scenario>
+        </scenarios>
+    </route>
+    <route id="0" town="Town04">
+        <weathers>
+            <!-- day&rain -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60" precipitation_deposits="50" wetness="70" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100" />
+        </weathers>
+        <waypoints>
+            <position x="100.22" y="244.91" z="0.0" />
+            <position x="102.03" y="244.05" z="0.0" />
+            <position x="103.83" y="243.19" z="0.0" />
+            <position x="105.64" y="242.33" z="0.0" />
+            <position x="107.44" y="241.47" z="0.0" />
+            <position x="109.25" y="240.60" z="0.0" />
+            <position x="111.05" y="239.74" z="0.0" />
+            <position x="112.86" y="238.88" z="0.0" />
+            <position x="114.66" y="238.02" z="0.0" />
+            <position x="116.47" y="237.16" z="0.0" />
+            <position x="118.27" y="236.30" z="0.0" />
+            <position x="120.08" y="235.44" z="0.0" />
+            <position x="121.88" y="234.58" z="0.0" />
+            <position x="123.69" y="233.72" z="0.0" />
+            <position x="125.49" y="232.85" z="0.0" />
+            <position x="127.30" y="231.99" z="0.0" />
+            <position x="129.10" y="231.13" z="0.0" />
+            <position x="130.91" y="230.27" z="0.0" />
+            <position x="132.71" y="229.41" z="0.0" />
+            <position x="134.52" y="228.55" z="0.0" />
+            <position x="136.32" y="227.69" z="0.0" />
+            <position x="138.13" y="226.83" z="0.0" />
+            <position x="139.93" y="225.97" z="0.0" />
+            <position x="141.74" y="225.11" z="0.0" />
+            <position x="143.54" y="224.24" z="0.0" />
+            <position x="145.35" y="223.38" z="0.0" />
+            <position x="147.15" y="222.52" z="0.0" />
+            <position x="148.96" y="221.66" z="0.0" />
+            <position x="150.76" y="220.80" z="0.0" />
+            <position x="152.57" y="219.94" z="0.0" />
+            <position x="154.37" y="219.08" z="0.0" />
+            <position x="156.18" y="218.22" z="0.0" />
+            <position x="157.98" y="217.36" z="0.0" />
+            <position x="159.79" y="216.49" z="0.0" />
+            <position x="161.59" y="215.63" z="0.0" />
+            <position x="163.40" y="214.77" z="0.0" />
+            <position x="165.21" y="213.91" z="0.0" />
+            <position x="167.01" y="213.05" z="0.0" />
+            <position x="168.82" y="212.19" z="0.0" />
+            <position x="170.62" y="211.33" z="0.0" />
+            <position x="172.43" y="210.47" z="0.0" />
+            <position x="174.23" y="209.61" z="0.0" />
+            <position x="176.04" y="208.74" z="0.0" />
+            <position x="177.84" y="207.88" z="0.0" />
+            <position x="179.65" y="207.02" z="0.0" />
+            <position x="181.45" y="206.16" z="0.0" />
+            <position x="183.26" y="205.30" z="0.0" />
+            <position x="185.06" y="204.44" z="0.0" />
+            <position x="186.87" y="203.58" z="0.0" />
+            <position x="188.67" y="202.72" z="0.0" />
+            <position x="190.48" y="201.86" z="0.0" />
+            <position x="192.28" y="201.00" z="0.0" />
+            <position x="194.09" y="200.13" z="0.0" />
+            <position x="195.89" y="199.27" z="0.0" />
+            <position x="197.70" y="198.41" z="0.0" />
+            <position x="199.50" y="197.55" z="0.0" />
+            <position x="201.31" y="196.69" z="0.0" />
+            <position x="203.11" y="195.83" z="0.0" />
+            <position x="204.92" y="194.97" z="0.0" />
+            <position x="206.72" y="194.11" z="0.0" />
+            <position x="208.53" y="193.25" z="0.0" />
+            <position x="210.33" y="192.38" z="0.0" />
+            <position x="212.14" y="191.52" z="0.0" />
+            <position x="213.94" y="190.66" z="0.0" />
+            <position x="215.75" y="189.80" z="0.0" />
+            <position x="217.55" y="188.94" z="0.0" />
+            <position x="219.36" y="188.08" z="0.0" />
+            <position x="221.16" y="187.22" z="0.0" />
+            <position x="222.97" y="186.36" z="0.0" />
+            <position x="224.78" y="185.50" z="0.0" />
+            <position x="226.58" y="184.63" z="0.0" />
+            <position x="228.39" y="183.77" z="0.0" />
+            <position x="230.19" y="182.91" z="0.0" />
+            <position x="232.00" y="182.05" z="0.0" />
+            <position x="233.80" y="181.19" z="0.0" />
+            <position x="235.61" y="180.33" z="0.0" />
+            <position x="237.41" y="179.47" z="0.0" />
+            <position x="239.22" y="178.61" z="0.0" />
+            <position x="241.02" y="177.75" z="0.0" />
+            <position x="242.83" y="176.89" z="0.0" />
+            <position x="244.63" y="176.02" z="0.0" />
+            <position x="246.44" y="175.16" z="0.0" />
+            <position x="248.24" y="174.30" z="0.0" />
+            <position x="250.05" y="173.44" z="0.0" />
+            <position x="251.85" y="172.58" z="0.0" />
+            <position x="253.66" y="171.72" z="0.0" />
+            <position x="255.46" y="170.86" z="0.0" />
+            <position x="257.27" y="170.00" z="0.0" />
+            <position x="259.07" y="169.14" z="0.0" />
+            <position x="260.88" y="168.27" z="0.0" />
+            <position x="262.68" y="167.41" z="0.0" />
+            <position x="264.49" y="166.55" z="0.0" />
+            <position x="266.29" y="165.69" z="0.0" />
+            <position x="268.10" y="164.83" z="0.0" />
+            <position x="269.90" y="163.97" z="0.0" />
+            <position x="271.71" y="163.11" z="0.0" />
+            <position x="273.51" y="162.25" z="0.0" />
+            <position x="275.32" y="161.39" z="0.0" />
+            <position x="277.12" y="160.52" z="0.0" />
+            <position x="278.93" y="159.66" z="0.0" />
+            <position x="280.73" y="158.80" z="0.0" />
+            <position x="282.54" y="157.94" z="0.0" />
+            <position x="284.34" y="157.08" z="0.0" />
+            <position x="286.15" y="156.22" z="0.0" />
+            <position x="287.96" y="155.36" z="0.0" />
+            <position x="289.76" y="154.50" z="0.0" />
+            <position x="291.57" y="153.64" z="0.0" />
+            <position x="293.37" y="152.78" z="0.0" />
+            <position x="295.18" y="151.91" z="0.0" />
+            <position x="296.98" y="151.05" z="0.0" />
+            <position x="298.79" y="150.19" z="0.0" />
+            <position x="300.59" y="149.33" z="0.0" />
+            <position x="302.40" y="148.47" z="0.0" />
+            <position x="304.20" y="147.61" z="0.0" />
+            <position x="306.01" y="146.75" z="0.0" />
+            <position x="307.81" y="145.89" z="0.0" />
+            <position x="309.62" y="145.03" z="0.0" />
+            <position x="311.42" y="144.16" z="0.0" />
+            <position x="313.23" y="143.30" z="0.0" />
+            <position x="315.03" y="142.44" z="0.0" />
+            <position x="316.84" y="141.58" z="0.0" />
+            <position x="318.64" y="140.72" z="0.0" />
+            <position x="320.45" y="139.86" z="0.0" />
+            <position x="322.25" y="139.00" z="0.0" />
+            <position x="324.06" y="138.14" z="0.0" />
+            <position x="325.86" y="137.28" z="0.0" />
+            <position x="327.67" y="136.41" z="0.0" />
+            <position x="329.47" y="135.55" z="0.0" />
+            <position x="331.28" y="134.69" z="0.0" />
+            <position x="333.08" y="133.83" z="0.0" />
+            <position x="334.89" y="132.97" z="0.0" />
+            <position x="336.69" y="132.11" z="0.0" />
+            <position x="338.50" y="131.25" z="0.0" />
+            <position x="340.30" y="130.39" z="0.0" />
+            <position x="342.11" y="129.53" z="0.0" />
+            <position x="343.91" y="128.67" z="0.0" />
+            <position x="345.72" y="127.80" z="0.0" />
+            <position x="347.53" y="126.94" z="0.0" />
+            <position x="349.33" y="126.08" z="0.0" />
+            <position x="351.14" y="125.22" z="0.0" />
+            <position x="352.94" y="124.36" z="0.0" />
+        </waypoints>
+
+        <scenarios>
+            <scenario name="LaneClosureWithTruck_level1_day_rain" type="LaneClosureWithTruck">
+                <trigger_point x="173.22" y="207.91" z="0.0" pitch="0.0" yaw="-17.81" roll="0.0"/>
+                <init_speed value="110"/>
+            </scenario>
+        </scenarios>
+    </route>
+        <route id="0" town="Town04">
+        <weathers>
+            <!-- day&rain -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60" precipitation_deposits="50" wetness="70" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100" />
+        </weathers>
+        <waypoints>
+            <position x="100.22" y="244.91" z="0.0" />
+            <position x="102.03" y="244.05" z="0.0" />
+            <position x="103.83" y="243.19" z="0.0" />
+            <position x="105.64" y="242.33" z="0.0" />
+            <position x="107.44" y="241.47" z="0.0" />
+            <position x="109.25" y="240.60" z="0.0" />
+            <position x="111.05" y="239.74" z="0.0" />
+            <position x="112.86" y="238.88" z="0.0" />
+            <position x="114.66" y="238.02" z="0.0" />
+            <position x="116.47" y="237.16" z="0.0" />
+            <position x="118.27" y="236.30" z="0.0" />
+            <position x="120.08" y="235.44" z="0.0" />
+            <position x="121.88" y="234.58" z="0.0" />
+            <position x="123.69" y="233.72" z="0.0" />
+            <position x="125.49" y="232.85" z="0.0" />
+            <position x="127.30" y="231.99" z="0.0" />
+            <position x="129.10" y="231.13" z="0.0" />
+            <position x="130.91" y="230.27" z="0.0" />
+            <position x="132.71" y="229.41" z="0.0" />
+            <position x="134.52" y="228.55" z="0.0" />
+            <position x="136.32" y="227.69" z="0.0" />
+            <position x="138.13" y="226.83" z="0.0" />
+            <position x="139.93" y="225.97" z="0.0" />
+            <position x="141.74" y="225.11" z="0.0" />
+            <position x="143.54" y="224.24" z="0.0" />
+            <position x="145.35" y="223.38" z="0.0" />
+            <position x="147.15" y="222.52" z="0.0" />
+            <position x="148.96" y="221.66" z="0.0" />
+            <position x="150.76" y="220.80" z="0.0" />
+            <position x="152.57" y="219.94" z="0.0" />
+            <position x="154.37" y="219.08" z="0.0" />
+            <position x="156.18" y="218.22" z="0.0" />
+            <position x="157.98" y="217.36" z="0.0" />
+            <position x="159.79" y="216.49" z="0.0" />
+            <position x="161.59" y="215.63" z="0.0" />
+            <position x="163.40" y="214.77" z="0.0" />
+            <position x="165.21" y="213.91" z="0.0" />
+            <position x="167.01" y="213.05" z="0.0" />
+            <position x="168.82" y="212.19" z="0.0" />
+            <position x="170.62" y="211.33" z="0.0" />
+            <position x="172.43" y="210.47" z="0.0" />
+            <position x="174.23" y="209.61" z="0.0" />
+            <position x="176.04" y="208.74" z="0.0" />
+            <position x="177.84" y="207.88" z="0.0" />
+            <position x="179.65" y="207.02" z="0.0" />
+            <position x="181.45" y="206.16" z="0.0" />
+            <position x="183.26" y="205.30" z="0.0" />
+            <position x="185.06" y="204.44" z="0.0" />
+            <position x="186.87" y="203.58" z="0.0" />
+            <position x="188.67" y="202.72" z="0.0" />
+            <position x="190.48" y="201.86" z="0.0" />
+            <position x="192.28" y="201.00" z="0.0" />
+            <position x="194.09" y="200.13" z="0.0" />
+            <position x="195.89" y="199.27" z="0.0" />
+            <position x="197.70" y="198.41" z="0.0" />
+            <position x="199.50" y="197.55" z="0.0" />
+            <position x="201.31" y="196.69" z="0.0" />
+            <position x="203.11" y="195.83" z="0.0" />
+            <position x="204.92" y="194.97" z="0.0" />
+            <position x="206.72" y="194.11" z="0.0" />
+            <position x="208.53" y="193.25" z="0.0" />
+            <position x="210.33" y="192.38" z="0.0" />
+            <position x="212.14" y="191.52" z="0.0" />
+            <position x="213.94" y="190.66" z="0.0" />
+            <position x="215.75" y="189.80" z="0.0" />
+            <position x="217.55" y="188.94" z="0.0" />
+            <position x="219.36" y="188.08" z="0.0" />
+            <position x="221.16" y="187.22" z="0.0" />
+            <position x="222.97" y="186.36" z="0.0" />
+            <position x="224.78" y="185.50" z="0.0" />
+            <position x="226.58" y="184.63" z="0.0" />
+            <position x="228.39" y="183.77" z="0.0" />
+            <position x="230.19" y="182.91" z="0.0" />
+            <position x="232.00" y="182.05" z="0.0" />
+            <position x="233.80" y="181.19" z="0.0" />
+            <position x="235.61" y="180.33" z="0.0" />
+            <position x="237.41" y="179.47" z="0.0" />
+            <position x="239.22" y="178.61" z="0.0" />
+            <position x="241.02" y="177.75" z="0.0" />
+            <position x="242.83" y="176.89" z="0.0" />
+            <position x="244.63" y="176.02" z="0.0" />
+            <position x="246.44" y="175.16" z="0.0" />
+            <position x="248.24" y="174.30" z="0.0" />
+            <position x="250.05" y="173.44" z="0.0" />
+            <position x="251.85" y="172.58" z="0.0" />
+            <position x="253.66" y="171.72" z="0.0" />
+            <position x="255.46" y="170.86" z="0.0" />
+            <position x="257.27" y="170.00" z="0.0" />
+            <position x="259.07" y="169.14" z="0.0" />
+            <position x="260.88" y="168.27" z="0.0" />
+            <position x="262.68" y="167.41" z="0.0" />
+            <position x="264.49" y="166.55" z="0.0" />
+            <position x="266.29" y="165.69" z="0.0" />
+            <position x="268.10" y="164.83" z="0.0" />
+            <position x="269.90" y="163.97" z="0.0" />
+            <position x="271.71" y="163.11" z="0.0" />
+            <position x="273.51" y="162.25" z="0.0" />
+            <position x="275.32" y="161.39" z="0.0" />
+            <position x="277.12" y="160.52" z="0.0" />
+            <position x="278.93" y="159.66" z="0.0" />
+            <position x="280.73" y="158.80" z="0.0" />
+            <position x="282.54" y="157.94" z="0.0" />
+            <position x="284.34" y="157.08" z="0.0" />
+            <position x="286.15" y="156.22" z="0.0" />
+            <position x="287.96" y="155.36" z="0.0" />
+            <position x="289.76" y="154.50" z="0.0" />
+            <position x="291.57" y="153.64" z="0.0" />
+            <position x="293.37" y="152.78" z="0.0" />
+            <position x="295.18" y="151.91" z="0.0" />
+            <position x="296.98" y="151.05" z="0.0" />
+            <position x="298.79" y="150.19" z="0.0" />
+            <position x="300.59" y="149.33" z="0.0" />
+            <position x="302.40" y="148.47" z="0.0" />
+            <position x="304.20" y="147.61" z="0.0" />
+            <position x="306.01" y="146.75" z="0.0" />
+            <position x="307.81" y="145.89" z="0.0" />
+            <position x="309.62" y="145.03" z="0.0" />
+            <position x="311.42" y="144.16" z="0.0" />
+            <position x="313.23" y="143.30" z="0.0" />
+            <position x="315.03" y="142.44" z="0.0" />
+            <position x="316.84" y="141.58" z="0.0" />
+            <position x="318.64" y="140.72" z="0.0" />
+            <position x="320.45" y="139.86" z="0.0" />
+            <position x="322.25" y="139.00" z="0.0" />
+            <position x="324.06" y="138.14" z="0.0" />
+            <position x="325.86" y="137.28" z="0.0" />
+            <position x="327.67" y="136.41" z="0.0" />
+            <position x="329.47" y="135.55" z="0.0" />
+            <position x="331.28" y="134.69" z="0.0" />
+            <position x="333.08" y="133.83" z="0.0" />
+            <position x="334.89" y="132.97" z="0.0" />
+            <position x="336.69" y="132.11" z="0.0" />
+            <position x="338.50" y="131.25" z="0.0" />
+            <position x="340.30" y="130.39" z="0.0" />
+            <position x="342.11" y="129.53" z="0.0" />
+            <position x="343.91" y="128.67" z="0.0" />
+            <position x="345.72" y="127.80" z="0.0" />
+            <position x="347.53" y="126.94" z="0.0" />
+            <position x="349.33" y="126.08" z="0.0" />
+            <position x="351.14" y="125.22" z="0.0" />
+            <position x="352.94" y="124.36" z="0.0" />
+        </waypoints>
+
+        <scenarios>
+            <scenario name="LaneClosureWithTruck_level1_day_rain" type="LaneClosureWithTruck">
+                <trigger_point x="173.22" y="207.91" z="0.0" pitch="0.0" yaw="-17.81" roll="0.0"/>
+                <init_speed value="130"/>
+            </scenario>
+        </scenarios>
+    </route>
     <!-- ========== scenario_class 6:Drive into the roundabout ========== -->
 
     <!-- ========== scenario_class 7:Four students crossing the road ========== -->
