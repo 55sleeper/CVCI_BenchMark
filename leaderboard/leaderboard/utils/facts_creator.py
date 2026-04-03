@@ -57,7 +57,52 @@ def extract_private_facts_high_speed_accident(criteria_list):
             facts["resume_route"] = (criterion.test_status == "SUCCESS")
     return facts
 # Trucks encountered during construction_private_facats extracts
+def extract_lane_closure_facts(scenario, parent_scenario=None):
+    facts = {
+        'deceleration_detected': False,
+        'speed_reduction': 0.0,
+        'collision_count': 0,
+        'route_passed': False,
+        'distance_traveled': 0.0,
+        'min_ttc': None,
+        'criteria_status': {}
+    }
 
+    if not scenario:
+        return facts
+
+    criteria_list = scenario.get_criteria()
+
+    if parent_scenario and hasattr(parent_scenario, 'get_criteria'):
+        parent_criteria_list = parent_scenario.get_criteria()
+        print(f"[DEBUG Facts Extract] Parent scenario has {len(parent_criteria_list)} criteria", flush=True)
+        criteria_list = list(criteria_list) + list(parent_criteria_list)
+
+    for criterion in criteria_list:
+        criterion_name = criterion.name
+        facts['criteria_status'][criterion_name] = criterion.test_status
+
+        if criterion_name == "DecelerationForConstructionTest":
+            if criterion.test_status == "SUCCESS":
+                facts['deceleration_detected'] = True
+            facts['speed_reduction'] = criterion.actual_value
+            print(f"[DEBUG Facts Extract] DecelerationForConstructionTest: status={criterion.test_status}, actual_value={criterion.actual_value}", flush=True)
+
+        elif criterion_name == "CollisionTest":
+            facts['collision_count'] = criterion.actual_value
+            print(f"[DEBUG Facts Extract] CollisionTest: status={criterion.test_status}, actual_value={criterion.actual_value}, id={id(criterion)}", flush=True)
+
+        elif criterion_name == "RoutePassCompletionTest":
+            if criterion.test_status == "SUCCESS":
+                facts['route_passed'] = True
+            facts['distance_traveled'] = criterion.actual_value
+            print(f"[DEBUG Facts Extract] RoutePassCompletionTest: status={criterion.test_status}, actual_value={criterion.actual_value}", flush=True)
+
+        elif "TTC" in criterion_name.upper():
+            facts['min_ttc'] = criterion.actual_value
+            print(f"[DEBUG Facts Extract] {criterion_name}: actual_value={criterion.actual_value}", flush=True)
+
+    return facts
 # Drive into the roundabout_private_facats extracts
 
 # Four students crossing the road_private_facats extracts
