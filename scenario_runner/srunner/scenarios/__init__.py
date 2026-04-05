@@ -1,1 +1,0 @@
-from srunner.scenarios.selfdefined_scenario import EbikeAndPedestrianCross
