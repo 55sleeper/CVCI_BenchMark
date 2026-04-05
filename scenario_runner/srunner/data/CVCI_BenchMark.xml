@@ -6432,7 +6432,7 @@
             </scenario>
         </scenarios>
         <weathers>
-            <weather cloudiness="100.0" fog_density="20.0" precipitation="80.0" sun_altitude_angle="-90.0" />
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60.0" precipitation_deposits="50.0" wetness="70.0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
         </weathers>
     </route>
 
@@ -6499,7 +6499,7 @@
             </scenario>
         </scenarios>
         <weathers>
-            <weather cloudiness="0.0" fog_density="0.0" precipitation="0.0" sun_altitude_angle="-90.0" />
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
         </weathers>
     </route>
 
@@ -6566,7 +6566,7 @@
             </scenario>
         </scenarios>
         <weathers>
-            <weather cloudiness="100.0" fog_density="10.0" precipitation="80.0" sun_altitude_angle="45.0" />
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100" />
         </weathers>
     </route>
 
@@ -6633,7 +6633,7 @@
             </scenario>
         </scenarios>
         <weathers>
-            <weather cloudiness="10.0" fog_density="0.0" precipitation="0.0" sun_altitude_angle="45.0" />
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60" precipitation_deposits="50" wetness="70" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100" />
         </weathers>
     </route>
 
@@ -6701,7 +6701,7 @@
             </scenario>
         </scenarios>
         <weathers>
-            <weather cloudiness="100.0" fog_density="20.0" precipitation="80.0" sun_altitude_angle="-90.0" />
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60.0" precipitation_deposits="50.0" wetness="70.0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
         </weathers>
     </route>
 
@@ -6768,7 +6768,7 @@
             </scenario>
         </scenarios>
         <weathers>
-            <weather cloudiness="0.0" fog_density="0.0" precipitation="0.0" sun_altitude_angle="-90.0" />
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
         </weathers>
     </route>
 
@@ -6835,7 +6835,7 @@
             </scenario>
         </scenarios>
         <weathers>
-            <weather cloudiness="100.0" fog_density="10.0" precipitation="80.0" sun_altitude_angle="45.0" />
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100" />
         </weathers>
     </route>
 
@@ -6902,7 +6902,7 @@
             </scenario>
         </scenarios>
         <weathers>
-            <weather cloudiness="10.0" fog_density="0.0" precipitation="0.0" sun_altitude_angle="45.0" />
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60" precipitation_deposits="50" wetness="70" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100" />
         </weathers>
     </route>
 
@@ -6970,7 +6970,7 @@
             </scenario>
         </scenarios>
         <weathers>
-            <weather cloudiness="100.0" fog_density="20.0" precipitation="80.0" sun_altitude_angle="-90.0" />
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60.0" precipitation_deposits="50.0" wetness="70.0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
         </weathers>
     </route>
 
@@ -7037,7 +7037,7 @@
             </scenario>
         </scenarios>
         <weathers>
-            <weather cloudiness="0.0" fog_density="0.0" precipitation="0.0" sun_altitude_angle="-90.0" />
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
         </weathers>
     </route>
 
@@ -7104,7 +7104,7 @@
             </scenario>
         </scenarios>
         <weathers>
-            <weather cloudiness="100.0" fog_density="10.0" precipitation="80.0" sun_altitude_angle="45.0" />
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100" />
         </weathers>
     </route>
 
@@ -7171,7 +7171,7 @@
             </scenario>
         </scenarios>
         <weathers>
-            <weather cloudiness="10.0" fog_density="0.0" precipitation="0.0" sun_altitude_angle="45.0" />
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60" precipitation_deposits="50" wetness="70" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100" />
         </weathers>
     </route>
 
