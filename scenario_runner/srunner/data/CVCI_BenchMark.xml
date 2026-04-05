@@ -7178,9 +7178,7 @@
 
 
     <!-- ========== scenario_class 9:Slanted motor and children ========== -->
-<routes>
     <!-- ========== level 1: init_speed=20 km/h ========== -->
-    
     <!-- 变体1: day&sunny + level1（最简单） -->
     <route id="1" town="Town10HD_Opt" initial_speed="20.0">
         <waypoints>
@@ -7712,8 +7710,7 @@
             <weather cloudiness="90.0" fog_density="10.0" precipitation="60.0" precipitation_deposits="50.0" wetness="70.0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
         </weathers>
     </route>
-
-</routes>
+    
     <!-- ========== scenario_class 10:reverse_vehicle ========== -->
     <!-- ========== level 3: init_speed=19.4, reverse_speed=4 ========== -->
     <route id="0" town="Town03">
