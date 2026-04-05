@@ -175,28 +175,16 @@ def score_ebike_pedestrian_cross(common_facts, private_facts):
     if private_facts.get("resume_route", False):
         base_score += 25.0
 
-    # Gate: 发生碰撞则分数归零
-    gate = 1.0
-    if common_facts.get("collision", False):
-        gate = 0.0
+    gate = compute_gate(common_facts)
+    penalty = compute_penalty(common_facts)
+    final_score = base_score * gate * penalty
 
-    # Penalty: 基于最小TTC和越界
-    penalty = 1.0
-    min_ttc = common_facts.get("min_ttc")
-    if min_ttc is not None:
-        if min_ttc >= 2.0:
-            penalty *= 1.00
-        elif min_ttc >= 1.5:
-            penalty *= 0.95
-        elif min_ttc >= 1.0:
-            penalty *= 0.85
-        elif min_ttc >= 0.5:
-            penalty *= 0.65
-        else:
-            penalty *= 0.0
-
-    if common_facts.get("outside_route", False):
-        penalty *= 0.9
+    return {
+        "base_score": base_score,
+        "gate": gate,
+        "penalty": penalty,
+        "final_score": final_score,
+    }
 
 
 # reverse vehicle
