@@ -57,7 +57,22 @@ def extract_private_facts_high_speed_accident(criteria_list):
             facts["resume_route"] = (criterion.test_status == "SUCCESS")
     return facts
 # Trucks encountered during construction_private_facats extracts
-
+    def extract_private_facts_lane_closure(criteria_list):
+    """提取车道封闭场景的私有事实"""
+    facts = {
+        "deceleration_detected": False, 
+        "speed_reduction": 0.0,          
+        "distance_traveled": 0.0,        
+    }
+    for criterion in criteria_list:
+        if criterion.name == "DecelerationForConstructionTest":
+            facts["deceleration_detected"] = (criterion.test_status == "SUCCESS")
+            facts["speed_reduction"] = criterion.actual_value
+            print(f"[DEBUG Facts Extract] DecelerationForConstructionTest: status={criterion.test_status}, actual_value={criterion.actual_value}", flush=True)
+        elif criterion.name == "RoutePassCompletionTest":
+            facts["distance_traveled"] = criterion.actual_value
+            print(f"[DEBUG Facts Extract] RoutePassCompletionTest: status={criterion.test_status}, actual_value={criterion.actual_value}", flush=True)
+    return facts
 # Drive into the roundabout_private_facats extracts
 
 # Four students crossing the road_private_facats extracts
