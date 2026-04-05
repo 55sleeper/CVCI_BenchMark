@@ -35,8 +35,48 @@ def extract_common_facts(criteria_list):
     return common_facts
 
 # missing car_private_facats extracts
+def extract_private_facts_frontcar_disappearance(criteria_list):
+    facts = {
+        "slow_down": False,       # 条件1：自车成功减速
+        "no_collision": False,    # 条件2：无碰撞
+        "safe_bypass": False     # 条件3：安全变道通过故障车
+    }
+
+    for criterion in criteria_list:
+        # 减速成功
+        if criterion.name == "StaticObstacleSlowDownCriterion":
+            facts["slow_down"] = (criterion.test_status == "SUCCESS")
+
+        # 无碰撞成功
+        if criterion.name == "StaticObstacleNoCollisionCriterion":
+            facts["no_collision"] = (criterion.test_status == "SUCCESS")
+
+        # 安全变道通过
+        if criterion.name == "StaticObstacleSafePassCriterion":
+            facts["safe_bypass"] = (criterion.test_status == "SUCCESS")
+
+    return facts
 
 # High speed temporary construction_private_facats extracts
+def extract_private_facts_static_barrier(criteria_list):
+    facts = {
+        "slow_down": False,       # 成功减速
+        "safe_bypass": False,     # 成功绕行
+        "pass_barrier": False     # 成功通过路障
+    }
+
+    for criterion in criteria_list:
+        if criterion.name == "BarrierSlowDownCriterion":
+            facts["slow_down"] = (criterion.test_status == "SUCCESS")
+
+        elif criterion.name == "BarrierPassByCriterion":
+            facts["pass_barrier"] = (criterion.test_status == "SUCCESS")
+
+        # 安全绕行 = 不碰撞 + 成功通过
+        # 这里用 BarrierPassByCriterion 代表安全绕行完成
+        if criterion.name == "BarrierPassByCriterion":
+            facts["safe_bypass"] = (criterion.test_status == "SUCCESS")
+    return facts
 
 # High-speed reckless lane cutting_private_facats extracts
 
@@ -81,7 +121,26 @@ def extract_private_facts_ghost_probe(criteria_root):
                 facts["pedestrian_resume"] = (criterion.test_status == "SUCCESS")
 
     return facts
+
 # avoid a disabled vehicle_private_facats extracts
+def extract_private_facts_broken_down_vehicle(criteria_list):
+    facts = {
+        "brake_response": False,
+        "safe_bypass": False,
+        "resume_route": False,
+    }
+
+    for criterion in criteria_list:
+        if criterion.name == "BrakeCriterion":
+            facts["brake_response"] = (criterion.test_status == "SUCCESS")
+
+        elif criterion.name == "BypassCriterion":
+            facts["safe_bypass"] = (criterion.test_status == "SUCCESS")
+
+        elif criterion.name == "ResumeCriterion":
+            facts["resume_route"] = (criterion.test_status == "SUCCESS")
+
+    return facts
 
 # Slanted motor and children_private_facats extracts
 
@@ -144,5 +203,48 @@ def extract_private_facts_ebike_pedestrian_cross(criteria_list):
 
         elif criterion.name == "ResumeAfterPedestrianCriterion":
             facts["resume_route"] = (criterion.test_status == "SUCCESS")
+
+    return facts
+
+def extract_private_facts_static_barrier(criteria_list):
+    facts = {
+        "slow_down": False,       # 成功减速
+        "safe_bypass": False,     # 成功绕行
+        "pass_barrier": False     # 成功通过路障
+    }
+
+    for criterion in criteria_list:
+        if criterion.name == "BarrierSlowDownCriterion":
+            facts["slow_down"] = (criterion.test_status == "SUCCESS")
+
+        elif criterion.name == "BarrierPassByCriterion":
+            facts["pass_barrier"] = (criterion.test_status == "SUCCESS")
+
+        # 安全绕行 = 不碰撞 + 成功通过
+        # 这里用 BarrierPassByCriterion 代表安全绕行完成
+        if criterion.name == "BarrierPassByCriterion":
+            facts["safe_bypass"] = (criterion.test_status == "SUCCESS")
+
+    return facts
+
+def extract_private_facts_frontcar_disappearance(criteria_list):
+    facts = {
+        "slow_down": False,       # 条件1：自车成功减速
+        "no_collision": False,    # 条件2：无碰撞
+        "safe_bypass": False     # 条件3：安全变道通过故障车
+    }
+
+    for criterion in criteria_list:
+        # 减速成功
+        if criterion.name == "StaticObstacleSlowDownCriterion":
+            facts["slow_down"] = (criterion.test_status == "SUCCESS")
+
+        # 无碰撞成功
+        if criterion.name == "StaticObstacleNoCollisionCriterion":
+            facts["no_collision"] = (criterion.test_status == "SUCCESS")
+
+        # 安全变道通过
+        if criterion.name == "StaticObstacleSafePassCriterion":
+            facts["safe_bypass"] = (criterion.test_status == "SUCCESS")
 
     return facts

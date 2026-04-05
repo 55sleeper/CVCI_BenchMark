@@ -28,9 +28,60 @@ def compute_penalty(common_facts):
 # scenario specific score calculate
 
 # missing car
+def score_frontcar_disappear_accident(common_facts, private_facts):
+    base_score = 0.0
 
+    # 条件1：自车减速 —— 50分
+    if private_facts["slow_down"]:
+        base_score += 50.0
+
+    # 条件2：无碰撞 —— 20分
+    if private_facts["no_collision"]:
+        base_score += 20.0
+
+    # 条件3：安全变道通过路段 —— 30分
+    if private_facts["safe_bypass"]:
+        base_score += 30.0
+
+    # 碰撞门限（撞了直接 0 分）
+    gate = compute_gate(common_facts)
+    # 违规 penalty
+    penalty = compute_penalty(common_facts)
+
+    final_score = base_score * gate * penalty
+
+    return {
+        "base_score": base_score,
+        "gate": gate,
+        "penalty": penalty,
+        "final_score": round(final_score, 2)
+    }
 # High speed temporary construction
+def score_static_barrier(common_facts, private_facts):
+    base_score = 0.0
 
+    # 减速：55分
+    if private_facts["slow_down"]:
+        base_score += 55.0
+
+    # 安全绕行：20分
+    if private_facts["safe_bypass"]:
+        base_score += 20.0
+
+    # 成功通过路障：25分
+    if private_facts["pass_barrier"]:
+        base_score += 25.0
+
+    gate = compute_gate(common_facts)
+    penalty = compute_penalty(common_facts)
+    final_score = base_score * gate * penalty
+
+    return {
+        "base_score": base_score,
+        "gate": gate,
+        "penalty": penalty,
+        "final_score": final_score,
+    }
 # High-speed reckless lane cutting
 
 # Highway accident vehicle
@@ -83,6 +134,26 @@ def score_ghost_probe(common_facts, private_facts):
         "final_score": final_score,
     }
 # avoid a disabled vehicle
+def score_broken_down_vehicle(common_facts, private_facts):
+    base_score = 0.0
+
+    if private_facts["brake_response"]:
+        base_score += 40.0
+    if private_facts["safe_bypass"]:
+        base_score += 40.0
+    if private_facts["resume_route"]:
+        base_score += 20.0
+
+    gate = compute_gate(common_facts)
+    penalty = compute_penalty(common_facts)
+    final_score = base_score * gate * penalty
+
+    return {
+        "base_score": base_score,
+        "gate": gate,
+        "penalty": penalty,
+        "final_score": final_score,
+    }
 
 # Slanted motor and children
 
@@ -131,8 +202,8 @@ def score_left_turn(common_facts, private_facts):
         "final_score": final_score,
     }
 
-# ========== 以下是 cpz 添加的 EbikeAndPedestrianCross 场景的评分函数 ==========
 
+# ========== 以下是 cpz 添加的 EbikeAndPedestrianCross 场景的评分函数 ==========
 def score_ebike_pedestrian_cross(common_facts, private_facts):
     """
     EbikeAndPedestrianCross 场景的评分函数
@@ -175,8 +246,24 @@ def score_ebike_pedestrian_cross(common_facts, private_facts):
     if common_facts.get("outside_route", False):
         penalty *= 0.9
 
-    final_score = base_score * gate * penalty
+def score_static_barrier(common_facts, private_facts):
+    base_score = 0.0
 
+    # 减速：55分
+    if private_facts["slow_down"]:
+        base_score += 55.0
+
+    # 安全绕行：20分
+    if private_facts["safe_bypass"]:
+        base_score += 20.0
+
+    # 成功通过路障：25分
+    if private_facts["pass_barrier"]:
+        base_score += 25.0
+
+    gate = compute_gate(common_facts)
+    penalty = compute_penalty(common_facts)
+    final_score = base_score * gate * penalty
     return {
         "base_score": base_score,
         "gate": gate,
@@ -189,4 +276,34 @@ def score_ebike_pedestrian_cross(common_facts, private_facts):
             "collision": common_facts.get("collision", False),
             "min_ttc": min_ttc
         }
+    }
+    }
+
+def score_frontcar_disappear_accident(common_facts, private_facts):
+    base_score = 0.0
+
+    # 条件1：自车减速 —— 50分
+    if private_facts["slow_down"]:
+        base_score += 50.0
+
+    # 条件2：无碰撞 —— 20分
+    if private_facts["no_collision"]:
+        base_score += 20.0
+
+    # 条件3：安全变道通过路段 —— 30分
+    if private_facts["safe_bypass"]:
+        base_score += 30.0
+
+    # 碰撞门限（撞了直接 0 分）
+    gate = compute_gate(common_facts)
+    # 违规 penalty
+    penalty = compute_penalty(common_facts)
+
+    final_score = base_score * gate * penalty
+
+    return {
+        "base_score": base_score,
+        "gate": gate,
+        "penalty": penalty,
+        "final_score": round(final_score, 2)
     }
