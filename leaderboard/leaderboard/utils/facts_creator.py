@@ -99,7 +99,27 @@ def extract_private_facts_high_speed_accident(criteria_list):
 # Trucks encountered during construction_private_facats extracts
 
 # Drive into the roundabout_private_facats extracts
+def extract_private_facts_roundabout_merge_conflict(criteria_list):
+    """
+    大转盘极端交互场景的私有事实提取
+    """
+    facts = {
+        "decelerate_response": False,
+        "safe_merge": False,
+        "yield_convoy": False,
+    }
 
+    for criterion in criteria_list:
+        if criterion.name == "RoundaboutDecelerateCriterion":
+            facts["decelerate_response"] = (criterion.test_status == "SUCCESS")
+
+        elif criterion.name == "RoundaboutSafeMergeCriterion":
+            facts["safe_merge"] = (criterion.test_status == "SUCCESS")
+
+        elif criterion.name == "RoundaboutYieldConvoyCriterion":
+            facts["yield_convoy"] = (criterion.test_status == "SUCCESS")
+
+    return facts
 # Four students crossing the road_private_facats extracts
 def extract_private_facts_ghost_probe(criteria_root):
     """提取鬼探头场景的私有事实"""

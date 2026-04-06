@@ -110,7 +110,33 @@ def score_high_speed_accident(common_facts, private_facts):
 # Trucks encountered during construction
 
 # Drive into the roundabout
+def score_roundabout_merge_conflict(common_facts, private_facts):
+    """
+    计算大转盘交互场景得分:
+    识别并减速: 55
+    安全汇入: 20
+    让行内圈车队: 25
+    """
+    base_score = 0.0
 
+    if private_facts["decelerate_response"]:
+        base_score += 55.0
+    if private_facts["safe_merge"]:
+        base_score += 20.0
+    if private_facts["yield_convoy"]:
+        base_score += 25.0
+
+    # 获取通用的碰撞拦截(Gate)和惩罚(Penalty)
+    gate = compute_gate(common_facts)
+    penalty = compute_penalty(common_facts) 
+    final_score = base_score * gate * penalty
+
+    return {
+        "base_score": base_score,
+        "gate": gate,
+        "penalty": penalty,
+        "final_score": final_score,
+    }
 # Four students crossing the road
 def score_ghost_probe(common_facts, private_facts):
     """计算鬼探头场景得分"""

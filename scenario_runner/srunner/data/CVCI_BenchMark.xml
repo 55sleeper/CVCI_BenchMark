@@ -4565,7 +4565,930 @@
     <!-- ========== scenario_class 5:Trucks encountered during construction ========== -->
 
     <!-- ========== scenario_class 6:Drive into the roundabout ========== -->
-
+    <route id="0" town="Town03">
+        <waypoints>
+            <position x="5.0" y="50.0" z="0.0"/>
+            <position x="4.96" y="48.14" z="0.0"/>
+            <position x="4.92" y="46.28" z="0.0"/>
+            <position x="4.88" y="44.42" z="0.0"/>
+            <position x="4.84" y="42.56" z="0.0"/>
+            <position x="4.9" y="40.7" z="0.0"/>
+            <position x="4.98" y="39.62" z="0.0"/>
+            <position x="5.06" y="38.54" z="0.0"/>
+            <position x="5.14" y="37.46" z="0.0"/>
+            <position x="5.22" y="36.38" z="0.0"/>
+            <position x="5.4" y="35.0" z="0.0"/>
+            <position x="5.78" y="33.18" z="0.0"/>
+            <position x="6.16" y="31.36" z="0.0"/>
+            <position x="6.54" y="29.54" z="0.0"/>
+            <position x="6.92" y="27.72" z="0.0"/>
+            <position x="7.3" y="25.9" z="0.0"/>
+            <position x="7.68" y="24.08" z="0.0"/>
+            <position x="8.06" y="22.26" z="0.0"/>
+            <position x="8.44" y="20.44" z="0.0"/>
+            <position x="8.82" y="18.62" z="0.0"/>
+            <position x="9.2" y="18.2" z="0.0"/>
+            <position x="9.88" y="17.46" z="0.0"/>
+            <position x="10.56" y="16.72" z="0.0"/>
+            <position x="11.24" y="15.98" z="0.0"/>
+            <position x="11.92" y="15.24" z="0.0"/>
+            <position x="12.6" y="14.5" z="0.0"/>
+            <position x="13.28" y="13.76" z="0.0"/>
+            <position x="13.96" y="13.02" z="0.0"/>
+            <position x="14.64" y="12.28" z="0.0"/>
+            <position x="15.32" y="11.54" z="0.0"/>
+            <position x="16.0" y="10.6" z="0.0"/>
+            <position x="15.14" y="7.61" z="0.0"/>
+            <position x="14.28" y="4.62" z="0.0"/>
+            <position x="13.42" y="1.63" z="0.0"/>
+            <position x="12.56" y="-1.36" z="0.0"/>
+            <position x="11.7" y="-4.35" z="0.0"/>
+            <position x="10.84" y="-7.34" z="0.0"/>
+            <position x="9.98" y="-10.33" z="0.0"/>
+            <position x="9.12" y="-13.32" z="0.0"/>
+            <position x="8.26" y="-16.31" z="0.0"/>
+            <position x="7.7" y="-18.5" z="0.0"/>
+            <position x="7.26" y="-21.28" z="0.0"/>
+            <position x="6.82" y="-24.06" z="0.0"/>
+            <position x="6.38" y="-26.84" z="0.0"/>
+            <position x="5.94" y="-29.62" z="0.0"/>
+            <position x="5.5" y="-32.4" z="0.0"/>
+            <position x="5.06" y="-35.18" z="0.0"/>
+            <position x="4.62" y="-37.96" z="0.0"/>
+            <position x="4.18" y="-40.74" z="0.0"/>
+            <position x="3.74" y="-43.52" z="0.0"/>
+            <position x="3.7" y="-45.3" z="0.0"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="RoundaboutMergeConflict_1" type="RoundaboutMergeConflict">
+                <trigger_point x="5" y="45" z="0.0" yaw="270.0"/>
+                <init_speed value="8.33"/>
+                <distance value="5"/>
+                <adversary_speed value="5.0"/>
+                <adversary_throttle value="0.45"/>
+                <adversary_waypoints>
+                    <position x="-7.9" y="22.7" z="0.0"/>
+                    <position x="-4.3" y="23.5" z="0.0"/>
+                    <position x="-1.1" y="23.6" z="0.0"/>
+                    <position x="1.8" y="23.5" z="0.0"/>
+                    <position x="6.4" y="22.6" z="0.0"/>
+                    <position x="4.3" y="23.5" z="0.0"/>
+                    <position x="11.6" y="20.6" z="0.0"/>
+                </adversary_waypoints>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <!-- night&rain -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60.0" precipitation_deposits="50.0" wetness="70.0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100"/>
+        </weathers>
+    </route>
+    <route id="1" town="Town03">
+        <waypoints>
+            <position x="5.0" y="50.0" z="0.0"/>
+            <position x="4.96" y="48.14" z="0.0"/>
+            <position x="4.92" y="46.28" z="0.0"/>
+            <position x="4.88" y="44.42" z="0.0"/>
+            <position x="4.84" y="42.56" z="0.0"/>
+            <position x="4.9" y="40.7" z="0.0"/>
+            <position x="4.98" y="39.62" z="0.0"/>
+            <position x="5.06" y="38.54" z="0.0"/>
+            <position x="5.14" y="37.46" z="0.0"/>
+            <position x="5.22" y="36.38" z="0.0"/>
+            <position x="5.4" y="35.0" z="0.0"/>
+            <position x="5.78" y="33.18" z="0.0"/>
+            <position x="6.16" y="31.36" z="0.0"/>
+            <position x="6.54" y="29.54" z="0.0"/>
+            <position x="6.92" y="27.72" z="0.0"/>
+            <position x="7.3" y="25.9" z="0.0"/>
+            <position x="7.68" y="24.08" z="0.0"/>
+            <position x="8.06" y="22.26" z="0.0"/>
+            <position x="8.44" y="20.44" z="0.0"/>
+            <position x="8.82" y="18.62" z="0.0"/>
+            <position x="9.2" y="18.2" z="0.0"/>
+            <position x="9.88" y="17.46" z="0.0"/>
+            <position x="10.56" y="16.72" z="0.0"/>
+            <position x="11.24" y="15.98" z="0.0"/>
+            <position x="11.92" y="15.24" z="0.0"/>
+            <position x="12.6" y="14.5" z="0.0"/>
+            <position x="13.28" y="13.76" z="0.0"/>
+            <position x="13.96" y="13.02" z="0.0"/>
+            <position x="14.64" y="12.28" z="0.0"/>
+            <position x="15.32" y="11.54" z="0.0"/>
+            <position x="16.0" y="10.6" z="0.0"/>
+            <position x="15.14" y="7.61" z="0.0"/>
+            <position x="14.28" y="4.62" z="0.0"/>
+            <position x="13.42" y="1.63" z="0.0"/>
+            <position x="12.56" y="-1.36" z="0.0"/>
+            <position x="11.7" y="-4.35" z="0.0"/>
+            <position x="10.84" y="-7.34" z="0.0"/>
+            <position x="9.98" y="-10.33" z="0.0"/>
+            <position x="9.12" y="-13.32" z="0.0"/>
+            <position x="8.26" y="-16.31" z="0.0"/>
+            <position x="7.7" y="-18.5" z="0.0"/>
+            <position x="7.26" y="-21.28" z="0.0"/>
+            <position x="6.82" y="-24.06" z="0.0"/>
+            <position x="6.38" y="-26.84" z="0.0"/>
+            <position x="5.94" y="-29.62" z="0.0"/>
+            <position x="5.5" y="-32.4" z="0.0"/>
+            <position x="5.06" y="-35.18" z="0.0"/>
+            <position x="4.62" y="-37.96" z="0.0"/>
+            <position x="4.18" y="-40.74" z="0.0"/>
+            <position x="3.74" y="-43.52" z="0.0"/>
+            <position x="3.7" y="-45.3" z="0.0"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="RoundaboutMergeConflict_1" type="RoundaboutMergeConflict">
+                <trigger_point x="5" y="45" z="0.0" yaw="270.0"/>
+                <init_speed value="11.11"/>
+                <distance value="5"/>
+                <adversary_speed value="5.0"/>
+                <adversary_throttle value="0.45"/>
+                <adversary_waypoints>
+                    <position x="-7.9" y="22.7" z="0.0"/>
+                    <position x="-4.3" y="23.5" z="0.0"/>
+                    <position x="-1.1" y="23.6" z="0.0"/>
+                    <position x="1.8" y="23.5" z="0.0"/>
+                    <position x="6.4" y="22.6" z="0.0"/>
+                    <position x="4.3" y="23.5" z="0.0"/>
+                    <position x="11.6" y="20.6" z="0.0"/>
+                </adversary_waypoints>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <!-- night&rain -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60.0" precipitation_deposits="50.0" wetness="70.0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100"/>
+        </weathers>
+    </route>
+    <route id="2" town="Town03">
+        <waypoints>
+            <position x="5.0" y="50.0" z="0.0"/>
+            <position x="4.96" y="48.14" z="0.0"/>
+            <position x="4.92" y="46.28" z="0.0"/>
+            <position x="4.88" y="44.42" z="0.0"/>
+            <position x="4.84" y="42.56" z="0.0"/>
+            <position x="4.9" y="40.7" z="0.0"/>
+            <position x="4.98" y="39.62" z="0.0"/>
+            <position x="5.06" y="38.54" z="0.0"/>
+            <position x="5.14" y="37.46" z="0.0"/>
+            <position x="5.22" y="36.38" z="0.0"/>
+            <position x="5.4" y="35.0" z="0.0"/>
+            <position x="5.78" y="33.18" z="0.0"/>
+            <position x="6.16" y="31.36" z="0.0"/>
+            <position x="6.54" y="29.54" z="0.0"/>
+            <position x="6.92" y="27.72" z="0.0"/>
+            <position x="7.3" y="25.9" z="0.0"/>
+            <position x="7.68" y="24.08" z="0.0"/>
+            <position x="8.06" y="22.26" z="0.0"/>
+            <position x="8.44" y="20.44" z="0.0"/>
+            <position x="8.82" y="18.62" z="0.0"/>
+            <position x="9.2" y="18.2" z="0.0"/>
+            <position x="9.88" y="17.46" z="0.0"/>
+            <position x="10.56" y="16.72" z="0.0"/>
+            <position x="11.24" y="15.98" z="0.0"/>
+            <position x="11.92" y="15.24" z="0.0"/>
+            <position x="12.6" y="14.5" z="0.0"/>
+            <position x="13.28" y="13.76" z="0.0"/>
+            <position x="13.96" y="13.02" z="0.0"/>
+            <position x="14.64" y="12.28" z="0.0"/>
+            <position x="15.32" y="11.54" z="0.0"/>
+            <position x="16.0" y="10.6" z="0.0"/>
+            <position x="15.14" y="7.61" z="0.0"/>
+            <position x="14.28" y="4.62" z="0.0"/>
+            <position x="13.42" y="1.63" z="0.0"/>
+            <position x="12.56" y="-1.36" z="0.0"/>
+            <position x="11.7" y="-4.35" z="0.0"/>
+            <position x="10.84" y="-7.34" z="0.0"/>
+            <position x="9.98" y="-10.33" z="0.0"/>
+            <position x="9.12" y="-13.32" z="0.0"/>
+            <position x="8.26" y="-16.31" z="0.0"/>
+            <position x="7.7" y="-18.5" z="0.0"/>
+            <position x="7.26" y="-21.28" z="0.0"/>
+            <position x="6.82" y="-24.06" z="0.0"/>
+            <position x="6.38" y="-26.84" z="0.0"/>
+            <position x="5.94" y="-29.62" z="0.0"/>
+            <position x="5.5" y="-32.4" z="0.0"/>
+            <position x="5.06" y="-35.18" z="0.0"/>
+            <position x="4.62" y="-37.96" z="0.0"/>
+            <position x="4.18" y="-40.74" z="0.0"/>
+            <position x="3.74" y="-43.52" z="0.0"/>
+            <position x="3.7" y="-45.3" z="0.0"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="RoundaboutMergeConflict_1" type="RoundaboutMergeConflict">
+                <trigger_point x="5" y="45" z="0.0" yaw="270.0"/>
+                <init_speed value="13.89"/>
+                <distance value="5"/>
+                <adversary_speed value="5.0"/>
+                <adversary_throttle value="0.45"/>
+                <adversary_waypoints>
+                    <position x="-7.9" y="22.7" z="0.0"/>
+                    <position x="-4.3" y="23.5" z="0.0"/>
+                    <position x="-1.1" y="23.6" z="0.0"/>
+                    <position x="1.8" y="23.5" z="0.0"/>
+                    <position x="6.4" y="22.6" z="0.0"/>
+                    <position x="4.3" y="23.5" z="0.0"/>
+                    <position x="11.6" y="20.6" z="0.0"/>
+                </adversary_waypoints>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <!-- night&rain -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60.0" precipitation_deposits="50.0" wetness="70.0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100"/>
+        </weathers>
+    </route>
+    <route id="3" town="Town03">
+        <waypoints>
+            <position x="5.0" y="50.0" z="0.0"/>
+            <position x="4.96" y="48.14" z="0.0"/>
+            <position x="4.92" y="46.28" z="0.0"/>
+            <position x="4.88" y="44.42" z="0.0"/>
+            <position x="4.84" y="42.56" z="0.0"/>
+            <position x="4.9" y="40.7" z="0.0"/>
+            <position x="4.98" y="39.62" z="0.0"/>
+            <position x="5.06" y="38.54" z="0.0"/>
+            <position x="5.14" y="37.46" z="0.0"/>
+            <position x="5.22" y="36.38" z="0.0"/>
+            <position x="5.4" y="35.0" z="0.0"/>
+            <position x="5.78" y="33.18" z="0.0"/>
+            <position x="6.16" y="31.36" z="0.0"/>
+            <position x="6.54" y="29.54" z="0.0"/>
+            <position x="6.92" y="27.72" z="0.0"/>
+            <position x="7.3" y="25.9" z="0.0"/>
+            <position x="7.68" y="24.08" z="0.0"/>
+            <position x="8.06" y="22.26" z="0.0"/>
+            <position x="8.44" y="20.44" z="0.0"/>
+            <position x="8.82" y="18.62" z="0.0"/>
+            <position x="9.2" y="18.2" z="0.0"/>
+            <position x="9.88" y="17.46" z="0.0"/>
+            <position x="10.56" y="16.72" z="0.0"/>
+            <position x="11.24" y="15.98" z="0.0"/>
+            <position x="11.92" y="15.24" z="0.0"/>
+            <position x="12.6" y="14.5" z="0.0"/>
+            <position x="13.28" y="13.76" z="0.0"/>
+            <position x="13.96" y="13.02" z="0.0"/>
+            <position x="14.64" y="12.28" z="0.0"/>
+            <position x="15.32" y="11.54" z="0.0"/>
+            <position x="16.0" y="10.6" z="0.0"/>
+            <position x="15.14" y="7.61" z="0.0"/>
+            <position x="14.28" y="4.62" z="0.0"/>
+            <position x="13.42" y="1.63" z="0.0"/>
+            <position x="12.56" y="-1.36" z="0.0"/>
+            <position x="11.7" y="-4.35" z="0.0"/>
+            <position x="10.84" y="-7.34" z="0.0"/>
+            <position x="9.98" y="-10.33" z="0.0"/>
+            <position x="9.12" y="-13.32" z="0.0"/>
+            <position x="8.26" y="-16.31" z="0.0"/>
+            <position x="7.7" y="-18.5" z="0.0"/>
+            <position x="7.26" y="-21.28" z="0.0"/>
+            <position x="6.82" y="-24.06" z="0.0"/>
+            <position x="6.38" y="-26.84" z="0.0"/>
+            <position x="5.94" y="-29.62" z="0.0"/>
+            <position x="5.5" y="-32.4" z="0.0"/>
+            <position x="5.06" y="-35.18" z="0.0"/>
+            <position x="4.62" y="-37.96" z="0.0"/>
+            <position x="4.18" y="-40.74" z="0.0"/>
+            <position x="3.74" y="-43.52" z="0.0"/>
+            <position x="3.7" y="-45.3" z="0.0"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="RoundaboutMergeConflict_1" type="RoundaboutMergeConflict">
+                <trigger_point x="5" y="45" z="0.0" yaw="270.0"/>
+                <init_speed value="8.33"/>
+                <distance value="5"/>
+                <adversary_speed value="5.0"/>
+                <adversary_throttle value="0.45"/>
+                <adversary_waypoints>
+                    <position x="-7.9" y="22.7" z="0.0"/>
+                    <position x="-4.3" y="23.5" z="0.0"/>
+                    <position x="-1.1" y="23.6" z="0.0"/>
+                    <position x="1.8" y="23.5" z="0.0"/>
+                    <position x="6.4" y="22.6" z="0.0"/>
+                    <position x="4.3" y="23.5" z="0.0"/>
+                    <position x="11.6" y="20.6" z="0.0"/>
+                </adversary_waypoints>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <!-- night&sunny -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100"/>
+        </weathers>
+    </route>
+    <route id="4" town="Town03">
+        <waypoints>
+            <position x="5.0" y="50.0" z="0.0"/>
+            <position x="4.96" y="48.14" z="0.0"/>
+            <position x="4.92" y="46.28" z="0.0"/>
+            <position x="4.88" y="44.42" z="0.0"/>
+            <position x="4.84" y="42.56" z="0.0"/>
+            <position x="4.9" y="40.7" z="0.0"/>
+            <position x="4.98" y="39.62" z="0.0"/>
+            <position x="5.06" y="38.54" z="0.0"/>
+            <position x="5.14" y="37.46" z="0.0"/>
+            <position x="5.22" y="36.38" z="0.0"/>
+            <position x="5.4" y="35.0" z="0.0"/>
+            <position x="5.78" y="33.18" z="0.0"/>
+            <position x="6.16" y="31.36" z="0.0"/>
+            <position x="6.54" y="29.54" z="0.0"/>
+            <position x="6.92" y="27.72" z="0.0"/>
+            <position x="7.3" y="25.9" z="0.0"/>
+            <position x="7.68" y="24.08" z="0.0"/>
+            <position x="8.06" y="22.26" z="0.0"/>
+            <position x="8.44" y="20.44" z="0.0"/>
+            <position x="8.82" y="18.62" z="0.0"/>
+            <position x="9.2" y="18.2" z="0.0"/>
+            <position x="9.88" y="17.46" z="0.0"/>
+            <position x="10.56" y="16.72" z="0.0"/>
+            <position x="11.24" y="15.98" z="0.0"/>
+            <position x="11.92" y="15.24" z="0.0"/>
+            <position x="12.6" y="14.5" z="0.0"/>
+            <position x="13.28" y="13.76" z="0.0"/>
+            <position x="13.96" y="13.02" z="0.0"/>
+            <position x="14.64" y="12.28" z="0.0"/>
+            <position x="15.32" y="11.54" z="0.0"/>
+            <position x="16.0" y="10.6" z="0.0"/>
+            <position x="15.14" y="7.61" z="0.0"/>
+            <position x="14.28" y="4.62" z="0.0"/>
+            <position x="13.42" y="1.63" z="0.0"/>
+            <position x="12.56" y="-1.36" z="0.0"/>
+            <position x="11.7" y="-4.35" z="0.0"/>
+            <position x="10.84" y="-7.34" z="0.0"/>
+            <position x="9.98" y="-10.33" z="0.0"/>
+            <position x="9.12" y="-13.32" z="0.0"/>
+            <position x="8.26" y="-16.31" z="0.0"/>
+            <position x="7.7" y="-18.5" z="0.0"/>
+            <position x="7.26" y="-21.28" z="0.0"/>
+            <position x="6.82" y="-24.06" z="0.0"/>
+            <position x="6.38" y="-26.84" z="0.0"/>
+            <position x="5.94" y="-29.62" z="0.0"/>
+            <position x="5.5" y="-32.4" z="0.0"/>
+            <position x="5.06" y="-35.18" z="0.0"/>
+            <position x="4.62" y="-37.96" z="0.0"/>
+            <position x="4.18" y="-40.74" z="0.0"/>
+            <position x="3.74" y="-43.52" z="0.0"/>
+            <position x="3.7" y="-45.3" z="0.0"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="RoundaboutMergeConflict_1" type="RoundaboutMergeConflict">
+                <trigger_point x="5" y="45" z="0.0" yaw="270.0"/>
+                <init_speed value="11.11"/>
+                <distance value="5"/>
+                <adversary_speed value="5.0"/>
+                <adversary_throttle value="0.45"/>
+                <adversary_waypoints>
+                    <position x="-7.9" y="22.7" z="0.0"/>
+                    <position x="-4.3" y="23.5" z="0.0"/>
+                    <position x="-1.1" y="23.6" z="0.0"/>
+                    <position x="1.8" y="23.5" z="0.0"/>
+                    <position x="6.4" y="22.6" z="0.0"/>
+                    <position x="4.3" y="23.5" z="0.0"/>
+                    <position x="11.6" y="20.6" z="0.0"/>
+                </adversary_waypoints>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <!-- night&sunny -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100"/>
+        </weathers>
+    </route>
+    <route id="5" town="Town03">
+        <waypoints>
+            <position x="5.0" y="50.0" z="0.0"/>
+            <position x="4.96" y="48.14" z="0.0"/>
+            <position x="4.92" y="46.28" z="0.0"/>
+            <position x="4.88" y="44.42" z="0.0"/>
+            <position x="4.84" y="42.56" z="0.0"/>
+            <position x="4.9" y="40.7" z="0.0"/>
+            <position x="4.98" y="39.62" z="0.0"/>
+            <position x="5.06" y="38.54" z="0.0"/>
+            <position x="5.14" y="37.46" z="0.0"/>
+            <position x="5.22" y="36.38" z="0.0"/>
+            <position x="5.4" y="35.0" z="0.0"/>
+            <position x="5.78" y="33.18" z="0.0"/>
+            <position x="6.16" y="31.36" z="0.0"/>
+            <position x="6.54" y="29.54" z="0.0"/>
+            <position x="6.92" y="27.72" z="0.0"/>
+            <position x="7.3" y="25.9" z="0.0"/>
+            <position x="7.68" y="24.08" z="0.0"/>
+            <position x="8.06" y="22.26" z="0.0"/>
+            <position x="8.44" y="20.44" z="0.0"/>
+            <position x="8.82" y="18.62" z="0.0"/>
+            <position x="9.2" y="18.2" z="0.0"/>
+            <position x="9.88" y="17.46" z="0.0"/>
+            <position x="10.56" y="16.72" z="0.0"/>
+            <position x="11.24" y="15.98" z="0.0"/>
+            <position x="11.92" y="15.24" z="0.0"/>
+            <position x="12.6" y="14.5" z="0.0"/>
+            <position x="13.28" y="13.76" z="0.0"/>
+            <position x="13.96" y="13.02" z="0.0"/>
+            <position x="14.64" y="12.28" z="0.0"/>
+            <position x="15.32" y="11.54" z="0.0"/>
+            <position x="16.0" y="10.6" z="0.0"/>
+            <position x="15.14" y="7.61" z="0.0"/>
+            <position x="14.28" y="4.62" z="0.0"/>
+            <position x="13.42" y="1.63" z="0.0"/>
+            <position x="12.56" y="-1.36" z="0.0"/>
+            <position x="11.7" y="-4.35" z="0.0"/>
+            <position x="10.84" y="-7.34" z="0.0"/>
+            <position x="9.98" y="-10.33" z="0.0"/>
+            <position x="9.12" y="-13.32" z="0.0"/>
+            <position x="8.26" y="-16.31" z="0.0"/>
+            <position x="7.7" y="-18.5" z="0.0"/>
+            <position x="7.26" y="-21.28" z="0.0"/>
+            <position x="6.82" y="-24.06" z="0.0"/>
+            <position x="6.38" y="-26.84" z="0.0"/>
+            <position x="5.94" y="-29.62" z="0.0"/>
+            <position x="5.5" y="-32.4" z="0.0"/>
+            <position x="5.06" y="-35.18" z="0.0"/>
+            <position x="4.62" y="-37.96" z="0.0"/>
+            <position x="4.18" y="-40.74" z="0.0"/>
+            <position x="3.74" y="-43.52" z="0.0"/>
+            <position x="3.7" y="-45.3" z="0.0"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="RoundaboutMergeConflict_1" type="RoundaboutMergeConflict">
+                <trigger_point x="5" y="45" z="0.0" yaw="270.0"/>
+                <init_speed value="13.89"/>
+                <distance value="5"/>
+                <adversary_speed value="5.0"/>
+                <adversary_throttle value="0.45"/>
+                <adversary_waypoints>
+                    <position x="-7.9" y="22.7" z="0.0"/>
+                    <position x="-4.3" y="23.5" z="0.0"/>
+                    <position x="-1.1" y="23.6" z="0.0"/>
+                    <position x="1.8" y="23.5" z="0.0"/>
+                    <position x="6.4" y="22.6" z="0.0"/>
+                    <position x="4.3" y="23.5" z="0.0"/>
+                    <position x="11.6" y="20.6" z="0.0"/>
+                </adversary_waypoints>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <!-- night&sunny -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100"/>
+        </weathers>
+    </route>
+    <route id="6" town="Town03">
+        <waypoints>
+            <position x="5.0" y="50.0" z="0.0"/>
+            <position x="4.96" y="48.14" z="0.0"/>
+            <position x="4.92" y="46.28" z="0.0"/>
+            <position x="4.88" y="44.42" z="0.0"/>
+            <position x="4.84" y="42.56" z="0.0"/>
+            <position x="4.9" y="40.7" z="0.0"/>
+            <position x="4.98" y="39.62" z="0.0"/>
+            <position x="5.06" y="38.54" z="0.0"/>
+            <position x="5.14" y="37.46" z="0.0"/>
+            <position x="5.22" y="36.38" z="0.0"/>
+            <position x="5.4" y="35.0" z="0.0"/>
+            <position x="5.78" y="33.18" z="0.0"/>
+            <position x="6.16" y="31.36" z="0.0"/>
+            <position x="6.54" y="29.54" z="0.0"/>
+            <position x="6.92" y="27.72" z="0.0"/>
+            <position x="7.3" y="25.9" z="0.0"/>
+            <position x="7.68" y="24.08" z="0.0"/>
+            <position x="8.06" y="22.26" z="0.0"/>
+            <position x="8.44" y="20.44" z="0.0"/>
+            <position x="8.82" y="18.62" z="0.0"/>
+            <position x="9.2" y="18.2" z="0.0"/>
+            <position x="9.88" y="17.46" z="0.0"/>
+            <position x="10.56" y="16.72" z="0.0"/>
+            <position x="11.24" y="15.98" z="0.0"/>
+            <position x="11.92" y="15.24" z="0.0"/>
+            <position x="12.6" y="14.5" z="0.0"/>
+            <position x="13.28" y="13.76" z="0.0"/>
+            <position x="13.96" y="13.02" z="0.0"/>
+            <position x="14.64" y="12.28" z="0.0"/>
+            <position x="15.32" y="11.54" z="0.0"/>
+            <position x="16.0" y="10.6" z="0.0"/>
+            <position x="15.14" y="7.61" z="0.0"/>
+            <position x="14.28" y="4.62" z="0.0"/>
+            <position x="13.42" y="1.63" z="0.0"/>
+            <position x="12.56" y="-1.36" z="0.0"/>
+            <position x="11.7" y="-4.35" z="0.0"/>
+            <position x="10.84" y="-7.34" z="0.0"/>
+            <position x="9.98" y="-10.33" z="0.0"/>
+            <position x="9.12" y="-13.32" z="0.0"/>
+            <position x="8.26" y="-16.31" z="0.0"/>
+            <position x="7.7" y="-18.5" z="0.0"/>
+            <position x="7.26" y="-21.28" z="0.0"/>
+            <position x="6.82" y="-24.06" z="0.0"/>
+            <position x="6.38" y="-26.84" z="0.0"/>
+            <position x="5.94" y="-29.62" z="0.0"/>
+            <position x="5.5" y="-32.4" z="0.0"/>
+            <position x="5.06" y="-35.18" z="0.0"/>
+            <position x="4.62" y="-37.96" z="0.0"/>
+            <position x="4.18" y="-40.74" z="0.0"/>
+            <position x="3.74" y="-43.52" z="0.0"/>
+            <position x="3.7" y="-45.3" z="0.0"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="RoundaboutMergeConflict_1" type="RoundaboutMergeConflict">
+                <trigger_point x="5" y="45" z="0.0" yaw="270.0"/>
+                <init_speed value="8.33"/>
+                <distance value="5"/>
+                <adversary_speed value="5.0"/>
+                <adversary_throttle value="0.45"/>
+                <adversary_waypoints>
+                    <position x="-7.9" y="22.7" z="0.0"/>
+                    <position x="-4.3" y="23.5" z="0.0"/>
+                    <position x="-1.1" y="23.6" z="0.0"/>
+                    <position x="1.8" y="23.5" z="0.0"/>
+                    <position x="6.4" y="22.6" z="0.0"/>
+                    <position x="4.3" y="23.5" z="0.0"/>
+                    <position x="11.6" y="20.6" z="0.0"/>
+                </adversary_waypoints>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <!-- day&sunny -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100"/>
+        </weathers>
+    </route>
+    <route id="7" town="Town03">
+        <waypoints>
+            <position x="5.0" y="50.0" z="0.0"/>
+            <position x="4.96" y="48.14" z="0.0"/>
+            <position x="4.92" y="46.28" z="0.0"/>
+            <position x="4.88" y="44.42" z="0.0"/>
+            <position x="4.84" y="42.56" z="0.0"/>
+            <position x="4.9" y="40.7" z="0.0"/>
+            <position x="4.98" y="39.62" z="0.0"/>
+            <position x="5.06" y="38.54" z="0.0"/>
+            <position x="5.14" y="37.46" z="0.0"/>
+            <position x="5.22" y="36.38" z="0.0"/>
+            <position x="5.4" y="35.0" z="0.0"/>
+            <position x="5.78" y="33.18" z="0.0"/>
+            <position x="6.16" y="31.36" z="0.0"/>
+            <position x="6.54" y="29.54" z="0.0"/>
+            <position x="6.92" y="27.72" z="0.0"/>
+            <position x="7.3" y="25.9" z="0.0"/>
+            <position x="7.68" y="24.08" z="0.0"/>
+            <position x="8.06" y="22.26" z="0.0"/>
+            <position x="8.44" y="20.44" z="0.0"/>
+            <position x="8.82" y="18.62" z="0.0"/>
+            <position x="9.2" y="18.2" z="0.0"/>
+            <position x="9.88" y="17.46" z="0.0"/>
+            <position x="10.56" y="16.72" z="0.0"/>
+            <position x="11.24" y="15.98" z="0.0"/>
+            <position x="11.92" y="15.24" z="0.0"/>
+            <position x="12.6" y="14.5" z="0.0"/>
+            <position x="13.28" y="13.76" z="0.0"/>
+            <position x="13.96" y="13.02" z="0.0"/>
+            <position x="14.64" y="12.28" z="0.0"/>
+            <position x="15.32" y="11.54" z="0.0"/>
+            <position x="16.0" y="10.6" z="0.0"/>
+            <position x="15.14" y="7.61" z="0.0"/>
+            <position x="14.28" y="4.62" z="0.0"/>
+            <position x="13.42" y="1.63" z="0.0"/>
+            <position x="12.56" y="-1.36" z="0.0"/>
+            <position x="11.7" y="-4.35" z="0.0"/>
+            <position x="10.84" y="-7.34" z="0.0"/>
+            <position x="9.98" y="-10.33" z="0.0"/>
+            <position x="9.12" y="-13.32" z="0.0"/>
+            <position x="8.26" y="-16.31" z="0.0"/>
+            <position x="7.7" y="-18.5" z="0.0"/>
+            <position x="7.26" y="-21.28" z="0.0"/>
+            <position x="6.82" y="-24.06" z="0.0"/>
+            <position x="6.38" y="-26.84" z="0.0"/>
+            <position x="5.94" y="-29.62" z="0.0"/>
+            <position x="5.5" y="-32.4" z="0.0"/>
+            <position x="5.06" y="-35.18" z="0.0"/>
+            <position x="4.62" y="-37.96" z="0.0"/>
+            <position x="4.18" y="-40.74" z="0.0"/>
+            <position x="3.74" y="-43.52" z="0.0"/>
+            <position x="3.7" y="-45.3" z="0.0"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="RoundaboutMergeConflict_1" type="RoundaboutMergeConflict">
+                <trigger_point x="5" y="45" z="0.0" yaw="270.0"/>
+                <init_speed value="11.11"/>
+                <distance value="5"/>
+                <adversary_speed value="5.0"/>
+                <adversary_throttle value="0.45"/>
+                <adversary_waypoints>
+                    <position x="-7.9" y="22.7" z="0.0"/>
+                    <position x="-4.3" y="23.5" z="0.0"/>
+                    <position x="-1.1" y="23.6" z="0.0"/>
+                    <position x="1.8" y="23.5" z="0.0"/>
+                    <position x="6.4" y="22.6" z="0.0"/>
+                    <position x="4.3" y="23.5" z="0.0"/>
+                    <position x="11.6" y="20.6" z="0.0"/>
+                </adversary_waypoints>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <!-- day&sunny -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100"/>
+        </weathers>
+    </route>
+    <route id="8" town="Town03">
+        <waypoints>
+            <position x="5.0" y="50.0" z="0.0"/>
+            <position x="4.96" y="48.14" z="0.0"/>
+            <position x="4.92" y="46.28" z="0.0"/>
+            <position x="4.88" y="44.42" z="0.0"/>
+            <position x="4.84" y="42.56" z="0.0"/>
+            <position x="4.9" y="40.7" z="0.0"/>
+            <position x="4.98" y="39.62" z="0.0"/>
+            <position x="5.06" y="38.54" z="0.0"/>
+            <position x="5.14" y="37.46" z="0.0"/>
+            <position x="5.22" y="36.38" z="0.0"/>
+            <position x="5.4" y="35.0" z="0.0"/>
+            <position x="5.78" y="33.18" z="0.0"/>
+            <position x="6.16" y="31.36" z="0.0"/>
+            <position x="6.54" y="29.54" z="0.0"/>
+            <position x="6.92" y="27.72" z="0.0"/>
+            <position x="7.3" y="25.9" z="0.0"/>
+            <position x="7.68" y="24.08" z="0.0"/>
+            <position x="8.06" y="22.26" z="0.0"/>
+            <position x="8.44" y="20.44" z="0.0"/>
+            <position x="8.82" y="18.62" z="0.0"/>
+            <position x="9.2" y="18.2" z="0.0"/>
+            <position x="9.88" y="17.46" z="0.0"/>
+            <position x="10.56" y="16.72" z="0.0"/>
+            <position x="11.24" y="15.98" z="0.0"/>
+            <position x="11.92" y="15.24" z="0.0"/>
+            <position x="12.6" y="14.5" z="0.0"/>
+            <position x="13.28" y="13.76" z="0.0"/>
+            <position x="13.96" y="13.02" z="0.0"/>
+            <position x="14.64" y="12.28" z="0.0"/>
+            <position x="15.32" y="11.54" z="0.0"/>
+            <position x="16.0" y="10.6" z="0.0"/>
+            <position x="15.14" y="7.61" z="0.0"/>
+            <position x="14.28" y="4.62" z="0.0"/>
+            <position x="13.42" y="1.63" z="0.0"/>
+            <position x="12.56" y="-1.36" z="0.0"/>
+            <position x="11.7" y="-4.35" z="0.0"/>
+            <position x="10.84" y="-7.34" z="0.0"/>
+            <position x="9.98" y="-10.33" z="0.0"/>
+            <position x="9.12" y="-13.32" z="0.0"/>
+            <position x="8.26" y="-16.31" z="0.0"/>
+            <position x="7.7" y="-18.5" z="0.0"/>
+            <position x="7.26" y="-21.28" z="0.0"/>
+            <position x="6.82" y="-24.06" z="0.0"/>
+            <position x="6.38" y="-26.84" z="0.0"/>
+            <position x="5.94" y="-29.62" z="0.0"/>
+            <position x="5.5" y="-32.4" z="0.0"/>
+            <position x="5.06" y="-35.18" z="0.0"/>
+            <position x="4.62" y="-37.96" z="0.0"/>
+            <position x="4.18" y="-40.74" z="0.0"/>
+            <position x="3.74" y="-43.52" z="0.0"/>
+            <position x="3.7" y="-45.3" z="0.0"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="RoundaboutMergeConflict_1" type="RoundaboutMergeConflict">
+                <trigger_point x="5" y="45" z="0.0" yaw="270.0"/>
+                <init_speed value="13.89"/>
+                <distance value="5"/>
+                <adversary_speed value="5.0"/>
+                <adversary_throttle value="0.45"/>
+                <adversary_waypoints>
+                    <position x="-7.9" y="22.7" z="0.0"/>
+                    <position x="-4.3" y="23.5" z="0.0"/>
+                    <position x="-1.1" y="23.6" z="0.0"/>
+                    <position x="1.8" y="23.5" z="0.0"/>
+                    <position x="6.4" y="22.6" z="0.0"/>
+                    <position x="4.3" y="23.5" z="0.0"/>
+                    <position x="11.6" y="20.6" z="0.0"/>
+                </adversary_waypoints>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <!-- day&sunny -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100"/>
+        </weathers>
+    </route>
+    <route id="9" town="Town03">
+        <waypoints>
+            <position x="5.0" y="50.0" z="0.0"/>
+            <position x="4.96" y="48.14" z="0.0"/>
+            <position x="4.92" y="46.28" z="0.0"/>
+            <position x="4.88" y="44.42" z="0.0"/>
+            <position x="4.84" y="42.56" z="0.0"/>
+            <position x="4.9" y="40.7" z="0.0"/>
+            <position x="4.98" y="39.62" z="0.0"/>
+            <position x="5.06" y="38.54" z="0.0"/>
+            <position x="5.14" y="37.46" z="0.0"/>
+            <position x="5.22" y="36.38" z="0.0"/>
+            <position x="5.4" y="35.0" z="0.0"/>
+            <position x="5.78" y="33.18" z="0.0"/>
+            <position x="6.16" y="31.36" z="0.0"/>
+            <position x="6.54" y="29.54" z="0.0"/>
+            <position x="6.92" y="27.72" z="0.0"/>
+            <position x="7.3" y="25.9" z="0.0"/>
+            <position x="7.68" y="24.08" z="0.0"/>
+            <position x="8.06" y="22.26" z="0.0"/>
+            <position x="8.44" y="20.44" z="0.0"/>
+            <position x="8.82" y="18.62" z="0.0"/>
+            <position x="9.2" y="18.2" z="0.0"/>
+            <position x="9.88" y="17.46" z="0.0"/>
+            <position x="10.56" y="16.72" z="0.0"/>
+            <position x="11.24" y="15.98" z="0.0"/>
+            <position x="11.92" y="15.24" z="0.0"/>
+            <position x="12.6" y="14.5" z="0.0"/>
+            <position x="13.28" y="13.76" z="0.0"/>
+            <position x="13.96" y="13.02" z="0.0"/>
+            <position x="14.64" y="12.28" z="0.0"/>
+            <position x="15.32" y="11.54" z="0.0"/>
+            <position x="16.0" y="10.6" z="0.0"/>
+            <position x="15.14" y="7.61" z="0.0"/>
+            <position x="14.28" y="4.62" z="0.0"/>
+            <position x="13.42" y="1.63" z="0.0"/>
+            <position x="12.56" y="-1.36" z="0.0"/>
+            <position x="11.7" y="-4.35" z="0.0"/>
+            <position x="10.84" y="-7.34" z="0.0"/>
+            <position x="9.98" y="-10.33" z="0.0"/>
+            <position x="9.12" y="-13.32" z="0.0"/>
+            <position x="8.26" y="-16.31" z="0.0"/>
+            <position x="7.7" y="-18.5" z="0.0"/>
+            <position x="7.26" y="-21.28" z="0.0"/>
+            <position x="6.82" y="-24.06" z="0.0"/>
+            <position x="6.38" y="-26.84" z="0.0"/>
+            <position x="5.94" y="-29.62" z="0.0"/>
+            <position x="5.5" y="-32.4" z="0.0"/>
+            <position x="5.06" y="-35.18" z="0.0"/>
+            <position x="4.62" y="-37.96" z="0.0"/>
+            <position x="4.18" y="-40.74" z="0.0"/>
+            <position x="3.74" y="-43.52" z="0.0"/>
+            <position x="3.7" y="-45.3" z="0.0"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="RoundaboutMergeConflict_1" type="RoundaboutMergeConflict">
+                <trigger_point x="5" y="45" z="0.0" yaw="270.0"/>
+                <init_speed value="8.33"/>
+                <distance value="5"/>
+                <adversary_speed value="5.0"/>
+                <adversary_throttle value="0.45"/>
+                <adversary_waypoints>
+                    <position x="-7.9" y="22.7" z="0.0"/>
+                    <position x="-4.3" y="23.5" z="0.0"/>
+                    <position x="-1.1" y="23.6" z="0.0"/>
+                    <position x="1.8" y="23.5" z="0.0"/>
+                    <position x="6.4" y="22.6" z="0.0"/>
+                    <position x="4.3" y="23.5" z="0.0"/>
+                    <position x="11.6" y="20.6" z="0.0"/>
+                </adversary_waypoints>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <!-- day&rain -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60" precipitation_deposits="50" wetness="70" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100"/>
+        </weathers>
+    </route>
+    <route id="10" town="Town03">
+        <waypoints>
+            <position x="5.0" y="50.0" z="0.0"/>
+            <position x="4.96" y="48.14" z="0.0"/>
+            <position x="4.92" y="46.28" z="0.0"/>
+            <position x="4.88" y="44.42" z="0.0"/>
+            <position x="4.84" y="42.56" z="0.0"/>
+            <position x="4.9" y="40.7" z="0.0"/>
+            <position x="4.98" y="39.62" z="0.0"/>
+            <position x="5.06" y="38.54" z="0.0"/>
+            <position x="5.14" y="37.46" z="0.0"/>
+            <position x="5.22" y="36.38" z="0.0"/>
+            <position x="5.4" y="35.0" z="0.0"/>
+            <position x="5.78" y="33.18" z="0.0"/>
+            <position x="6.16" y="31.36" z="0.0"/>
+            <position x="6.54" y="29.54" z="0.0"/>
+            <position x="6.92" y="27.72" z="0.0"/>
+            <position x="7.3" y="25.9" z="0.0"/>
+            <position x="7.68" y="24.08" z="0.0"/>
+            <position x="8.06" y="22.26" z="0.0"/>
+            <position x="8.44" y="20.44" z="0.0"/>
+            <position x="8.82" y="18.62" z="0.0"/>
+            <position x="9.2" y="18.2" z="0.0"/>
+            <position x="9.88" y="17.46" z="0.0"/>
+            <position x="10.56" y="16.72" z="0.0"/>
+            <position x="11.24" y="15.98" z="0.0"/>
+            <position x="11.92" y="15.24" z="0.0"/>
+            <position x="12.6" y="14.5" z="0.0"/>
+            <position x="13.28" y="13.76" z="0.0"/>
+            <position x="13.96" y="13.02" z="0.0"/>
+            <position x="14.64" y="12.28" z="0.0"/>
+            <position x="15.32" y="11.54" z="0.0"/>
+            <position x="16.0" y="10.6" z="0.0"/>
+            <position x="15.14" y="7.61" z="0.0"/>
+            <position x="14.28" y="4.62" z="0.0"/>
+            <position x="13.42" y="1.63" z="0.0"/>
+            <position x="12.56" y="-1.36" z="0.0"/>
+            <position x="11.7" y="-4.35" z="0.0"/>
+            <position x="10.84" y="-7.34" z="0.0"/>
+            <position x="9.98" y="-10.33" z="0.0"/>
+            <position x="9.12" y="-13.32" z="0.0"/>
+            <position x="8.26" y="-16.31" z="0.0"/>
+            <position x="7.7" y="-18.5" z="0.0"/>
+            <position x="7.26" y="-21.28" z="0.0"/>
+            <position x="6.82" y="-24.06" z="0.0"/>
+            <position x="6.38" y="-26.84" z="0.0"/>
+            <position x="5.94" y="-29.62" z="0.0"/>
+            <position x="5.5" y="-32.4" z="0.0"/>
+            <position x="5.06" y="-35.18" z="0.0"/>
+            <position x="4.62" y="-37.96" z="0.0"/>
+            <position x="4.18" y="-40.74" z="0.0"/>
+            <position x="3.74" y="-43.52" z="0.0"/>
+            <position x="3.7" y="-45.3" z="0.0"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="RoundaboutMergeConflict_1" type="RoundaboutMergeConflict">
+                <trigger_point x="5" y="45" z="0.0" yaw="270.0"/>
+                <init_speed value="11.11"/>
+                <distance value="5"/>
+                <adversary_speed value="5.0"/>
+                <adversary_throttle value="0.45"/>
+                <adversary_waypoints>
+                    <position x="-7.9" y="22.7" z="0.0"/>
+                    <position x="-4.3" y="23.5" z="0.0"/>
+                    <position x="-1.1" y="23.6" z="0.0"/>
+                    <position x="1.8" y="23.5" z="0.0"/>
+                    <position x="6.4" y="22.6" z="0.0"/>
+                    <position x="4.3" y="23.5" z="0.0"/>
+                    <position x="11.6" y="20.6" z="0.0"/>
+                </adversary_waypoints>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <!-- day&rain -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60" precipitation_deposits="50" wetness="70" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100"/>
+        </weathers>
+    </route>
+    <route id="11" town="Town03">
+        <waypoints>
+            <position x="5.0" y="50.0" z="0.0"/>
+            <position x="4.96" y="48.14" z="0.0"/>
+            <position x="4.92" y="46.28" z="0.0"/>
+            <position x="4.88" y="44.42" z="0.0"/>
+            <position x="4.84" y="42.56" z="0.0"/>
+            <position x="4.9" y="40.7" z="0.0"/>
+            <position x="4.98" y="39.62" z="0.0"/>
+            <position x="5.06" y="38.54" z="0.0"/>
+            <position x="5.14" y="37.46" z="0.0"/>
+            <position x="5.22" y="36.38" z="0.0"/>
+            <position x="5.4" y="35.0" z="0.0"/>
+            <position x="5.78" y="33.18" z="0.0"/>
+            <position x="6.16" y="31.36" z="0.0"/>
+            <position x="6.54" y="29.54" z="0.0"/>
+            <position x="6.92" y="27.72" z="0.0"/>
+            <position x="7.3" y="25.9" z="0.0"/>
+            <position x="7.68" y="24.08" z="0.0"/>
+            <position x="8.06" y="22.26" z="0.0"/>
+            <position x="8.44" y="20.44" z="0.0"/>
+            <position x="8.82" y="18.62" z="0.0"/>
+            <position x="9.2" y="18.2" z="0.0"/>
+            <position x="9.88" y="17.46" z="0.0"/>
+            <position x="10.56" y="16.72" z="0.0"/>
+            <position x="11.24" y="15.98" z="0.0"/>
+            <position x="11.92" y="15.24" z="0.0"/>
+            <position x="12.6" y="14.5" z="0.0"/>
+            <position x="13.28" y="13.76" z="0.0"/>
+            <position x="13.96" y="13.02" z="0.0"/>
+            <position x="14.64" y="12.28" z="0.0"/>
+            <position x="15.32" y="11.54" z="0.0"/>
+            <position x="16.0" y="10.6" z="0.0"/>
+            <position x="15.14" y="7.61" z="0.0"/>
+            <position x="14.28" y="4.62" z="0.0"/>
+            <position x="13.42" y="1.63" z="0.0"/>
+            <position x="12.56" y="-1.36" z="0.0"/>
+            <position x="11.7" y="-4.35" z="0.0"/>
+            <position x="10.84" y="-7.34" z="0.0"/>
+            <position x="9.98" y="-10.33" z="0.0"/>
+            <position x="9.12" y="-13.32" z="0.0"/>
+            <position x="8.26" y="-16.31" z="0.0"/>
+            <position x="7.7" y="-18.5" z="0.0"/>
+            <position x="7.26" y="-21.28" z="0.0"/>
+            <position x="6.82" y="-24.06" z="0.0"/>
+            <position x="6.38" y="-26.84" z="0.0"/>
+            <position x="5.94" y="-29.62" z="0.0"/>
+            <position x="5.5" y="-32.4" z="0.0"/>
+            <position x="5.06" y="-35.18" z="0.0"/>
+            <position x="4.62" y="-37.96" z="0.0"/>
+            <position x="4.18" y="-40.74" z="0.0"/>
+            <position x="3.74" y="-43.52" z="0.0"/>
+            <position x="3.7" y="-45.3" z="0.0"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="RoundaboutMergeConflict_1" type="RoundaboutMergeConflict">
+                <trigger_point x="5" y="45" z="0.0" yaw="270.0"/>
+                <init_speed value="13.89"/>
+                <distance value="5"/>
+                <adversary_speed value="5.0"/>
+                <adversary_throttle value="0.45"/>
+                <adversary_waypoints>
+                    <position x="-7.9" y="22.7" z="0.0"/>
+                    <position x="-4.3" y="23.5" z="0.0"/>
+                    <position x="-1.1" y="23.6" z="0.0"/>
+                    <position x="1.8" y="23.5" z="0.0"/>
+                    <position x="6.4" y="22.6" z="0.0"/>
+                    <position x="4.3" y="23.5" z="0.0"/>
+                    <position x="11.6" y="20.6" z="0.0"/>
+                </adversary_waypoints>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <!-- day&rain -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="60" precipitation_deposits="50" wetness="70" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100"/>
+        </weathers>
+    </route>
     <!-- ========== scenario_class 7:Four students crossing the road ========== -->
     <route id="0" town="Town05">
         <weathers>
