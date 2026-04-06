@@ -2391,7 +2391,7 @@ class MinTTCAutoCriterion(Criterion):
         self.logger.debug("%s.terminate()[%s->%s]" % (
             self.__class__.__name__, self.status, new_status))
 
-# missing car criterion
+# ==========================missing car criterion==========================
 class StaticObstacleSlowDownCriterion(Criterion):
     """
     条件1：自车靠近静态障碍车时 必须明显减速
@@ -2445,8 +2445,6 @@ class StaticObstacleSlowDownCriterion(Criterion):
 
         return py_trees.common.Status.RUNNING
 
-
-
 class StaticObstacleNoCollisionCriterion(Criterion):
     """
     条件2：自车与障碍车无任何碰撞（安全版，不删除车辆）
@@ -2481,9 +2479,6 @@ class StaticObstacleNoCollisionCriterion(Criterion):
 
     def get_result(self):
         return True
-
-
-
 
 class StaticObstacleSafePassCriterion(Criterion):
     """
@@ -2526,7 +2521,7 @@ class StaticObstacleSafePassCriterion(Criterion):
             return py_trees.common.Status.SUCCESS
 
         return py_trees.common.Status.RUNNING
-# High speed temporary construction criterion
+# ==========================High speed temporary construction criterion==========================
 class BarrierSlowDownCriterion(Criterion):
     """Check whether the ego slows safely before entering the blocked work zone."""
 
@@ -2671,7 +2666,6 @@ class BarrierSlowDownCriterion(Criterion):
 
         return new_status
 
-
 class BarrierPassByCriterion(Criterion):
     """Check whether the ego completes a valid left lane change without colliding with other vehicles."""
 
@@ -2800,16 +2794,15 @@ class BarrierPassByCriterion(Criterion):
 
         return new_status
 
-# High-speed reckless lane cutting criterion
+# ==========================igh-speed reckless lane cutting criterion==========================
 
-# Highway accident vehicle criterion
+# ==========================Highway accident vehicle criterion==========================
 def _normalize_vector_2d(x_value, y_value):
     """Return a normalized 2D vector, with a stable fallback."""
     magnitude = math.hypot(x_value, y_value)
     if magnitude < 1e-6:
         return 1.0, 0.0
     return x_value / magnitude, y_value / magnitude
-
 
 def _build_route_frame(route_start_location, route_end_location, fallback_transform=None):
     """Create a forward/right 2D frame aligned with the scenario route."""
@@ -2827,7 +2820,6 @@ def _build_route_frame(route_start_location, route_end_location, fallback_transf
     right_xy = (-forward_xy[1], forward_xy[0])
     return forward_xy, right_xy
 
-
 def _project_to_axis(origin_location, target_location, forward_xy, right_xy):
     """Project a world-space offset to the route-aligned frame."""
     dx = target_location.x - origin_location.x
@@ -2836,12 +2828,10 @@ def _project_to_axis(origin_location, target_location, forward_xy, right_xy):
     lateral = dx * right_xy[0] + dy * right_xy[1]
     return longitudinal, lateral
 
-
 def _get_actor_speed_mps(actor):
     """Return the actor speed in m/s."""
     velocity = actor.get_velocity()
     return math.sqrt(velocity.x ** 2 + velocity.y ** 2 + velocity.z ** 2)
-
 
 class HighSpeedBrakeCriterion(Criterion):
     """Check whether the ego reacts to the blocked vehicle with braking or a clear speed drop."""
@@ -2968,7 +2958,6 @@ class HighSpeedBrakeCriterion(Criterion):
 
         return new_status
 
-
 class HighSpeedBypassCriterion(Criterion):
     """Check whether the ego passes the stopped vehicle with enough lateral clearance."""
 
@@ -3043,7 +3032,6 @@ class HighSpeedBypassCriterion(Criterion):
 
         return new_status
 
-
 class HighSpeedResumeCriterion(Criterion):
     """Check whether the ego returns to the route lane and resumes a safe cruising speed."""
 
@@ -3113,11 +3101,11 @@ class HighSpeedResumeCriterion(Criterion):
             self._resume_start_time = None
 
         return new_status
-# Trucks encountered during construction criterion
+# ==========================Trucks encountered during construction criterion==========================
 
-# Drive into the roundabout criterion
+# ==========================Drive into the roundabout criterion==========================
 
-# Four students crossing the road criterion
+# ==========================Four students crossing the road criterion==========================
 class ScooterDecelerateCriterion(Criterion):
     """Check whether the ego starts a stable slowdown when approaching the occluding scooter."""
 
@@ -3233,7 +3221,6 @@ class ScooterDecelerateCriterion(Criterion):
 
         return new_status
 
-
 class PedestrianStopCriterion(Criterion):
     """Check whether the ego slows to a safe low speed for the first emerging child."""
 
@@ -3339,7 +3326,6 @@ class PedestrianStopCriterion(Criterion):
 
         return new_status
 
-
 class PedestrianResumeCriterion(Criterion):
     """Check whether the ego restarts only after all children have safely crossed."""
 
@@ -3430,7 +3416,7 @@ class PedestrianResumeCriterion(Criterion):
         return new_status
 
 
-# avoid a disabled vehicle criterion
+# ==========================avoid a disabled vehicle criterion==========================
 class BrokenDownVehicleBrakeCriterion(Criterion):
 
     def __init__(self, actor, hazard_actor, name="BrakeCriterion", 
@@ -3563,9 +3549,222 @@ class BrokenDownVehicleResumeCriterion(Criterion):
 
         return py_trees.common.Status.RUNNING
     
-# Slanted motor and children criterion
+# ==========================Slanted motor and children criterion==========================
+def get_actor_speed(actor):
+    """获取actor的速度（m/s）"""
+    velocity = actor.get_velocity()
+    return (velocity.x**2 + velocity.y**2 + velocity.z**2) ** 0.5
+class EbikeDetectionAndDecelerateCriterion(Criterion):
+    """
+    识别电瓶车并减速：
+    当电瓶车开始移动后，ego是否输出明确减速信号（刹车或降低油门）
+    评分：25分
+    """
+    def __init__(
+        self,
+        actor,
+        hazard_actor,
+        name="EbikeDetectionAndDecelerateCriterion",
+        brake_threshold=0.15,
+        throttle_reduction=0.3,
+        min_decelerate_duration=0.5,
+        max_response_time=5.0,
+        terminate_on_failure=False
+    ):
+        super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
 
-#reverse_vehicle private criterion
+        self.hazard_actor = hazard_actor
+        self.brake_threshold = brake_threshold
+        self.throttle_reduction = throttle_reduction
+        self.min_decelerate_duration = min_decelerate_duration
+        self.max_response_time = max_response_time
+
+        self._activated = False
+        self._start_time = None
+        self._decelerate_start_time = None
+        self._initial_throttle = None
+
+        self.test_status = "INIT"
+        self.actual_value = 0
+        self.success_value = 1
+
+    def update(self):
+        new_status = py_trees.common.Status.RUNNING
+
+        if not self.actor or not self.hazard_actor:
+            return new_status
+
+        # 记录初始油门
+        if self._initial_throttle is None:
+            control = self.actor.get_control()
+            self._initial_throttle = control.throttle
+
+        # 获取电瓶车速度
+        hazard_velocity = self.hazard_actor.get_velocity()
+        hazard_speed = (hazard_velocity.x**2 + hazard_velocity.y**2 + hazard_velocity.z**2) ** 0.5
+
+        # 检测电瓶车是否开始移动（速度>0.5 m/s）
+        if not self._activated and hazard_speed > 0.5:
+            self._activated = True
+            self._start_time = GameTime.get_time()
+
+        if not self._activated:
+            return new_status
+
+        # 检测自车是否减速
+        control = self.actor.get_control()
+        current_time = GameTime.get_time()
+
+        is_decelerating = (
+            control.brake >= self.brake_threshold or
+            (self._initial_throttle - control.throttle) >= self.throttle_reduction
+        )
+
+        if is_decelerating:
+            if self._decelerate_start_time is None:
+                self._decelerate_start_time = current_time
+
+            decelerate_duration = current_time - self._decelerate_start_time
+            if decelerate_duration >= self.min_decelerate_duration:
+                self.test_status = "SUCCESS"
+                self.actual_value = 1
+                return py_trees.common.Status.SUCCESS
+        else:
+            self._decelerate_start_time = None
+
+        # 超时失败
+        if current_time - self._start_time > self.max_response_time:
+            self.test_status = "FAILURE"
+            self.actual_value = 0
+            return new_status
+
+        return new_status
+
+class PedestrianDetectionAndStopCriterion(Criterion):
+    """
+    识别行人并刹车：
+    当行人开始移动后，ego是否输出明确制动信号并将车辆刹停
+    评分：50分
+    """
+    def __init__(
+        self,
+        actor,
+        hazard_actor,
+        name="PedestrianDetectionAndStopCriterion",
+        brake_threshold=0.05,
+        stop_speed_threshold=3.0,
+        min_stop_duration=0.2,
+        max_response_time=15.0,
+        terminate_on_failure=False
+    ):
+        super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
+
+        self.hazard_actor = hazard_actor
+        self.brake_threshold = brake_threshold
+        self.stop_speed_threshold = stop_speed_threshold
+        self.min_stop_duration = min_stop_duration
+        self.max_response_time = max_response_time
+
+        self._activated = False
+        self._start_time = None
+        self._stop_start_time = None
+
+        self.test_status = "INIT"
+        self.actual_value = 0
+        self.success_value = 1
+
+    def update(self):
+        new_status = py_trees.common.Status.RUNNING
+
+        if not self.actor or not self.hazard_actor:
+            return new_status
+
+        # 获取行人速度
+        hazard_velocity = self.hazard_actor.get_velocity()
+        hazard_speed = (hazard_velocity.x**2 + hazard_velocity.y**2 + hazard_velocity.z**2) ** 0.5
+
+        # 检测行人是否开始移动（速度>0.2 m/s）
+        if not self._activated and hazard_speed > 0.2:
+            self._activated = True
+            self._start_time = GameTime.get_time()
+
+        if not self._activated:
+            return new_status
+
+        control = self.actor.get_control()
+        ego_speed = get_actor_speed(self.actor)
+        current_time = GameTime.get_time()
+
+        # 判断是否刹停
+        is_stopped = (control.brake >= self.brake_threshold and ego_speed <= self.stop_speed_threshold)
+
+        if is_stopped:
+            if self._stop_start_time is None:
+                self._stop_start_time = current_time
+
+            stop_duration = current_time - self._stop_start_time
+            if stop_duration >= self.min_stop_duration:
+                self.test_status = "SUCCESS"
+                self.actual_value = 1
+                return py_trees.common.Status.SUCCESS
+        else:
+            self._stop_start_time = None
+
+        # 超时失败
+        if current_time - self._start_time > self.max_response_time:
+            self.test_status = "FAILURE"
+            self.actual_value = 0
+            return new_status
+
+        return new_status
+
+class ResumeAfterPedestrianCriterion(Criterion):
+    """
+    离开风险区并恢复通行：
+    自车能够安全起步离开
+    评分：25分
+    """
+    def __init__(
+        self,
+        actor,
+        hazard_actor,
+        goal_location,
+        name="ResumeAfterPedestrianCriterion",
+        goal_dist_threshold=30.0,
+        min_resume_speed=0.0,
+        terminate_on_failure=False
+    ):
+        super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
+
+        self.hazard_actor = hazard_actor
+        self.goal_location = goal_location
+        self.goal_dist_threshold = goal_dist_threshold
+        self.min_resume_speed = min_resume_speed
+
+        self.test_status = "INIT"
+        self.actual_value = 0
+        self.success_value = 1
+
+    def update(self):
+        new_status = py_trees.common.Status.RUNNING
+
+        if not self.actor:
+            return new_status
+
+        # 直接检查自车是否到达终点
+        ego_loc = self.actor.get_location()
+        ego_speed = get_actor_speed(self.actor)
+        dist_to_goal = ego_loc.distance(self.goal_location)
+
+        # 条件：到达终点附近 且 速度足够
+        if dist_to_goal <= self.goal_dist_threshold and ego_speed >= self.min_resume_speed:
+            self.test_status = "SUCCESS"
+            self.actual_value = 1
+            return py_trees.common.Status.SUCCESS
+
+        return new_status
+
+# ==========================reverse_vehicle private criterion==========================
 class ReverseVehicleBrakeCriterion(Criterion):
     """
     识别并减速：
@@ -3735,9 +3934,9 @@ class ReverseVehicleResumeCriterion(Criterion):
 
         return new_status
     
-# crazy motor criterion
+# ==========================crazy motor criterion==========================
 
-# Blind spot hidden car criterion
+# ==========================Blind spot hidden car criterion==========================
 class IntersectionCollisionLeftTurnBrakeCriterion(Criterion):
     """
     识别并减速：
@@ -3857,229 +4056,5 @@ class IntersectionCollisionLeftTurnResumeCriterion(Criterion):
             return py_trees.common.Status.SUCCESS
 
         return new_status
-#cpz修改
-# =============================================================================
-# 辅助函数
-# =============================================================================
-
-def get_actor_speed(actor):
-    """获取actor的速度（m/s）"""
-    velocity = actor.get_velocity()
-    return (velocity.x**2 + velocity.y**2 + velocity.z**2) ** 0.5
 
 
-# =============================================================================
-# EbikeAndPedestrianCross 场景专属 Criteria
-# =============================================================================
-
-class EbikeDetectionAndDecelerateCriterion(Criterion):
-    """
-    识别电瓶车并减速：
-    当电瓶车开始移动后，ego是否输出明确减速信号（刹车或降低油门）
-    评分：25分
-    """
-    def __init__(
-        self,
-        actor,
-        hazard_actor,
-        name="EbikeDetectionAndDecelerateCriterion",
-        brake_threshold=0.15,
-        throttle_reduction=0.3,
-        min_decelerate_duration=0.5,
-        max_response_time=5.0,
-        terminate_on_failure=False
-    ):
-        super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
-
-        self.hazard_actor = hazard_actor
-        self.brake_threshold = brake_threshold
-        self.throttle_reduction = throttle_reduction
-        self.min_decelerate_duration = min_decelerate_duration
-        self.max_response_time = max_response_time
-
-        self._activated = False
-        self._start_time = None
-        self._decelerate_start_time = None
-        self._initial_throttle = None
-
-        self.test_status = "INIT"
-        self.actual_value = 0
-        self.success_value = 1
-
-    def update(self):
-        new_status = py_trees.common.Status.RUNNING
-
-        if not self.actor or not self.hazard_actor:
-            return new_status
-
-        # 记录初始油门
-        if self._initial_throttle is None:
-            control = self.actor.get_control()
-            self._initial_throttle = control.throttle
-
-        # 获取电瓶车速度
-        hazard_velocity = self.hazard_actor.get_velocity()
-        hazard_speed = (hazard_velocity.x**2 + hazard_velocity.y**2 + hazard_velocity.z**2) ** 0.5
-
-        # 检测电瓶车是否开始移动（速度>0.5 m/s）
-        if not self._activated and hazard_speed > 0.5:
-            self._activated = True
-            self._start_time = GameTime.get_time()
-
-        if not self._activated:
-            return new_status
-
-        # 检测自车是否减速
-        control = self.actor.get_control()
-        current_time = GameTime.get_time()
-
-        is_decelerating = (
-            control.brake >= self.brake_threshold or
-            (self._initial_throttle - control.throttle) >= self.throttle_reduction
-        )
-
-        if is_decelerating:
-            if self._decelerate_start_time is None:
-                self._decelerate_start_time = current_time
-
-            decelerate_duration = current_time - self._decelerate_start_time
-            if decelerate_duration >= self.min_decelerate_duration:
-                self.test_status = "SUCCESS"
-                self.actual_value = 1
-                return py_trees.common.Status.SUCCESS
-        else:
-            self._decelerate_start_time = None
-
-        # 超时失败
-        if current_time - self._start_time > self.max_response_time:
-            self.test_status = "FAILURE"
-            self.actual_value = 0
-            return new_status
-
-        return new_status
-
-
-class PedestrianDetectionAndStopCriterion(Criterion):
-    """
-    识别行人并刹车：
-    当行人开始移动后，ego是否输出明确制动信号并将车辆刹停
-    评分：50分
-    """
-    def __init__(
-        self,
-        actor,
-        hazard_actor,
-        name="PedestrianDetectionAndStopCriterion",
-        brake_threshold=0.05,
-        stop_speed_threshold=3.0,
-        min_stop_duration=0.2,
-        max_response_time=15.0,
-        terminate_on_failure=False
-    ):
-        super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
-
-        self.hazard_actor = hazard_actor
-        self.brake_threshold = brake_threshold
-        self.stop_speed_threshold = stop_speed_threshold
-        self.min_stop_duration = min_stop_duration
-        self.max_response_time = max_response_time
-
-        self._activated = False
-        self._start_time = None
-        self._stop_start_time = None
-
-        self.test_status = "INIT"
-        self.actual_value = 0
-        self.success_value = 1
-
-    def update(self):
-        new_status = py_trees.common.Status.RUNNING
-
-        if not self.actor or not self.hazard_actor:
-            return new_status
-
-        # 获取行人速度
-        hazard_velocity = self.hazard_actor.get_velocity()
-        hazard_speed = (hazard_velocity.x**2 + hazard_velocity.y**2 + hazard_velocity.z**2) ** 0.5
-
-        # 检测行人是否开始移动（速度>0.2 m/s）
-        if not self._activated and hazard_speed > 0.2:
-            self._activated = True
-            self._start_time = GameTime.get_time()
-
-        if not self._activated:
-            return new_status
-
-        control = self.actor.get_control()
-        ego_speed = get_actor_speed(self.actor)
-        current_time = GameTime.get_time()
-
-        # 判断是否刹停
-        is_stopped = (control.brake >= self.brake_threshold and ego_speed <= self.stop_speed_threshold)
-
-        if is_stopped:
-            if self._stop_start_time is None:
-                self._stop_start_time = current_time
-
-            stop_duration = current_time - self._stop_start_time
-            if stop_duration >= self.min_stop_duration:
-                self.test_status = "SUCCESS"
-                self.actual_value = 1
-                return py_trees.common.Status.SUCCESS
-        else:
-            self._stop_start_time = None
-
-        # 超时失败
-        if current_time - self._start_time > self.max_response_time:
-            self.test_status = "FAILURE"
-            self.actual_value = 0
-            return new_status
-
-        return new_status
-
-
-class ResumeAfterPedestrianCriterion(Criterion):
-    """
-    离开风险区并恢复通行：
-    自车能够安全起步离开
-    评分：25分
-    """
-    def __init__(
-        self,
-        actor,
-        hazard_actor,
-        goal_location,
-        name="ResumeAfterPedestrianCriterion",
-        goal_dist_threshold=30.0,
-        min_resume_speed=0.0,
-        terminate_on_failure=False
-    ):
-        super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
-
-        self.hazard_actor = hazard_actor
-        self.goal_location = goal_location
-        self.goal_dist_threshold = goal_dist_threshold
-        self.min_resume_speed = min_resume_speed
-
-        self.test_status = "INIT"
-        self.actual_value = 0
-        self.success_value = 1
-
-    def update(self):
-        new_status = py_trees.common.Status.RUNNING
-
-        if not self.actor:
-            return new_status
-
-        # 直接检查自车是否到达终点
-        ego_loc = self.actor.get_location()
-        ego_speed = get_actor_speed(self.actor)
-        dist_to_goal = ego_loc.distance(self.goal_location)
-
-        # 条件：到达终点附近 且 速度足够
-        if dist_to_goal <= self.goal_dist_threshold and ego_speed >= self.min_resume_speed:
-            self.test_status = "SUCCESS"
-            self.actual_value = 1
-            return py_trees.common.Status.SUCCESS
-
-        return new_status
