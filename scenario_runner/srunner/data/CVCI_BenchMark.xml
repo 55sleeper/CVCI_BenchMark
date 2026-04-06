@@ -6279,7 +6279,7 @@
             </scenario>
         </scenarios>
     </route>
-        <route id="0" town="Town04">
+    <route id="0" town="Town04">
         <weathers>
             <!-- day&rain -->
             <weather cloudiness="90.0" fog_density="10.0" precipitation="60" precipitation_deposits="50" wetness="70" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100" />
