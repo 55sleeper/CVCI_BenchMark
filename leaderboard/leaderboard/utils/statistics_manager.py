@@ -20,33 +20,53 @@ from leaderboard.utils.checkpoint_tools import fetch_dict, save_dict
 from leaderboard.utils.facts_creator import (
     extract_common_facts,
     extract_private_facts_lane_closure,
+    extract_private_facts_frontcar_disappearance,
+    extract_private_facts_static_barrier,
     extract_private_facts_reverse_vehicle,
     extract_private_facts_high_speed_accident,
     extract_private_facts_ghost_probe,
-    extract_private_facts_left_turn
+    extract_private_facts_broken_down_vehicle,
+    extract_private_facts_ebike_pedestrian_cross,
+    extract_private_facts_left_turn,
+    extract_private_facts_roundabout_merge_conflict,
 )
 from leaderboard.utils.facts_to_score import (
+    score_frontcar_disappear_accident,
+    score_static_barrier,
     score_reverse_vehicle,
     compute_lane_closure_score,
     score_high_speed_accident,
     score_ghost_probe,
-    score_left_turn
+    score_broken_down_vehicle,
+    score_ebike_pedestrian_cross,
+    score_left_turn,
+    score_roundabout_merge_conflict, 
 )
 
 # 通过 PRIVATE_FACT_EXTRACTORS 和 SCENARIO_SCORERS 动态获取不同场景的 facts extractor 和 scorer
 PRIVATE_FACT_EXTRACTORS = {
     "LaneClosureWithTruck": extract_private_facts_lane_closure,
-    "ReverseVehicle": extract_private_facts_reverse_vehicle,
+    "CarDisappearDiagonalAccident": extract_private_facts_frontcar_disappearance,
+    "StaticBarrier": extract_private_facts_static_barrier,
     "HighSpeedAccident": extract_private_facts_high_speed_accident,
+    "RoundaboutMergeConflict": extract_private_facts_roundabout_merge_conflict,
     "GhostProbeScenario": extract_private_facts_ghost_probe,
+    "BrokenDownVehicle": extract_private_facts_broken_down_vehicle,
+    "EbikeAndPedestrianCross": extract_private_facts_ebike_pedestrian_cross,
+    "ReverseVehicle": extract_private_facts_reverse_vehicle,
     "IntersectionCollisionLeftTurn": extract_private_facts_left_turn,
 }
 
 SCENARIO_SCORERS = {
     "LaneClosureWithTruck": compute_lane_closure_score,
-    "ReverseVehicle": score_reverse_vehicle,
+    "CarDisappearDiagonalAccident": score_frontcar_disappear_accident,
+    "StaticBarrier": score_static_barrier,
     "HighSpeedAccident": score_high_speed_accident,
+    "RoundaboutMergeConflict": score_roundabout_merge_conflict,
     "GhostProbeScenario": score_ghost_probe,
+    "BrokenDownVehicle": score_broken_down_vehicle,
+    "EbikeAndPedestrianCross": score_ebike_pedestrian_cross,
+    "ReverseVehicle": score_reverse_vehicle,
     "IntersectionCollisionLeftTurn": score_left_turn,
 }
 
