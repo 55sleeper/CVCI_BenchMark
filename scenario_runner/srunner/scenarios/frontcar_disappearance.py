@@ -175,7 +175,7 @@ class CarDisappearDiagonalAccident(BasicScenario):
         self.accident_vehicle_x = 300.2
         self.lead_vehicle_initial_x = 268.2
         self.global_y = 45.1
-        self._init_speed = float(
+        self.ego_initial_speed = float(
             config.other_parameters.get("init_speed", {}).get("value", 10.0)
         )
         super().__init__("CarDisappearDiagonalAccident",
