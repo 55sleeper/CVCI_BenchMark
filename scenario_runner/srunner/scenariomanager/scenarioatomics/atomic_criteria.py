@@ -4514,7 +4514,7 @@ class IntersectionCollisionLeftTurnBrakeCriterion(Criterion):
         trigger_x=5.0,
         brake_threshold=0.5,
         min_brake_duration=1.0,
-        max_response_time=3.0,
+        max_response_time=2.5,
         terminate_on_failure=False
     ):
         super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
