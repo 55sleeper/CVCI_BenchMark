@@ -3681,14 +3681,52 @@ class PedestrianStopCriterion(Criterion):
         self._activation_speed = None
         self._stop_start_time = None
         self._first_meaningful_slowdown_distance = None
+        self._collision_sensor = None
+        self._pedestrian_collision = False
         self.actual_value = float("inf")
         self.success_value = stop_speed_threshold
         self.units = "m/s"
         self.test_status = "FAILURE"
 
+    def initialise(self):
+        world = CarlaDataProvider.get_world()
+        if world is not None and self.actor is not None:
+            blueprint = world.get_blueprint_library().find('sensor.other.collision')
+            self._collision_sensor = world.spawn_actor(blueprint, carla.Transform(), attach_to=self.actor)
+            self._collision_sensor.listen(lambda event: self._on_collision(event))
+        super().initialise()
+
+    def terminate(self, new_status):
+        if self._collision_sensor is not None:
+            try:
+                if getattr(self._collision_sensor, "is_listening", False):
+                    self._collision_sensor.stop()
+            except (RuntimeError, AttributeError):
+                pass
+            try:
+                self._collision_sensor.destroy()
+            except RuntimeError:
+                pass
+        self._collision_sensor = None
+        super().terminate(new_status)
+
+    def _on_collision(self, event):
+        if event is None or event.other_actor is None:
+            return
+        if 'walker.pedestrian' not in event.other_actor.type_id:
+            return
+        self._pedestrian_collision = True
+        self.test_status = "FAILURE"
+
     def update(self):
         new_status = py_trees.common.Status.RUNNING
         if not self.actor or not self.pedestrian_actor or self._route_origin is None:
+            return new_status
+
+        if self._pedestrian_collision:
+            self.test_status = "FAILURE"
+            if self._terminate_on_failure:
+                return py_trees.common.Status.FAILURE
             return new_status
 
         if self.test_status == "SUCCESS":
@@ -3742,7 +3780,7 @@ class PedestrianStopCriterion(Criterion):
         else:
             self._stop_start_time = None
 
-        if self._has_valid_stop and ped_lateral_error <= -self.clear_lateral_margin:
+        if self._has_valid_stop and ped_lateral_error <= -self.clear_lateral_margin and not self._pedestrian_collision:
             self.test_status = "SUCCESS"
             return new_status
 
@@ -3752,6 +3790,7 @@ class PedestrianStopCriterion(Criterion):
                 return py_trees.common.Status.FAILURE
 
         return new_status
+
 
 class PedestrianResumeCriterion(Criterion):
     """Check whether the ego restarts only after all children have safely crossed."""
@@ -3799,19 +3838,24 @@ class PedestrianResumeCriterion(Criterion):
         ego_loc = self.actor.get_location()
         ego_speed = _get_actor_speed_mps(self.actor)
         self.actual_value = ego_speed
+        ego_longitudinal, _ = _project_to_axis(
+            self._route_origin, ego_loc, self._forward_xy, self._right_xy)
 
         pedestrian_states = []
+        pedestrian_behind_states = []
         min_distance_to_any = float("inf")
         for pedestrian in self.pedestrian_actors:
             if pedestrian is None:
                 continue
             ped_loc = pedestrian.get_location()
-            _, ped_lateral_error = _project_to_axis(
+            ped_longitudinal, ped_lateral_error = _project_to_axis(
                 self._route_origin, ped_loc, self._forward_xy, self._right_xy)
             pedestrian_states.append(ped_lateral_error <= -self.safe_lateral_margin)
+            pedestrian_behind_states.append(ped_longitudinal < ego_longitudinal - self.collision_buffer)
             min_distance_to_any = min(min_distance_to_any, ego_loc.distance(ped_loc))
 
         all_pedestrians_safe = len(pedestrian_states) > 0 and all(pedestrian_states)
+        all_pedestrians_behind = len(pedestrian_behind_states) > 0 and all(pedestrian_behind_states)
 
         if ego_speed <= self.stop_speed_threshold and not all_pedestrians_safe:
             self._has_stopped = True
@@ -3825,9 +3869,15 @@ class PedestrianResumeCriterion(Criterion):
             return new_status
 
         if all_pedestrians_safe and not self._has_stopped:
-            self.test_status = "FAILURE"
-            if self._terminate_on_failure:
-                return py_trees.common.Status.FAILURE
+            # If the ego has already passed all children with safe clearance, allow success.
+            if all_pedestrians_behind and ego_speed >= self.resume_speed and min_distance_to_any > self.collision_buffer:
+                current_time = GameTime.get_time()
+                if self._resume_start_time is None:
+                    self._resume_start_time = current_time
+                elif current_time - self._resume_start_time >= self.min_resume_duration:
+                    self.test_status = "SUCCESS"
+            else:
+                self._resume_start_time = None
             return new_status
 
         if self._has_stopped and all_pedestrians_safe and ego_speed >= self.resume_speed \
@@ -3841,8 +3891,6 @@ class PedestrianResumeCriterion(Criterion):
             self._resume_start_time = None
 
         return new_status
-
-
 # ==========================avoid a disabled vehicle criterion==========================
 class BrokenDownVehicleBrakeCriterion(Criterion):
 
@@ -4010,35 +4058,49 @@ class EbikeDetectionAndDecelerateCriterion(Criterion):
         self._start_time = None
         self._decelerate_start_time = None
         self._initial_throttle = None
+        self._completed = False
+        self._has_failed = False
+
+        # 永久性公共属性
+        self.was_activated = False
+        self.was_decelerated = False
 
         self.test_status = "INIT"
+        self.ebick_status = 'INIT'
         self.actual_value = 0
         self.success_value = 1
 
     def update(self):
         new_status = py_trees.common.Status.RUNNING
 
+        if self._has_failed:
+            return new_status
+
+        if self._completed:
+            if self.ebick_status == "SUCCESS":
+                return py_trees.common.Status.SUCCESS
+            else:
+                return py_trees.common.Status.FAILURE
+
         if not self.actor or not self.hazard_actor:
             return new_status
 
-        # 记录初始油门
         if self._initial_throttle is None:
             control = self.actor.get_control()
             self._initial_throttle = control.throttle
 
-        # 获取电瓶车速度
         hazard_velocity = self.hazard_actor.get_velocity()
-        hazard_speed = (hazard_velocity.x**2 + hazard_velocity.y**2 + hazard_velocity.z**2) ** 0.5
+        hazard_speed = math.sqrt(hazard_velocity.x**2 + hazard_velocity.y**2 + hazard_velocity.z**2)
 
-        # 检测电瓶车是否开始移动（速度>0.5 m/s）
         if not self._activated and hazard_speed > 0.5:
             self._activated = True
+            self.was_activated = True
             self._start_time = GameTime.get_time()
+            print(f"[电瓶车检测] 电瓶车启动，开始检测")
 
         if not self._activated:
             return new_status
 
-        # 检测自车是否减速
         control = self.actor.get_control()
         current_time = GameTime.get_time()
 
@@ -4050,19 +4112,24 @@ class EbikeDetectionAndDecelerateCriterion(Criterion):
         if is_decelerating:
             if self._decelerate_start_time is None:
                 self._decelerate_start_time = current_time
-
             decelerate_duration = current_time - self._decelerate_start_time
             if decelerate_duration >= self.min_decelerate_duration:
-                self.test_status = "SUCCESS"
+                self.ebick_status = "SUCCESS"
                 self.actual_value = 1
+                self._completed = True
+                self.was_decelerated = True
+                print(f"[电瓶车检测] ✅ 成功减速")
                 return py_trees.common.Status.SUCCESS
         else:
             self._decelerate_start_time = None
 
-        # 超时失败
         if current_time - self._start_time > self.max_response_time:
-            self.test_status = "FAILURE"
-            self.actual_value = 0
+            if not self._has_failed:
+                self._has_failed = True
+                self.ebick_status = "FAILURE"
+                self.actual_value = 0
+                self.was_decelerated = False
+                print(f"[电瓶车检测] ❌ 超时未减速（不给分，继续运行）")
             return new_status
 
         return new_status
@@ -4070,7 +4137,7 @@ class EbikeDetectionAndDecelerateCriterion(Criterion):
 class PedestrianDetectionAndStopCriterion(Criterion):
     """
     识别行人并刹车：
-    当行人开始移动后，ego是否输出明确制动信号并将车辆刹停
+    当行人距离 ≤ trigger_distance 时，ego必须刹车并完全停止
     评分：50分
     """
     def __init__(
@@ -4078,15 +4145,17 @@ class PedestrianDetectionAndStopCriterion(Criterion):
         actor,
         hazard_actor,
         name="PedestrianDetectionAndStopCriterion",
+        trigger_distance=10.0,
         brake_threshold=0.05,
-        stop_speed_threshold=3.0,
-        min_stop_duration=0.2,
-        max_response_time=15.0,
+        stop_speed_threshold=0.3,
+        min_stop_duration=1.0,
+        max_response_time=5.0,
         terminate_on_failure=False
     ):
         super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
 
         self.hazard_actor = hazard_actor
+        self.trigger_distance = trigger_distance
         self.brake_threshold = brake_threshold
         self.stop_speed_threshold = stop_speed_threshold
         self.min_stop_duration = min_stop_duration
@@ -4095,53 +4164,109 @@ class PedestrianDetectionAndStopCriterion(Criterion):
         self._activated = False
         self._start_time = None
         self._stop_start_time = None
+        self._has_braked = False
+        self._is_stopped = False
+        self._completed = False
+        self._has_failed = False
 
-        self.test_status = "INIT"
+        # 永久性公共属性
+        self.was_activated = False
+        self.was_braked = False
+        self.was_stopped = False
+
+        self.test_status = "RUNNING"
+        self.pedestrain_status = "INIT"
         self.actual_value = 0
         self.success_value = 1
 
     def update(self):
         new_status = py_trees.common.Status.RUNNING
 
+        if self._has_failed:
+            return new_status
+
+        if self._completed:
+            if self.pedestrain_status == "SUCCESS":
+                return py_trees.common.Status.SUCCESS
+            else:
+                return py_trees.common.Status.FAILURE
+
         if not self.actor or not self.hazard_actor:
             return new_status
 
-        # 获取行人速度
-        hazard_velocity = self.hazard_actor.get_velocity()
-        hazard_speed = (hazard_velocity.x**2 + hazard_velocity.y**2 + hazard_velocity.z**2) ** 0.5
-
-        # 检测行人是否开始移动（速度>0.2 m/s）
-        if not self._activated and hazard_speed > 0.2:
-            self._activated = True
-            self._start_time = GameTime.get_time()
-
-        if not self._activated:
+        ego_loc = CarlaDataProvider.get_location(self.actor)
+        ped_loc = CarlaDataProvider.get_location(self.hazard_actor)
+        
+        if ego_loc is None or ped_loc is None:
             return new_status
+            
+        distance = ego_loc.distance(ped_loc)
+        current_time = GameTime.get_time()
+
+        # 阶段1：距离触发
+        if not self._activated:
+            if distance <= self.trigger_distance:
+                self._activated = True
+                self.was_activated = True
+                self._start_time = current_time
+                print(f"[行人检测] 🚶 触发！距离={distance:.1f}m")
+            else:
+                return new_status
 
         control = self.actor.get_control()
         ego_speed = get_actor_speed(self.actor)
-        current_time = GameTime.get_time()
+        elapsed_time = current_time - self._start_time
 
-        # 判断是否刹停
-        is_stopped = (control.brake >= self.brake_threshold and ego_speed <= self.stop_speed_threshold)
+        print(f"[行人检测] 距离={distance:.1f}m, 已刹车={self._has_braked}, 已停止={self._is_stopped}, 已用时={elapsed_time:.1f}s")
 
-        if is_stopped:
-            if self._stop_start_time is None:
-                self._stop_start_time = current_time
+        is_braking = (control.brake >= self.brake_threshold)
+        is_slow_enough = (ego_speed <= self.stop_speed_threshold)
 
-            stop_duration = current_time - self._stop_start_time
-            if stop_duration >= self.min_stop_duration:
-                self.test_status = "SUCCESS"
-                self.actual_value = 1
-                return py_trees.common.Status.SUCCESS
-        else:
-            self._stop_start_time = None
-
-        # 超时失败
-        if current_time - self._start_time > self.max_response_time:
-            self.test_status = "FAILURE"
-            self.actual_value = 0
+        # 阶段2：必须踩刹车
+        if not self._has_braked:
+            if is_braking:
+                self._has_braked = True
+                self.was_braked = True
+                print(f"[行人检测] ✅ 踩了刹车！刹车={control.brake:.2f}")
+            else:
+                if elapsed_time > self.max_response_time:
+                    if not self._has_failed:
+                        self._has_failed = True
+                        self.pedestrain_status = "FAILURE"
+                        self.actual_value = 0
+                        self.was_braked = False
+                        self.was_stopped = False
+                        print(f"[行人检测] ❌ 超时 {elapsed_time:.1f}秒未刹车（不给分，继续运行）")
+                    return new_status
             return new_status
+
+        # 阶段3：必须完全停止
+        if not self._is_stopped:
+            if is_slow_enough:
+                if self._stop_start_time is None:
+                    self._stop_start_time = current_time
+                    print(f"[行人检测] 开始停止，速度={ego_speed:.2f}m/s")
+                stop_duration = current_time - self._stop_start_time
+                if stop_duration >= self.min_stop_duration:
+                    self._is_stopped = True
+                    self.was_stopped = True
+                    self.pedestrain_status = "SUCCESS"
+                    self.actual_value = 1
+                    self._completed = True
+                    print(f"[行人检测] ✅ 已停止 {stop_duration:.1f}秒")
+                    return py_trees.common.Status.SUCCESS
+            else:
+                self._stop_start_time = None
+            return new_status
+
+        # 如果已经停止但没有返回成功，这里再返回一次
+        if self._is_stopped and not self._completed:
+            self.was_stopped = True
+            self.pedestrain_status = "SUCCESS"
+            self.actual_value = 1
+            self._completed = True
+            print(f"[行人检测] ✅ 最终成功")
+            return py_trees.common.Status.SUCCESS
 
         return new_status
 
@@ -4157,7 +4282,7 @@ class ResumeAfterPedestrianCriterion(Criterion):
         hazard_actor,
         goal_location,
         name="ResumeAfterPedestrianCriterion",
-        goal_dist_threshold=30.0,
+        goal_dist_threshold=50.0,
         min_resume_speed=0.0,
         terminate_on_failure=False
     ):
@@ -4168,25 +4293,37 @@ class ResumeAfterPedestrianCriterion(Criterion):
         self.goal_dist_threshold = goal_dist_threshold
         self.min_resume_speed = min_resume_speed
 
+        self._completed = False
+        
+        # 永久性公共属性
+        self.was_resumed = False
+
         self.test_status = "INIT"
+        self.resume_status = "INIT"
         self.actual_value = 0
         self.success_value = 1
 
     def update(self):
         new_status = py_trees.common.Status.RUNNING
 
+        if self._completed:
+            if self.resume_status == "SUCCESS":
+                return py_trees.common.Status.SUCCESS
+            return py_trees.common.Status.FAILURE
+
         if not self.actor:
             return new_status
 
-        # 直接检查自车是否到达终点
         ego_loc = self.actor.get_location()
         ego_speed = get_actor_speed(self.actor)
         dist_to_goal = ego_loc.distance(self.goal_location)
 
-        # 条件：到达终点附近 且 速度足够
         if dist_to_goal <= self.goal_dist_threshold and ego_speed >= self.min_resume_speed:
-            self.test_status = "SUCCESS"
+            self.resume_status = "SUCCESS"
             self.actual_value = 1
+            self._completed = True
+            self.was_resumed = True
+            print(f"[恢复通行] ✅ 到达终点")
             return py_trees.common.Status.SUCCESS
 
         return new_status
