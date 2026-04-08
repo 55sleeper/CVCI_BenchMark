@@ -4375,9 +4375,9 @@ class IntersectionCollisionLeftTurnBrakeCriterion(Criterion):
         hazard_actor,
         name="IntersectionCollisionLeftTurnBrakeCriterion",
         trigger_x=5.0,
-        brake_threshold=0.2,
-        min_brake_duration=0.3,
-        max_response_time=5.0,
+        brake_threshold=0.5,
+        min_brake_duration=1.0,
+        max_response_time=3.0,
         terminate_on_failure=False
     ):
         super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
@@ -4446,9 +4446,9 @@ class IntersectionCollisionLeftTurnResumeCriterion(Criterion):
         self,
         actor,
         goal_location,
-        route_center_x=40.0,
+        route_center_x=45.0,
         name="IntersectionCollisionLeftTurnResumeCriterion",
-        goal_dist_threshold=5.0,
+        goal_dist_threshold=3.0,
         center_recover_threshold=2.0,
         min_resume_speed=1.0,
         terminate_on_failure=False
@@ -4472,11 +4472,11 @@ class IntersectionCollisionLeftTurnResumeCriterion(Criterion):
         ego_speed = get_speed(self.actor)
 
         dist_to_goal = ego_loc.distance(self.goal_location)
-        center_offset = abs(ego_loc.x - self.route_center_x)
+        # center_offset = abs(ego_loc.x - self.route_center_x)
 
         if (
             dist_to_goal <= self.goal_dist_threshold
-            and center_offset <= self.center_recover_threshold
+            and ego_loc.x >= self.route_center_x
             and ego_speed >= self.min_resume_speed
         ):
             self.test_status = "SUCCESS"

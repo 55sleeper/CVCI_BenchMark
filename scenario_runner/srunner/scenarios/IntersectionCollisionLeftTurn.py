@@ -127,9 +127,9 @@ class IntersectionCollisionLeftTurn(BasicScenario):
         # ————————场景调节条件——————————
         # 初始化触发点
         self._trigger_npc_point = carla.Location(
-            x=-40.0,
+            x=-35.0,
             y=205.1,
-            z=4.0
+            z=2.5
         )
 
         # NPC 速度

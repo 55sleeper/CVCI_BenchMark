@@ -9721,23 +9721,69 @@
     <!-- ========== scenario_class 11:crazy motor ========== -->
 
     <!-- ========== scenario_class 12:Blind spot hidden car ========== -->
+    <!-- ========== level 1: init_speed=10.0, npc_speed=9.0 ========== -->
     <route id="0" town="Town05"> 
         <waypoints>
-            <position x="-107.0" y="205.1" z="8.7" />
+            <position x="-56.0" y="205.1" z="4.6" />
+            <position x="-54.0" y="205.1" z="4.5" />
+            <position x="-52.0" y="205.1" z="4.3" />
+            <position x="-50.0" y="205.1" z="4.1" />
+            <position x="-48.0" y="205.1" z="3.9" />
+            <position x="-46.1" y="205.1" z="3.7" />
+            <position x="-44.1" y="205.1" z="3.6" />
+            <position x="-42.1" y="205.1" z="3.4" />
+            <position x="-40.1" y="205.1" z="3.2" />
+            <position x="-38.1" y="205.1" z="3.0" />
+            <position x="-36.1" y="205.1" z="2.8" />
+            <position x="-34.1" y="205.1" z="2.7" />
+            <position x="-32.1" y="205.1" z="2.5" />
+            <position x="-30.1" y="205.1" z="2.3" />
+            <position x="-28.1" y="205.1" z="2.1" />
+            <position x="-26.1" y="205.1" z="2.0" />
+            <position x="-24.1" y="205.1" z="1.8" />
+            <position x="-22.2" y="205.1" z="1.6" />
+            <position x="-20.2" y="205.1" z="1.4" />
+            <position x="-18.2" y="205.1" z="1.2" />
+            <position x="-16.2" y="205.1" z="1.1" />
+            <position x="-14.2" y="205.1" z="0.9" />
+            <position x="-12.2" y="205.1" z="0.7" />
             <position x="-10.0" y="205.1" z="0.5" />
-            
-            <position x="15.2" y="205.1" z="0.5" />
-            <position x="25.0" y="205.1" z="0.5" />
-            <position x="35.0" y="205.2" z="0.5" />
-            <position x="43.2" y="205.3" z="0.5" /> 
-            <position x="50.0" y="205.3" z="0.5" /> 
+            <position x="-8.0" y="205.1" z="0.5" />
+            <position x="-6.0" y="205.1" z="0.5" />
+            <position x="-4.0" y="205.1" z="0.5" />
+            <position x="-2.0" y="205.1" z="0.5" />
+            <position x="-0.0" y="205.1" z="0.5" />
+            <position x="2.0" y="205.1" z="0.5" />
+            <position x="4.0" y="205.1" z="0.5" />
+            <position x="6.0" y="205.2" z="0.5" />
+            <position x="8.0" y="205.2" z="0.5" />
+            <position x="10.0" y="205.2" z="0.5" />
+            <position x="12.0" y="205.2" z="0.5" />
+            <position x="14.0" y="205.2" z="0.5" />
+            <position x="16.0" y="205.2" z="0.5" />
+            <position x="18.0" y="205.2" z="0.5" />
+            <position x="20.0" y="205.2" z="0.5" />
+            <position x="22.0" y="205.2" z="0.5" />
+            <position x="24.0" y="205.2" z="0.5" />
+            <position x="26.0" y="205.2" z="0.5" />
+            <position x="28.0" y="205.2" z="0.5" />
+            <position x="30.0" y="205.2" z="0.5" />
+            <position x="32.0" y="205.2" z="0.5" />
+            <position x="34.0" y="205.2" z="0.5" />
+            <position x="36.0" y="205.3" z="0.5" />
+            <position x="38.0" y="205.3" z="0.5" />
+            <position x="40.0" y="205.3" z="0.5" />
+            <position x="42.0" y="205.3" z="0.5" />
+            <position x="44.0" y="205.3" z="0.5" />
+            <position x="46.0" y="205.3" z="0.5" />
+            <position x="48.0" y="205.3" z="0.5" />
         </waypoints>
         
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-90.0" y="205.1" z="7.7" yaw="0.0"/>
+                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
                 <init_speed value="10.0" />
-                <npc_speed value="9.0" />
+                <npc_speed value="8.0" />
                 
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
@@ -9750,21 +9796,66 @@
     </route>
     <route id="1" town="Town05"> 
         <waypoints>
-            <position x="-107.0" y="205.1" z="8.7" />
+            <position x="-56.0" y="205.1" z="4.6" />
+            <position x="-54.0" y="205.1" z="4.5" />
+            <position x="-52.0" y="205.1" z="4.3" />
+            <position x="-50.0" y="205.1" z="4.1" />
+            <position x="-48.0" y="205.1" z="3.9" />
+            <position x="-46.1" y="205.1" z="3.7" />
+            <position x="-44.1" y="205.1" z="3.6" />
+            <position x="-42.1" y="205.1" z="3.4" />
+            <position x="-40.1" y="205.1" z="3.2" />
+            <position x="-38.1" y="205.1" z="3.0" />
+            <position x="-36.1" y="205.1" z="2.8" />
+            <position x="-34.1" y="205.1" z="2.7" />
+            <position x="-32.1" y="205.1" z="2.5" />
+            <position x="-30.1" y="205.1" z="2.3" />
+            <position x="-28.1" y="205.1" z="2.1" />
+            <position x="-26.1" y="205.1" z="2.0" />
+            <position x="-24.1" y="205.1" z="1.8" />
+            <position x="-22.2" y="205.1" z="1.6" />
+            <position x="-20.2" y="205.1" z="1.4" />
+            <position x="-18.2" y="205.1" z="1.2" />
+            <position x="-16.2" y="205.1" z="1.1" />
+            <position x="-14.2" y="205.1" z="0.9" />
+            <position x="-12.2" y="205.1" z="0.7" />
             <position x="-10.0" y="205.1" z="0.5" />
-            
-            <position x="15.2" y="205.1" z="0.5" />
-            <position x="25.0" y="205.1" z="0.5" />
-            <position x="35.0" y="205.2" z="0.5" />
-            <position x="43.2" y="205.3" z="0.5" /> 
-            <position x="50.0" y="205.3" z="0.5" /> 
+            <position x="-8.0" y="205.1" z="0.5" />
+            <position x="-6.0" y="205.1" z="0.5" />
+            <position x="-4.0" y="205.1" z="0.5" />
+            <position x="-2.0" y="205.1" z="0.5" />
+            <position x="-0.0" y="205.1" z="0.5" />
+            <position x="2.0" y="205.1" z="0.5" />
+            <position x="4.0" y="205.1" z="0.5" />
+            <position x="6.0" y="205.2" z="0.5" />
+            <position x="8.0" y="205.2" z="0.5" />
+            <position x="10.0" y="205.2" z="0.5" />
+            <position x="12.0" y="205.2" z="0.5" />
+            <position x="14.0" y="205.2" z="0.5" />
+            <position x="16.0" y="205.2" z="0.5" />
+            <position x="18.0" y="205.2" z="0.5" />
+            <position x="20.0" y="205.2" z="0.5" />
+            <position x="22.0" y="205.2" z="0.5" />
+            <position x="24.0" y="205.2" z="0.5" />
+            <position x="26.0" y="205.2" z="0.5" />
+            <position x="28.0" y="205.2" z="0.5" />
+            <position x="30.0" y="205.2" z="0.5" />
+            <position x="32.0" y="205.2" z="0.5" />
+            <position x="34.0" y="205.2" z="0.5" />
+            <position x="36.0" y="205.3" z="0.5" />
+            <position x="38.0" y="205.3" z="0.5" />
+            <position x="40.0" y="205.3" z="0.5" />
+            <position x="42.0" y="205.3" z="0.5" />
+            <position x="44.0" y="205.3" z="0.5" />
+            <position x="46.0" y="205.3" z="0.5" />
+            <position x="48.0" y="205.3" z="0.5" />
         </waypoints>
         
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-90.0" y="205.1" z="7.7" yaw="0.0"/>
+                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
                 <init_speed value="10.0" />
-                <npc_speed value="9.0" />
+                <npc_speed value="8.0" />
                 
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
@@ -9777,21 +9868,66 @@
     </route>
     <route id="2" town="Town05"> 
         <waypoints>
-            <position x="-107.0" y="205.1" z="8.7" />
+            <position x="-56.0" y="205.1" z="4.6" />
+            <position x="-54.0" y="205.1" z="4.5" />
+            <position x="-52.0" y="205.1" z="4.3" />
+            <position x="-50.0" y="205.1" z="4.1" />
+            <position x="-48.0" y="205.1" z="3.9" />
+            <position x="-46.1" y="205.1" z="3.7" />
+            <position x="-44.1" y="205.1" z="3.6" />
+            <position x="-42.1" y="205.1" z="3.4" />
+            <position x="-40.1" y="205.1" z="3.2" />
+            <position x="-38.1" y="205.1" z="3.0" />
+            <position x="-36.1" y="205.1" z="2.8" />
+            <position x="-34.1" y="205.1" z="2.7" />
+            <position x="-32.1" y="205.1" z="2.5" />
+            <position x="-30.1" y="205.1" z="2.3" />
+            <position x="-28.1" y="205.1" z="2.1" />
+            <position x="-26.1" y="205.1" z="2.0" />
+            <position x="-24.1" y="205.1" z="1.8" />
+            <position x="-22.2" y="205.1" z="1.6" />
+            <position x="-20.2" y="205.1" z="1.4" />
+            <position x="-18.2" y="205.1" z="1.2" />
+            <position x="-16.2" y="205.1" z="1.1" />
+            <position x="-14.2" y="205.1" z="0.9" />
+            <position x="-12.2" y="205.1" z="0.7" />
             <position x="-10.0" y="205.1" z="0.5" />
-            
-            <position x="15.2" y="205.1" z="0.5" />
-            <position x="25.0" y="205.1" z="0.5" />
-            <position x="35.0" y="205.2" z="0.5" />
-            <position x="43.2" y="205.3" z="0.5" /> 
-            <position x="50.0" y="205.3" z="0.5" /> 
+            <position x="-8.0" y="205.1" z="0.5" />
+            <position x="-6.0" y="205.1" z="0.5" />
+            <position x="-4.0" y="205.1" z="0.5" />
+            <position x="-2.0" y="205.1" z="0.5" />
+            <position x="-0.0" y="205.1" z="0.5" />
+            <position x="2.0" y="205.1" z="0.5" />
+            <position x="4.0" y="205.1" z="0.5" />
+            <position x="6.0" y="205.2" z="0.5" />
+            <position x="8.0" y="205.2" z="0.5" />
+            <position x="10.0" y="205.2" z="0.5" />
+            <position x="12.0" y="205.2" z="0.5" />
+            <position x="14.0" y="205.2" z="0.5" />
+            <position x="16.0" y="205.2" z="0.5" />
+            <position x="18.0" y="205.2" z="0.5" />
+            <position x="20.0" y="205.2" z="0.5" />
+            <position x="22.0" y="205.2" z="0.5" />
+            <position x="24.0" y="205.2" z="0.5" />
+            <position x="26.0" y="205.2" z="0.5" />
+            <position x="28.0" y="205.2" z="0.5" />
+            <position x="30.0" y="205.2" z="0.5" />
+            <position x="32.0" y="205.2" z="0.5" />
+            <position x="34.0" y="205.2" z="0.5" />
+            <position x="36.0" y="205.3" z="0.5" />
+            <position x="38.0" y="205.3" z="0.5" />
+            <position x="40.0" y="205.3" z="0.5" />
+            <position x="42.0" y="205.3" z="0.5" />
+            <position x="44.0" y="205.3" z="0.5" />
+            <position x="46.0" y="205.3" z="0.5" />
+            <position x="48.0" y="205.3" z="0.5" />
         </waypoints>
         
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-90.0" y="205.1" z="7.7" yaw="0.0"/>
+                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
                 <init_speed value="10.0" />
-                <npc_speed value="9.0" />
+                <npc_speed value="8.0" />
                 
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
@@ -9804,21 +9940,66 @@
     </route>
     <route id="3" town="Town05"> 
         <waypoints>
-            <position x="-107.0" y="205.1" z="8.7" />
+            <position x="-56.0" y="205.1" z="4.6" />
+            <position x="-54.0" y="205.1" z="4.5" />
+            <position x="-52.0" y="205.1" z="4.3" />
+            <position x="-50.0" y="205.1" z="4.1" />
+            <position x="-48.0" y="205.1" z="3.9" />
+            <position x="-46.1" y="205.1" z="3.7" />
+            <position x="-44.1" y="205.1" z="3.6" />
+            <position x="-42.1" y="205.1" z="3.4" />
+            <position x="-40.1" y="205.1" z="3.2" />
+            <position x="-38.1" y="205.1" z="3.0" />
+            <position x="-36.1" y="205.1" z="2.8" />
+            <position x="-34.1" y="205.1" z="2.7" />
+            <position x="-32.1" y="205.1" z="2.5" />
+            <position x="-30.1" y="205.1" z="2.3" />
+            <position x="-28.1" y="205.1" z="2.1" />
+            <position x="-26.1" y="205.1" z="2.0" />
+            <position x="-24.1" y="205.1" z="1.8" />
+            <position x="-22.2" y="205.1" z="1.6" />
+            <position x="-20.2" y="205.1" z="1.4" />
+            <position x="-18.2" y="205.1" z="1.2" />
+            <position x="-16.2" y="205.1" z="1.1" />
+            <position x="-14.2" y="205.1" z="0.9" />
+            <position x="-12.2" y="205.1" z="0.7" />
             <position x="-10.0" y="205.1" z="0.5" />
-            
-            <position x="15.2" y="205.1" z="0.5" />
-            <position x="25.0" y="205.1" z="0.5" />
-            <position x="35.0" y="205.2" z="0.5" />
-            <position x="43.2" y="205.3" z="0.5" /> 
-            <position x="50.0" y="205.3" z="0.5" /> 
+            <position x="-8.0" y="205.1" z="0.5" />
+            <position x="-6.0" y="205.1" z="0.5" />
+            <position x="-4.0" y="205.1" z="0.5" />
+            <position x="-2.0" y="205.1" z="0.5" />
+            <position x="-0.0" y="205.1" z="0.5" />
+            <position x="2.0" y="205.1" z="0.5" />
+            <position x="4.0" y="205.1" z="0.5" />
+            <position x="6.0" y="205.2" z="0.5" />
+            <position x="8.0" y="205.2" z="0.5" />
+            <position x="10.0" y="205.2" z="0.5" />
+            <position x="12.0" y="205.2" z="0.5" />
+            <position x="14.0" y="205.2" z="0.5" />
+            <position x="16.0" y="205.2" z="0.5" />
+            <position x="18.0" y="205.2" z="0.5" />
+            <position x="20.0" y="205.2" z="0.5" />
+            <position x="22.0" y="205.2" z="0.5" />
+            <position x="24.0" y="205.2" z="0.5" />
+            <position x="26.0" y="205.2" z="0.5" />
+            <position x="28.0" y="205.2" z="0.5" />
+            <position x="30.0" y="205.2" z="0.5" />
+            <position x="32.0" y="205.2" z="0.5" />
+            <position x="34.0" y="205.2" z="0.5" />
+            <position x="36.0" y="205.3" z="0.5" />
+            <position x="38.0" y="205.3" z="0.5" />
+            <position x="40.0" y="205.3" z="0.5" />
+            <position x="42.0" y="205.3" z="0.5" />
+            <position x="44.0" y="205.3" z="0.5" />
+            <position x="46.0" y="205.3" z="0.5" />
+            <position x="48.0" y="205.3" z="0.5" />
         </waypoints>
         
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-90.0" y="205.1" z="7.7" yaw="0.0"/>
+                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
                 <init_speed value="10.0" />
-                <npc_speed value="9.0" />
+                <npc_speed value="8.0" />
                 
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
@@ -9830,24 +10011,69 @@
         </weathers>
     </route>
 
-    <!-- ========== level 2: init_speed=13.89, npc_speed=12.0 ========== -->
+    <!-- ========== level 2: init_speed=13.89, npc_speed=11.0 ========== -->
     <route id="4" town="Town05"> 
         <waypoints>
-            <position x="-107.0" y="205.1" z="8.7" />
+            <position x="-56.0" y="205.1" z="4.6" />
+            <position x="-54.0" y="205.1" z="4.5" />
+            <position x="-52.0" y="205.1" z="4.3" />
+            <position x="-50.0" y="205.1" z="4.1" />
+            <position x="-48.0" y="205.1" z="3.9" />
+            <position x="-46.1" y="205.1" z="3.7" />
+            <position x="-44.1" y="205.1" z="3.6" />
+            <position x="-42.1" y="205.1" z="3.4" />
+            <position x="-40.1" y="205.1" z="3.2" />
+            <position x="-38.1" y="205.1" z="3.0" />
+            <position x="-36.1" y="205.1" z="2.8" />
+            <position x="-34.1" y="205.1" z="2.7" />
+            <position x="-32.1" y="205.1" z="2.5" />
+            <position x="-30.1" y="205.1" z="2.3" />
+            <position x="-28.1" y="205.1" z="2.1" />
+            <position x="-26.1" y="205.1" z="2.0" />
+            <position x="-24.1" y="205.1" z="1.8" />
+            <position x="-22.2" y="205.1" z="1.6" />
+            <position x="-20.2" y="205.1" z="1.4" />
+            <position x="-18.2" y="205.1" z="1.2" />
+            <position x="-16.2" y="205.1" z="1.1" />
+            <position x="-14.2" y="205.1" z="0.9" />
+            <position x="-12.2" y="205.1" z="0.7" />
             <position x="-10.0" y="205.1" z="0.5" />
-            
-            <position x="15.2" y="205.1" z="0.5" />
-            <position x="25.0" y="205.1" z="0.5" />
-            <position x="35.0" y="205.2" z="0.5" />
-            <position x="43.2" y="205.3" z="0.5" /> 
-            <position x="50.0" y="205.3" z="0.5" /> 
+            <position x="-8.0" y="205.1" z="0.5" />
+            <position x="-6.0" y="205.1" z="0.5" />
+            <position x="-4.0" y="205.1" z="0.5" />
+            <position x="-2.0" y="205.1" z="0.5" />
+            <position x="-0.0" y="205.1" z="0.5" />
+            <position x="2.0" y="205.1" z="0.5" />
+            <position x="4.0" y="205.1" z="0.5" />
+            <position x="6.0" y="205.2" z="0.5" />
+            <position x="8.0" y="205.2" z="0.5" />
+            <position x="10.0" y="205.2" z="0.5" />
+            <position x="12.0" y="205.2" z="0.5" />
+            <position x="14.0" y="205.2" z="0.5" />
+            <position x="16.0" y="205.2" z="0.5" />
+            <position x="18.0" y="205.2" z="0.5" />
+            <position x="20.0" y="205.2" z="0.5" />
+            <position x="22.0" y="205.2" z="0.5" />
+            <position x="24.0" y="205.2" z="0.5" />
+            <position x="26.0" y="205.2" z="0.5" />
+            <position x="28.0" y="205.2" z="0.5" />
+            <position x="30.0" y="205.2" z="0.5" />
+            <position x="32.0" y="205.2" z="0.5" />
+            <position x="34.0" y="205.2" z="0.5" />
+            <position x="36.0" y="205.3" z="0.5" />
+            <position x="38.0" y="205.3" z="0.5" />
+            <position x="40.0" y="205.3" z="0.5" />
+            <position x="42.0" y="205.3" z="0.5" />
+            <position x="44.0" y="205.3" z="0.5" />
+            <position x="46.0" y="205.3" z="0.5" />
+            <position x="48.0" y="205.3" z="0.5" />
         </waypoints>
         
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-90.0" y="205.1" z="7.7" yaw="0.0"/>
+                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
                 <init_speed value="13.89" />
-                <npc_speed value="12.0" />
+                <npc_speed value="11.0" />
                 
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
@@ -9860,21 +10086,66 @@
     </route>
     <route id="5" town="Town05"> 
         <waypoints>
-            <position x="-107.0" y="205.1" z="8.7" />
+            <position x="-56.0" y="205.1" z="4.6" />
+            <position x="-54.0" y="205.1" z="4.5" />
+            <position x="-52.0" y="205.1" z="4.3" />
+            <position x="-50.0" y="205.1" z="4.1" />
+            <position x="-48.0" y="205.1" z="3.9" />
+            <position x="-46.1" y="205.1" z="3.7" />
+            <position x="-44.1" y="205.1" z="3.6" />
+            <position x="-42.1" y="205.1" z="3.4" />
+            <position x="-40.1" y="205.1" z="3.2" />
+            <position x="-38.1" y="205.1" z="3.0" />
+            <position x="-36.1" y="205.1" z="2.8" />
+            <position x="-34.1" y="205.1" z="2.7" />
+            <position x="-32.1" y="205.1" z="2.5" />
+            <position x="-30.1" y="205.1" z="2.3" />
+            <position x="-28.1" y="205.1" z="2.1" />
+            <position x="-26.1" y="205.1" z="2.0" />
+            <position x="-24.1" y="205.1" z="1.8" />
+            <position x="-22.2" y="205.1" z="1.6" />
+            <position x="-20.2" y="205.1" z="1.4" />
+            <position x="-18.2" y="205.1" z="1.2" />
+            <position x="-16.2" y="205.1" z="1.1" />
+            <position x="-14.2" y="205.1" z="0.9" />
+            <position x="-12.2" y="205.1" z="0.7" />
             <position x="-10.0" y="205.1" z="0.5" />
-            
-            <position x="15.2" y="205.1" z="0.5" />
-            <position x="25.0" y="205.1" z="0.5" />
-            <position x="35.0" y="205.2" z="0.5" />
-            <position x="43.2" y="205.3" z="0.5" /> 
-            <position x="50.0" y="205.3" z="0.5" /> 
+            <position x="-8.0" y="205.1" z="0.5" />
+            <position x="-6.0" y="205.1" z="0.5" />
+            <position x="-4.0" y="205.1" z="0.5" />
+            <position x="-2.0" y="205.1" z="0.5" />
+            <position x="-0.0" y="205.1" z="0.5" />
+            <position x="2.0" y="205.1" z="0.5" />
+            <position x="4.0" y="205.1" z="0.5" />
+            <position x="6.0" y="205.2" z="0.5" />
+            <position x="8.0" y="205.2" z="0.5" />
+            <position x="10.0" y="205.2" z="0.5" />
+            <position x="12.0" y="205.2" z="0.5" />
+            <position x="14.0" y="205.2" z="0.5" />
+            <position x="16.0" y="205.2" z="0.5" />
+            <position x="18.0" y="205.2" z="0.5" />
+            <position x="20.0" y="205.2" z="0.5" />
+            <position x="22.0" y="205.2" z="0.5" />
+            <position x="24.0" y="205.2" z="0.5" />
+            <position x="26.0" y="205.2" z="0.5" />
+            <position x="28.0" y="205.2" z="0.5" />
+            <position x="30.0" y="205.2" z="0.5" />
+            <position x="32.0" y="205.2" z="0.5" />
+            <position x="34.0" y="205.2" z="0.5" />
+            <position x="36.0" y="205.3" z="0.5" />
+            <position x="38.0" y="205.3" z="0.5" />
+            <position x="40.0" y="205.3" z="0.5" />
+            <position x="42.0" y="205.3" z="0.5" />
+            <position x="44.0" y="205.3" z="0.5" />
+            <position x="46.0" y="205.3" z="0.5" />
+            <position x="48.0" y="205.3" z="0.5" />
         </waypoints>
         
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-90.0" y="205.1" z="7.7" yaw="0.0"/>
+                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
                 <init_speed value="13.89" />
-                <npc_speed value="12.0" />
+                <npc_speed value="11.0" />
                 
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
@@ -9887,21 +10158,66 @@
     </route>
     <route id="6" town="Town05"> 
         <waypoints>
-            <position x="-107.0" y="205.1" z="8.7" />
+            <position x="-56.0" y="205.1" z="4.6" />
+            <position x="-54.0" y="205.1" z="4.5" />
+            <position x="-52.0" y="205.1" z="4.3" />
+            <position x="-50.0" y="205.1" z="4.1" />
+            <position x="-48.0" y="205.1" z="3.9" />
+            <position x="-46.1" y="205.1" z="3.7" />
+            <position x="-44.1" y="205.1" z="3.6" />
+            <position x="-42.1" y="205.1" z="3.4" />
+            <position x="-40.1" y="205.1" z="3.2" />
+            <position x="-38.1" y="205.1" z="3.0" />
+            <position x="-36.1" y="205.1" z="2.8" />
+            <position x="-34.1" y="205.1" z="2.7" />
+            <position x="-32.1" y="205.1" z="2.5" />
+            <position x="-30.1" y="205.1" z="2.3" />
+            <position x="-28.1" y="205.1" z="2.1" />
+            <position x="-26.1" y="205.1" z="2.0" />
+            <position x="-24.1" y="205.1" z="1.8" />
+            <position x="-22.2" y="205.1" z="1.6" />
+            <position x="-20.2" y="205.1" z="1.4" />
+            <position x="-18.2" y="205.1" z="1.2" />
+            <position x="-16.2" y="205.1" z="1.1" />
+            <position x="-14.2" y="205.1" z="0.9" />
+            <position x="-12.2" y="205.1" z="0.7" />
             <position x="-10.0" y="205.1" z="0.5" />
-            
-            <position x="15.2" y="205.1" z="0.5" />
-            <position x="25.0" y="205.1" z="0.5" />
-            <position x="35.0" y="205.2" z="0.5" />
-            <position x="43.2" y="205.3" z="0.5" /> 
-            <position x="50.0" y="205.3" z="0.5" /> 
+            <position x="-8.0" y="205.1" z="0.5" />
+            <position x="-6.0" y="205.1" z="0.5" />
+            <position x="-4.0" y="205.1" z="0.5" />
+            <position x="-2.0" y="205.1" z="0.5" />
+            <position x="-0.0" y="205.1" z="0.5" />
+            <position x="2.0" y="205.1" z="0.5" />
+            <position x="4.0" y="205.1" z="0.5" />
+            <position x="6.0" y="205.2" z="0.5" />
+            <position x="8.0" y="205.2" z="0.5" />
+            <position x="10.0" y="205.2" z="0.5" />
+            <position x="12.0" y="205.2" z="0.5" />
+            <position x="14.0" y="205.2" z="0.5" />
+            <position x="16.0" y="205.2" z="0.5" />
+            <position x="18.0" y="205.2" z="0.5" />
+            <position x="20.0" y="205.2" z="0.5" />
+            <position x="22.0" y="205.2" z="0.5" />
+            <position x="24.0" y="205.2" z="0.5" />
+            <position x="26.0" y="205.2" z="0.5" />
+            <position x="28.0" y="205.2" z="0.5" />
+            <position x="30.0" y="205.2" z="0.5" />
+            <position x="32.0" y="205.2" z="0.5" />
+            <position x="34.0" y="205.2" z="0.5" />
+            <position x="36.0" y="205.3" z="0.5" />
+            <position x="38.0" y="205.3" z="0.5" />
+            <position x="40.0" y="205.3" z="0.5" />
+            <position x="42.0" y="205.3" z="0.5" />
+            <position x="44.0" y="205.3" z="0.5" />
+            <position x="46.0" y="205.3" z="0.5" />
+            <position x="48.0" y="205.3" z="0.5" />
         </waypoints>
         
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-90.0" y="205.1" z="7.7" yaw="0.0"/>
+                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
                 <init_speed value="13.89" />
-                <npc_speed value="12.0" />
+                <npc_speed value="11.0" />
                 
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
@@ -9914,21 +10230,66 @@
     </route>
     <route id="7" town="Town05"> 
         <waypoints>
-            <position x="-107.0" y="205.1" z="8.7" />
+            <position x="-56.0" y="205.1" z="4.6" />
+            <position x="-54.0" y="205.1" z="4.5" />
+            <position x="-52.0" y="205.1" z="4.3" />
+            <position x="-50.0" y="205.1" z="4.1" />
+            <position x="-48.0" y="205.1" z="3.9" />
+            <position x="-46.1" y="205.1" z="3.7" />
+            <position x="-44.1" y="205.1" z="3.6" />
+            <position x="-42.1" y="205.1" z="3.4" />
+            <position x="-40.1" y="205.1" z="3.2" />
+            <position x="-38.1" y="205.1" z="3.0" />
+            <position x="-36.1" y="205.1" z="2.8" />
+            <position x="-34.1" y="205.1" z="2.7" />
+            <position x="-32.1" y="205.1" z="2.5" />
+            <position x="-30.1" y="205.1" z="2.3" />
+            <position x="-28.1" y="205.1" z="2.1" />
+            <position x="-26.1" y="205.1" z="2.0" />
+            <position x="-24.1" y="205.1" z="1.8" />
+            <position x="-22.2" y="205.1" z="1.6" />
+            <position x="-20.2" y="205.1" z="1.4" />
+            <position x="-18.2" y="205.1" z="1.2" />
+            <position x="-16.2" y="205.1" z="1.1" />
+            <position x="-14.2" y="205.1" z="0.9" />
+            <position x="-12.2" y="205.1" z="0.7" />
             <position x="-10.0" y="205.1" z="0.5" />
-            
-            <position x="15.2" y="205.1" z="0.5" />
-            <position x="25.0" y="205.1" z="0.5" />
-            <position x="35.0" y="205.2" z="0.5" />
-            <position x="43.2" y="205.3" z="0.5" /> 
-            <position x="50.0" y="205.3" z="0.5" /> 
+            <position x="-8.0" y="205.1" z="0.5" />
+            <position x="-6.0" y="205.1" z="0.5" />
+            <position x="-4.0" y="205.1" z="0.5" />
+            <position x="-2.0" y="205.1" z="0.5" />
+            <position x="-0.0" y="205.1" z="0.5" />
+            <position x="2.0" y="205.1" z="0.5" />
+            <position x="4.0" y="205.1" z="0.5" />
+            <position x="6.0" y="205.2" z="0.5" />
+            <position x="8.0" y="205.2" z="0.5" />
+            <position x="10.0" y="205.2" z="0.5" />
+            <position x="12.0" y="205.2" z="0.5" />
+            <position x="14.0" y="205.2" z="0.5" />
+            <position x="16.0" y="205.2" z="0.5" />
+            <position x="18.0" y="205.2" z="0.5" />
+            <position x="20.0" y="205.2" z="0.5" />
+            <position x="22.0" y="205.2" z="0.5" />
+            <position x="24.0" y="205.2" z="0.5" />
+            <position x="26.0" y="205.2" z="0.5" />
+            <position x="28.0" y="205.2" z="0.5" />
+            <position x="30.0" y="205.2" z="0.5" />
+            <position x="32.0" y="205.2" z="0.5" />
+            <position x="34.0" y="205.2" z="0.5" />
+            <position x="36.0" y="205.3" z="0.5" />
+            <position x="38.0" y="205.3" z="0.5" />
+            <position x="40.0" y="205.3" z="0.5" />
+            <position x="42.0" y="205.3" z="0.5" />
+            <position x="44.0" y="205.3" z="0.5" />
+            <position x="46.0" y="205.3" z="0.5" />
+            <position x="48.0" y="205.3" z="0.5" />
         </waypoints>
         
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-90.0" y="205.1" z="7.7" yaw="0.0"/>
+                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
                 <init_speed value="13.89" />
-                <npc_speed value="12.0" />
+                <npc_speed value="11.0" />
                 
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
@@ -9939,23 +10300,68 @@
             <weather cloudiness="90.0" fog_density="10.0" precipitation="60" precipitation_deposits="50" wetness="70" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100" />
         </weathers>
     </route>
-    
+
     <!-- ========== level 3: init_speed=16.67, npc_speed=30.0 ========== -->
     <route id="8" town="Town05"> 
         <waypoints>
-            <position x="-107.0" y="205.1" z="8.7" />
+            <position x="-56.0" y="205.1" z="4.6" />
+            <position x="-54.0" y="205.1" z="4.5" />
+            <position x="-52.0" y="205.1" z="4.3" />
+            <position x="-50.0" y="205.1" z="4.1" />
+            <position x="-48.0" y="205.1" z="3.9" />
+            <position x="-46.1" y="205.1" z="3.7" />
+            <position x="-44.1" y="205.1" z="3.6" />
+            <position x="-42.1" y="205.1" z="3.4" />
+            <position x="-40.1" y="205.1" z="3.2" />
+            <position x="-38.1" y="205.1" z="3.0" />
+            <position x="-36.1" y="205.1" z="2.8" />
+            <position x="-34.1" y="205.1" z="2.7" />
+            <position x="-32.1" y="205.1" z="2.5" />
+            <position x="-30.1" y="205.1" z="2.3" />
+            <position x="-28.1" y="205.1" z="2.1" />
+            <position x="-26.1" y="205.1" z="2.0" />
+            <position x="-24.1" y="205.1" z="1.8" />
+            <position x="-22.2" y="205.1" z="1.6" />
+            <position x="-20.2" y="205.1" z="1.4" />
+            <position x="-18.2" y="205.1" z="1.2" />
+            <position x="-16.2" y="205.1" z="1.1" />
+            <position x="-14.2" y="205.1" z="0.9" />
+            <position x="-12.2" y="205.1" z="0.7" />
             <position x="-10.0" y="205.1" z="0.5" />
-            
-            <position x="15.2" y="205.1" z="0.5" />
-            <position x="25.0" y="205.1" z="0.5" />
-            <position x="35.0" y="205.2" z="0.5" />
-            <position x="43.2" y="205.3" z="0.5" /> 
-            <position x="50.0" y="205.3" z="0.5" /> 
+            <position x="-8.0" y="205.1" z="0.5" />
+            <position x="-6.0" y="205.1" z="0.5" />
+            <position x="-4.0" y="205.1" z="0.5" />
+            <position x="-2.0" y="205.1" z="0.5" />
+            <position x="-0.0" y="205.1" z="0.5" />
+            <position x="2.0" y="205.1" z="0.5" />
+            <position x="4.0" y="205.1" z="0.5" />
+            <position x="6.0" y="205.2" z="0.5" />
+            <position x="8.0" y="205.2" z="0.5" />
+            <position x="10.0" y="205.2" z="0.5" />
+            <position x="12.0" y="205.2" z="0.5" />
+            <position x="14.0" y="205.2" z="0.5" />
+            <position x="16.0" y="205.2" z="0.5" />
+            <position x="18.0" y="205.2" z="0.5" />
+            <position x="20.0" y="205.2" z="0.5" />
+            <position x="22.0" y="205.2" z="0.5" />
+            <position x="24.0" y="205.2" z="0.5" />
+            <position x="26.0" y="205.2" z="0.5" />
+            <position x="28.0" y="205.2" z="0.5" />
+            <position x="30.0" y="205.2" z="0.5" />
+            <position x="32.0" y="205.2" z="0.5" />
+            <position x="34.0" y="205.2" z="0.5" />
+            <position x="36.0" y="205.3" z="0.5" />
+            <position x="38.0" y="205.3" z="0.5" />
+            <position x="40.0" y="205.3" z="0.5" />
+            <position x="42.0" y="205.3" z="0.5" />
+            <position x="44.0" y="205.3" z="0.5" />
+            <position x="46.0" y="205.3" z="0.5" />
+            <position x="48.0" y="205.3" z="0.5" />
         </waypoints>
         
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-90.0" y="205.1" z="7.7" yaw="0.0"/>
+                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
                 <init_speed value="16.67" />
                 <npc_speed value="30.0" />
                 
@@ -9970,19 +10376,64 @@
     </route>
     <route id="9" town="Town05"> 
         <waypoints>
-            <position x="-107.0" y="205.1" z="8.7" />
+            <position x="-56.0" y="205.1" z="4.6" />
+            <position x="-54.0" y="205.1" z="4.5" />
+            <position x="-52.0" y="205.1" z="4.3" />
+            <position x="-50.0" y="205.1" z="4.1" />
+            <position x="-48.0" y="205.1" z="3.9" />
+            <position x="-46.1" y="205.1" z="3.7" />
+            <position x="-44.1" y="205.1" z="3.6" />
+            <position x="-42.1" y="205.1" z="3.4" />
+            <position x="-40.1" y="205.1" z="3.2" />
+            <position x="-38.1" y="205.1" z="3.0" />
+            <position x="-36.1" y="205.1" z="2.8" />
+            <position x="-34.1" y="205.1" z="2.7" />
+            <position x="-32.1" y="205.1" z="2.5" />
+            <position x="-30.1" y="205.1" z="2.3" />
+            <position x="-28.1" y="205.1" z="2.1" />
+            <position x="-26.1" y="205.1" z="2.0" />
+            <position x="-24.1" y="205.1" z="1.8" />
+            <position x="-22.2" y="205.1" z="1.6" />
+            <position x="-20.2" y="205.1" z="1.4" />
+            <position x="-18.2" y="205.1" z="1.2" />
+            <position x="-16.2" y="205.1" z="1.1" />
+            <position x="-14.2" y="205.1" z="0.9" />
+            <position x="-12.2" y="205.1" z="0.7" />
             <position x="-10.0" y="205.1" z="0.5" />
-            
-            <position x="15.2" y="205.1" z="0.5" />
-            <position x="25.0" y="205.1" z="0.5" />
-            <position x="35.0" y="205.2" z="0.5" />
-            <position x="43.2" y="205.3" z="0.5" /> 
-            <position x="50.0" y="205.3" z="0.5" /> 
+            <position x="-8.0" y="205.1" z="0.5" />
+            <position x="-6.0" y="205.1" z="0.5" />
+            <position x="-4.0" y="205.1" z="0.5" />
+            <position x="-2.0" y="205.1" z="0.5" />
+            <position x="-0.0" y="205.1" z="0.5" />
+            <position x="2.0" y="205.1" z="0.5" />
+            <position x="4.0" y="205.1" z="0.5" />
+            <position x="6.0" y="205.2" z="0.5" />
+            <position x="8.0" y="205.2" z="0.5" />
+            <position x="10.0" y="205.2" z="0.5" />
+            <position x="12.0" y="205.2" z="0.5" />
+            <position x="14.0" y="205.2" z="0.5" />
+            <position x="16.0" y="205.2" z="0.5" />
+            <position x="18.0" y="205.2" z="0.5" />
+            <position x="20.0" y="205.2" z="0.5" />
+            <position x="22.0" y="205.2" z="0.5" />
+            <position x="24.0" y="205.2" z="0.5" />
+            <position x="26.0" y="205.2" z="0.5" />
+            <position x="28.0" y="205.2" z="0.5" />
+            <position x="30.0" y="205.2" z="0.5" />
+            <position x="32.0" y="205.2" z="0.5" />
+            <position x="34.0" y="205.2" z="0.5" />
+            <position x="36.0" y="205.3" z="0.5" />
+            <position x="38.0" y="205.3" z="0.5" />
+            <position x="40.0" y="205.3" z="0.5" />
+            <position x="42.0" y="205.3" z="0.5" />
+            <position x="44.0" y="205.3" z="0.5" />
+            <position x="46.0" y="205.3" z="0.5" />
+            <position x="48.0" y="205.3" z="0.5" />
         </waypoints>
         
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-90.0" y="205.1" z="7.7" yaw="0.0"/>
+                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
                 <init_speed value="16.67" />
                 <npc_speed value="30.0" />
                 
@@ -9991,25 +10442,70 @@
         </scenarios>
         
         <weathers>
-           <!-- night&sunny -->
-           <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
+            <!-- night&sunny -->
+            <weather cloudiness="90.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100" />
         </weathers>
     </route>
     <route id="10" town="Town05"> 
         <waypoints>
-            <position x="-107.0" y="205.1" z="8.7" />
+            <position x="-56.0" y="205.1" z="4.6" />
+            <position x="-54.0" y="205.1" z="4.5" />
+            <position x="-52.0" y="205.1" z="4.3" />
+            <position x="-50.0" y="205.1" z="4.1" />
+            <position x="-48.0" y="205.1" z="3.9" />
+            <position x="-46.1" y="205.1" z="3.7" />
+            <position x="-44.1" y="205.1" z="3.6" />
+            <position x="-42.1" y="205.1" z="3.4" />
+            <position x="-40.1" y="205.1" z="3.2" />
+            <position x="-38.1" y="205.1" z="3.0" />
+            <position x="-36.1" y="205.1" z="2.8" />
+            <position x="-34.1" y="205.1" z="2.7" />
+            <position x="-32.1" y="205.1" z="2.5" />
+            <position x="-30.1" y="205.1" z="2.3" />
+            <position x="-28.1" y="205.1" z="2.1" />
+            <position x="-26.1" y="205.1" z="2.0" />
+            <position x="-24.1" y="205.1" z="1.8" />
+            <position x="-22.2" y="205.1" z="1.6" />
+            <position x="-20.2" y="205.1" z="1.4" />
+            <position x="-18.2" y="205.1" z="1.2" />
+            <position x="-16.2" y="205.1" z="1.1" />
+            <position x="-14.2" y="205.1" z="0.9" />
+            <position x="-12.2" y="205.1" z="0.7" />
             <position x="-10.0" y="205.1" z="0.5" />
-            
-            <position x="15.2" y="205.1" z="0.5" />
-            <position x="25.0" y="205.1" z="0.5" />
-            <position x="35.0" y="205.2" z="0.5" />
-            <position x="43.2" y="205.3" z="0.5" /> 
-            <position x="50.0" y="205.3" z="0.5" /> 
+            <position x="-8.0" y="205.1" z="0.5" />
+            <position x="-6.0" y="205.1" z="0.5" />
+            <position x="-4.0" y="205.1" z="0.5" />
+            <position x="-2.0" y="205.1" z="0.5" />
+            <position x="-0.0" y="205.1" z="0.5" />
+            <position x="2.0" y="205.1" z="0.5" />
+            <position x="4.0" y="205.1" z="0.5" />
+            <position x="6.0" y="205.2" z="0.5" />
+            <position x="8.0" y="205.2" z="0.5" />
+            <position x="10.0" y="205.2" z="0.5" />
+            <position x="12.0" y="205.2" z="0.5" />
+            <position x="14.0" y="205.2" z="0.5" />
+            <position x="16.0" y="205.2" z="0.5" />
+            <position x="18.0" y="205.2" z="0.5" />
+            <position x="20.0" y="205.2" z="0.5" />
+            <position x="22.0" y="205.2" z="0.5" />
+            <position x="24.0" y="205.2" z="0.5" />
+            <position x="26.0" y="205.2" z="0.5" />
+            <position x="28.0" y="205.2" z="0.5" />
+            <position x="30.0" y="205.2" z="0.5" />
+            <position x="32.0" y="205.2" z="0.5" />
+            <position x="34.0" y="205.2" z="0.5" />
+            <position x="36.0" y="205.3" z="0.5" />
+            <position x="38.0" y="205.3" z="0.5" />
+            <position x="40.0" y="205.3" z="0.5" />
+            <position x="42.0" y="205.3" z="0.5" />
+            <position x="44.0" y="205.3" z="0.5" />
+            <position x="46.0" y="205.3" z="0.5" />
+            <position x="48.0" y="205.3" z="0.5" />
         </waypoints>
         
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-90.0" y="205.1" z="7.7" yaw="0.0"/>
+                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
                 <init_speed value="16.67" />
                 <npc_speed value="30.0" />
                 
@@ -10024,19 +10520,64 @@
     </route>
     <route id="11" town="Town05"> 
         <waypoints>
-            <position x="-107.0" y="205.1" z="8.7" />
+            <position x="-56.0" y="205.1" z="4.6" />
+            <position x="-54.0" y="205.1" z="4.5" />
+            <position x="-52.0" y="205.1" z="4.3" />
+            <position x="-50.0" y="205.1" z="4.1" />
+            <position x="-48.0" y="205.1" z="3.9" />
+            <position x="-46.1" y="205.1" z="3.7" />
+            <position x="-44.1" y="205.1" z="3.6" />
+            <position x="-42.1" y="205.1" z="3.4" />
+            <position x="-40.1" y="205.1" z="3.2" />
+            <position x="-38.1" y="205.1" z="3.0" />
+            <position x="-36.1" y="205.1" z="2.8" />
+            <position x="-34.1" y="205.1" z="2.7" />
+            <position x="-32.1" y="205.1" z="2.5" />
+            <position x="-30.1" y="205.1" z="2.3" />
+            <position x="-28.1" y="205.1" z="2.1" />
+            <position x="-26.1" y="205.1" z="2.0" />
+            <position x="-24.1" y="205.1" z="1.8" />
+            <position x="-22.2" y="205.1" z="1.6" />
+            <position x="-20.2" y="205.1" z="1.4" />
+            <position x="-18.2" y="205.1" z="1.2" />
+            <position x="-16.2" y="205.1" z="1.1" />
+            <position x="-14.2" y="205.1" z="0.9" />
+            <position x="-12.2" y="205.1" z="0.7" />
             <position x="-10.0" y="205.1" z="0.5" />
-            
-            <position x="15.2" y="205.1" z="0.5" />
-            <position x="25.0" y="205.1" z="0.5" />
-            <position x="35.0" y="205.2" z="0.5" />
-            <position x="43.2" y="205.3" z="0.5" /> 
-            <position x="50.0" y="205.3" z="0.5" /> 
+            <position x="-8.0" y="205.1" z="0.5" />
+            <position x="-6.0" y="205.1" z="0.5" />
+            <position x="-4.0" y="205.1" z="0.5" />
+            <position x="-2.0" y="205.1" z="0.5" />
+            <position x="-0.0" y="205.1" z="0.5" />
+            <position x="2.0" y="205.1" z="0.5" />
+            <position x="4.0" y="205.1" z="0.5" />
+            <position x="6.0" y="205.2" z="0.5" />
+            <position x="8.0" y="205.2" z="0.5" />
+            <position x="10.0" y="205.2" z="0.5" />
+            <position x="12.0" y="205.2" z="0.5" />
+            <position x="14.0" y="205.2" z="0.5" />
+            <position x="16.0" y="205.2" z="0.5" />
+            <position x="18.0" y="205.2" z="0.5" />
+            <position x="20.0" y="205.2" z="0.5" />
+            <position x="22.0" y="205.2" z="0.5" />
+            <position x="24.0" y="205.2" z="0.5" />
+            <position x="26.0" y="205.2" z="0.5" />
+            <position x="28.0" y="205.2" z="0.5" />
+            <position x="30.0" y="205.2" z="0.5" />
+            <position x="32.0" y="205.2" z="0.5" />
+            <position x="34.0" y="205.2" z="0.5" />
+            <position x="36.0" y="205.3" z="0.5" />
+            <position x="38.0" y="205.3" z="0.5" />
+            <position x="40.0" y="205.3" z="0.5" />
+            <position x="42.0" y="205.3" z="0.5" />
+            <position x="44.0" y="205.3" z="0.5" />
+            <position x="46.0" y="205.3" z="0.5" />
+            <position x="48.0" y="205.3" z="0.5" />
         </waypoints>
         
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-90.0" y="205.1" z="7.7" yaw="0.0"/>
+                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
                 <init_speed value="16.67" />
                 <npc_speed value="30.0" />
                 
