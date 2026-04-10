@@ -100,18 +100,24 @@ def extract_private_facts_high_speed_accident(criteria_list):
 def extract_private_facts_lane_closure(criteria_list):
     """提取车道封闭场景的私有事实"""
     facts = {
-        "deceleration_detected": False, 
-        "speed_reduction": 0.0,          
-        "distance_traveled": 0.0,        
+        "deceleration_detected": False,  # 识别障碍并减速
+        "speed_reduction": 0.0,          # 减速幅度
+        "distance_traveled": 0.0,        # 行驶距离
     }
     for criterion in criteria_list:
         if criterion.name == "DecelerationForConstructionTest":
-            facts["deceleration_detected"] = (criterion.test_status == "SUCCESS")
-            facts["speed_reduction"] = criterion.actual_value
-            print(f"[DEBUG Facts Extract] DecelerationForConstructionTest: status={criterion.test_status}, actual_value={criterion.actual_value}", flush=True)
+
+            speed_reduction = criterion.actual_value
+            facts["speed_reduction"] = speed_reduction
+
+            # 如果减速 ≥ 30 km/h（认为是有效的减速行为），或者 test_status 是 SUCCESS
+            if speed_reduction >= 30.0 or criterion.test_status == "SUCCESS":
+                facts["deceleration_detected"] = True
+
+            # print(f"[DEBUG Facts Extract] DecelerationForConstructionTest: status={criterion.test_status}, actual_value={criterion.actual_value}, deceleration_detected={facts['deceleration_detected']}", flush=True)
         elif criterion.name == "RoutePassCompletionTest":
             facts["distance_traveled"] = criterion.actual_value
-            print(f"[DEBUG Facts Extract] RoutePassCompletionTest: status={criterion.test_status}, actual_value={criterion.actual_value}", flush=True)
+            # print(f"[DEBUG Facts Extract] RoutePassCompletionTest: status={criterion.test_status}, actual_value={criterion.actual_value}", flush=True)
     return facts
 # Drive into the roundabout_private_facats extracts
 def extract_private_facts_roundabout_merge_conflict(criteria_list):

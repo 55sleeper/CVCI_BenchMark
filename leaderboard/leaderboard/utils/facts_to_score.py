@@ -109,18 +109,37 @@ def score_high_speed_accident(common_facts, private_facts):
     }
 # Trucks encountered during construction
 def compute_lane_closure_score(common_facts, private_facts):
+    """计算车道封闭场景得分"""
     base_score = 0.0
 
+    # 1. 减速得分 (90分)
     if private_facts.get("deceleration_detected", False) and not common_facts.get("collision", False):
-        base_score += 90.0  
+        base_score += 90.0  # 识别障碍并减速避撞
+        # print(f"[DEBUG Score] Added 90 for deceleration & collision free", flush=True)
 
-    if common_facts.get("route_completed", False):
-        base_score += 10.0 
+    # 2. 路段通过得分 (10分) - 按完成度比例给分
+    distance_traveled = private_facts.get("distance_traveled", 0.0)
+    target_distance = 95.0  # 目标距离 95m (过卡车40m)
+    completion_ratio = min(distance_traveled / target_distance, 1.0)
 
+    if completion_ratio >= 1.0:
+        base_score += 10.0  # 完成整个路段
+        # print(f"[DEBUG Score] Added 10 for full route completion ({distance_traveled:.1f}m)", flush=True)
+    elif completion_ratio >= 0.5:
+        partial_score = 10.0 * completion_ratio
+        base_score += partial_score
+        # print(f"[DEBUG Score] Added {partial_score:.1f} for partial route completion ({distance_traveled:.1f}m, {completion_ratio*100:.1f}%)", flush=True)
+    else:
+        # print(f"[DEBUG Score] No route completion score ({distance_traveled:.1f}m, {completion_ratio*100:.1f}%)", flush=True)
+        pass
+
+    # 计算门控因子和惩罚因子
     gate = compute_gate(common_facts)
     penalty = compute_penalty(common_facts)
 
+    # 计算最终得分
     final_score = base_score * gate * penalty
+    # print(f"[DEBUG Score] base={base_score}, gate={gate}, penalty={penalty}, final={final_score}", flush=True)
 
     return {
         "base_score": base_score,
