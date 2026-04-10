@@ -115,24 +115,21 @@ def extract_private_facts_lane_closure(criteria_list):
     return facts
 # Drive into the roundabout_private_facats extracts
 def extract_private_facts_roundabout_merge_conflict(criteria_list):
-    """
-    大转盘极端交互场景的私有事实提取
-    """
     facts = {
         "decelerate_response": False,
-        "safe_merge": False,
         "yield_convoy": False,
+        "safe_pass": False,
     }
 
     for criterion in criteria_list:
         if criterion.name == "RoundaboutDecelerateCriterion":
-            facts["decelerate_response"] = (criterion.test_status == "SUCCESS")
-
-        elif criterion.name == "RoundaboutSafeMergeCriterion":
-            facts["safe_merge"] = (criterion.test_status == "SUCCESS")
+            facts["decelerate_response"] = (criterion.decelerate_status == "SUCCESS")
 
         elif criterion.name == "RoundaboutYieldConvoyCriterion":
-            facts["yield_convoy"] = (criterion.test_status == "SUCCESS")
+            facts["yield_convoy"] = (criterion.yield_status == "SUCCESS")
+
+        elif criterion.name == "RoundaboutSafePassCriterion":
+            facts["safe_pass"] = (criterion.safe_pass_status == "SUCCESS")
 
     return facts
 # Four students crossing the road_private_facats extracts

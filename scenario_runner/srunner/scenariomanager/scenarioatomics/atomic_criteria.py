@@ -3414,124 +3414,193 @@ class RoutePassCompletionTest(Criterion):
 # ==========================Drive into the roundabout criterion==========================
 class RoundaboutDecelerateCriterion(Criterion):
     """
-    条件1：识别并减速 (55分)
-    自车在即将进入大转盘时 (Y轴 25~45 之间)，车速需降至 8 m/s 以下。
+    检测 ego 在接近 original_adversary 时是否出现明确减速/制动响应
     """
-    def __init__(self, actor, name="RoundaboutDecelerateCriterion", terminate_on_failure=False):
+    def __init__(
+        self,
+        actor,
+        adversary,
+        name="RoundaboutDecelerateCriterion",
+        trigger_distance=18.0,
+        speed_drop_ratio=0.75,
+        brake_threshold=0.15,
+        min_brake_duration=0.2,
+        terminate_on_failure=False
+    ):
         super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
-        self.test_status = "FAILURE"  # 默认失败，直到检测到有效减速动作
+
+        self.adversary = adversary
+        self.trigger_distance = trigger_distance
+        self.speed_drop_ratio = speed_drop_ratio
+        self.brake_threshold = brake_threshold
+        self.min_brake_duration = min_brake_duration
+
+        self._activated = False
+        self._initial_speed = None
+        self._brake_start_time = None
+
+        self.actual_value = 0
+        self.success_value = 1
+        self.decelerate_status = "INIT"
 
     def update(self):
         new_status = py_trees.common.Status.RUNNING
-        if not self.actor or not self.actor.is_alive:
+
+        if not self.actor or not self.adversary:
             return new_status
 
         ego_loc = self.actor.get_location()
-        ego_vel = self.actor.get_velocity()
-        ego_speed = math.hypot(ego_vel.x, ego_vel.y)
+        adv_loc = self.adversary.get_location()
+        distance = ego_loc.distance(adv_loc)
 
-        # 在减速预备区判断车速
-        if 25.0 < ego_loc.y < 45.0:
-            if ego_speed < 8.0:
-                self.test_status = "SUCCESS"
-                
-        return new_status
+        ego_speed = get_speed(self.actor)
+        control = self.actor.get_control()
+        current_time = GameTime.get_time()
 
-class RoundaboutSafeMergeCriterion(Criterion):
-    """
-    条件2：进行安全汇入 (20分)
-    自车不与大转盘外圈快速车发生危险接近 (距离需保持在 4.9m 以上)。
-    """
-    def __init__(self, actor, adversary, name="RoundaboutSafeMergeCriterion", terminate_on_failure=False):
-        super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
-        self.adversary = adversary
-        self.test_status = "SUCCESS"  # 默认成功，一旦发生危险靠近则判定失败
+        # 进入冲突监测区时开始记录
+        if not self._activated and distance <= self.trigger_distance:
+            self._activated = True
+            self._initial_speed = ego_speed
 
-
-    def update(self):
-        new_status = py_trees.common.Status.RUNNING
-        if self.test_status == "FAILURE":
+        if not self._activated:
             return new_status
 
-        if self.actor and self.adversary and self.adversary.is_alive:
-            ego_loc = self.actor.get_location()
-            adv_loc = self.adversary.get_location()
-            dist_to_adv = math.hypot(ego_loc.x - adv_loc.x, ego_loc.y - adv_loc.y)
-            
-            if dist_to_adv < 4.9:
-                self.test_status = "FAILURE"
-                
+        # 条件1：明确制动
+        if control.brake >= self.brake_threshold:
+            if self._brake_start_time is None:
+                self._brake_start_time = current_time
+            brake_duration = current_time - self._brake_start_time
+            if brake_duration >= self.min_brake_duration:
+                self.actual_value = 1
+                self.decelerate_status = "SUCCESS"
+                return py_trees.common.Status.SUCCESS
+        else:
+            self._brake_start_time = None
+
         return new_status
+
 
 class RoundaboutYieldConvoyCriterion(Criterion):
     """
-    条件3：让行内圈车队 (25分)
-    修改：每0.5秒打印一次当前累计的等待时间
+    检测 ego 在车队经过期间是否进行了让行：
+    当 ego 接近合流区后，若车队车辆仍在 ego 前方附近，
+    ego 需要保持低速/停车，直到至少若干辆 convoy 先行通过。
     """
-    def __init__(self, actor, convoy_actors, name="RoundaboutYieldConvoyCriterion", terminate_on_failure=False):
-        super(RoundaboutYieldConvoyCriterion, self).__init__(name, actor, terminate_on_failure)
-        
-        self.actor = actor
+    def __init__(
+        self,
+        actor,
+        convoy_actors,
+        name="RoundaboutYieldConvoyCriterion",
+        merge_conflict_center=carla.Location(x=5.0, y=23.0, z=0.0),
+        activation_radius=20.0,
+        convoy_conflict_radius=12.0,
+        ego_low_speed_threshold=2.0,
+        required_pass_count=2,
+        terminate_on_failure=False
+    ):
+        super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
+
         self.convoy_actors = convoy_actors
-        self._center_loc = (6.7, 17.0)
-        self._entry_threshold = 4.0
-        self._required_wait = 12.0
-        
-        self.has_entered_inner = False
-        self.start_move_time = None
-        self.test_status = "SUCCESS" 
-        
-        # 新增：用于控制打印频率的变量
-        self._last_print_time = 0.0
-        self._print_interval = 0.5 
+        self.merge_conflict_center = merge_conflict_center
+        self.activation_radius = activation_radius
+        self.convoy_conflict_radius = convoy_conflict_radius
+        self.ego_low_speed_threshold = ego_low_speed_threshold
+        self.required_pass_count = required_pass_count
+
+        self._activated = False
+        self._yielding_observed = False
+        self._passed_ids = set()
+
+        self.actual_value = 0
+        self.success_value = 1
+        self.yield_status = "INIT"
 
     def update(self):
         new_status = py_trees.common.Status.RUNNING
-        if self.test_status == "FAILURE" and self.has_entered_inner:
+
+        if not self.actor or not self.convoy_actors:
             return new_status
 
-        world = self.actor.get_world()
-        snapshot = world.get_snapshot()
-        current_sim_time = snapshot.timestamp.elapsed_seconds
-
-        # 1. 监测车队启动
-        if self.start_move_time is None and self.convoy_actors:
-            first_veh = self.convoy_actors[0]
-            if first_veh and first_veh.is_alive:
-                vel = first_veh.get_velocity()
-                if math.hypot(vel.x, vel.y) > 0.5:
-                    self.start_move_time = current_sim_time
-                    print(f"\033[94m[YieldConvoy] 车队已启动，开始计时...\033[0m")
-
-        # 2. 定时打印逻辑 (每 0.5 秒一次)
-        if self.start_move_time is not None and not self.has_entered_inner:
-            elapsed_so_far = current_sim_time - self.start_move_time
-            if current_sim_time - self._last_print_time >= self._print_interval:
-                print(f"[YieldConvoy] 已等待时间: {elapsed_so_far:.1f}s / {self._required_wait}s")
-                self._last_print_time = current_sim_time
-
-        # 3. 判定位置
         ego_loc = self.actor.get_location()
-        dist_to_center = math.hypot(ego_loc.x - self._center_loc[0], 
-                                    ego_loc.y - self._center_loc[1])
+        ego_speed = get_speed(self.actor)
 
-        # 4. 判定切入时刻
-        if dist_to_center < self._entry_threshold and not self.has_entered_inner:
-            self.has_entered_inner = True
-            
-            if self.start_move_time is None:
-                self.test_status = "FAILURE"
-                print("\033[91m[YieldConvoy] 失败：车队未动，自车抢行入圈！\033[0m")
-            else:
-                final_elapsed = current_sim_time - self.start_move_time
-                if final_elapsed < self._required_wait:
-                    self.test_status = "FAILURE"
-                    print(f"\033[91m[YieldConvoy] 失败：最终等待 {final_elapsed:.2f}s < {self._required_wait}s\033[0m")
-                else:
-                    self.test_status = "SUCCESS"
-                    print(f"\033[92m[YieldConvoy] 成功：最终等待 {final_elapsed:.2f}s >= {self._required_wait}s\033[0m")
-                                
+        # ego 接近环岛合流区后启动检测
+        if not self._activated:
+            if ego_loc.distance(self.merge_conflict_center) <= self.activation_radius:
+                self._activated = True
+
+        if not self._activated:
+            return new_status
+
+        # 统计仍在冲突区附近的车队车辆
+        active_convoy = []
+        for vehicle in self.convoy_actors:
+            if vehicle is None or (hasattr(vehicle, "is_alive") and not vehicle.is_alive):
+                continue
+
+            loc = vehicle.get_location()
+            if loc.distance(self.merge_conflict_center) <= self.convoy_conflict_radius:
+                active_convoy.append(vehicle)
+
+            # 已经通过 ego 前方并离开冲突区，可记为已放行通过
+            # 这里用 y 更稳，因为你的 ego 基本沿 y 负方向行驶
+            if loc.y < ego_loc.y - 2.0:
+                self._passed_ids.add(vehicle.id)
+
+        # 只要 ego 在车队仍占据冲突区时明显低速，就视为发生过让行
+        if len(active_convoy) > 0 and ego_speed <= self.ego_low_speed_threshold:
+            self._yielding_observed = True
+
+        # 发生过让行，且至少让若干辆车先通过，则成功
+        if self._yielding_observed and len(self._passed_ids) >= self.required_pass_count:
+            self.actual_value = 1
+            self.yield_status = "SUCCESS"
+            return py_trees.common.Status.SUCCESS
+
         return new_status
+
+
+class RoundaboutSafePassCriterion(Criterion):
+    """
+    检测 ego 在完成减速/让行后，是否恢复通行并安全到达终点附近
+    """
+    def __init__(
+        self,
+        actor,
+        goal_location,
+        name="RoundaboutSafePassCriterion",
+        goal_dist_threshold=6.0,
+        min_resume_speed=2.0,
+        terminate_on_failure=False
+    ):
+        super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
+
+        self.goal_location = goal_location
+        self.goal_dist_threshold = goal_dist_threshold
+        self.min_resume_speed = min_resume_speed
+
+        self.actual_value = 0
+        self.success_value = 1
+        self.safe_pass_status = "INIT"
+
+    def update(self):
+        new_status = py_trees.common.Status.RUNNING
+
+        if not self.actor:
+            return new_status
+
+        ego_loc = self.actor.get_location()
+        ego_speed = get_speed(self.actor)
+
+        dist_to_goal = ego_loc.distance(self.goal_location)
+
+        if dist_to_goal <= self.goal_dist_threshold and ego_speed >= self.min_resume_speed:
+            self.actual_value = 1
+            self.safe_pass_status = "SUCCESS"
+            return py_trees.common.Status.SUCCESS
+
+        return new_status
+
 # ==========================Four students crossing the road criterion==========================
 class ScooterDecelerateCriterion(Criterion):
     """Check whether the ego starts a stable slowdown when approaching the occluding scooter."""

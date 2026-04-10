@@ -14,8 +14,8 @@ from srunner.scenariomanager.scenarioatomics.atomic_trigger_conditions import (
 from srunner.scenariomanager.scenarioatomics.atomic_criteria import (
     CollisionTest,
     RoundaboutDecelerateCriterion,
-    RoundaboutSafeMergeCriterion,
     RoundaboutYieldConvoyCriterion,
+    RoundaboutSafePassCriterion,
 )
 
 
@@ -53,7 +53,7 @@ class RoundaboutMergeConflict(BasicScenario):
             config.other_parameters.get("adversary_intitial_speed", {}).get("value", 2.0)
         )
         self._chedui_speed = 5.0
-        self._num_convoy_vehicles = 6
+        self._num_convoy_vehicles = 5
 
         manual_adversary_waypoints = [
             carla.Location(x=-0.17, y=23.48, z=0.00),
@@ -362,14 +362,37 @@ class RoundaboutMergeConflict(BasicScenario):
         ego = self.ego_vehicles[0]
         adversary = self.other_actors[1]
 
-        criteria.append(RoundaboutDecelerateCriterion(actor=ego))
-        criteria.append(RoundaboutSafeMergeCriterion(actor=ego, adversary=adversary))
-
-        yield_criterion = RoundaboutYieldConvoyCriterion(
-            actor=self.ego_vehicles[0],
-            convoy_actors=self.convoy_actors
+        criteria.append(
+            RoundaboutDecelerateCriterion(
+                actor=ego,
+                adversary=adversary,
+                trigger_distance=20.0,
+                speed_drop_ratio=0.75,
+                brake_threshold=0.15,
+                min_brake_duration=0.2
+            )
         )
-        criteria.append(yield_criterion)
+
+        criteria.append(
+            RoundaboutYieldConvoyCriterion(
+                actor=ego,
+                convoy_actors=self.convoy_actors,
+                merge_conflict_center=carla.Location(x=5.0, y=23.0, z=0.0),
+                activation_radius=20.0,
+                convoy_conflict_radius=12.0,
+                ego_low_speed_threshold=2.0,
+                required_pass_count=2
+            )
+        )
+
+        criteria.append(
+            RoundaboutSafePassCriterion(
+                actor=ego,
+                goal_location=carla.Location(x=3.7, y=-45.3, z=0.0),
+                goal_dist_threshold=6.0,
+                min_resume_speed=2.0
+            )
+        )
 
         return criteria
 
