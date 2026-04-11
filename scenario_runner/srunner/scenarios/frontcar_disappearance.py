@@ -87,7 +87,7 @@ class CarDisappearDiagonalAccident(BasicScenario):
         self._distance_lane_change = 20.0 # 变道过程的纵向距离
 
         # phase3 变道后继续前进的距离
-        self.phase3_drive_distance = 100.0
+        self.phase3_drive_distance = 200.0
 
         super().__init__(
             "CarDisappearDiagonalAccident",
