@@ -241,7 +241,24 @@ def extract_private_facts_reverse_vehicle(criteria_list):
     return facts
 
 # crazy motor_private_facats extracts
+def extract_private_facts_crazy_bike(criteria_list):
+    facts = {
+        "decelerate_response": False,     
+        "no_collision": False,          
+        "resume_route": False,         
+    }
 
+    for criterion in criteria_list:
+        if criterion.name == "CrazyMotorDecelerateCriterion":
+            facts["decelerate_response"] = (criterion.test_status == "SUCCESS")
+
+        elif criterion.name == "CrazyMotorSafeBypassCriterion":
+            facts["no_collision"] = (criterion.test_status == "SUCCESS")
+
+        elif criterion.name == "CrazyMotorResumeCriterion":
+            facts["resume_route"] = (criterion.test_status == "SUCCESS")
+
+    return facts
 # Blind spot hidden car_private_facats extracts
 def extract_private_facts_left_turn(criteria_list):
     facts = {
