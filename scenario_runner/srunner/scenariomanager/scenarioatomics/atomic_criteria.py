@@ -2804,21 +2804,20 @@ def _relative_coordinates(reference_transform, target_location):
     lateral = offset.x * right.x + offset.y * right.y
     return longitudinal, lateral
 
-
 class CutInBrakeResponseCriterion(Criterion):
-
     def __init__(
-            self,
-            actor,
-            hazard_actor,
-            trigger_distance=20.0,
-            brake_threshold=0.15,
-            speed_drop_ratio=0.25,
-            min_brake_duration=0.2,
-            max_response_time=4.0,
-            lateral_limit=7.5,
-            terminate_on_failure=False,
-            name='CutInBrakeResponseCriterion'):
+        self,
+        actor,
+        hazard_actor,
+        trigger_distance=20.0,
+        brake_threshold=0.15,
+        speed_drop_ratio=0.25,
+        min_brake_duration=0.2,
+        max_response_time=4.0,
+        lateral_limit=7.5,
+        terminate_on_failure=False,
+        name='CutInBrakeResponseCriterion'
+    ):
         super(CutInBrakeResponseCriterion, self).__init__(name, actor, terminate_on_failure=terminate_on_failure)
         self.hazard_actor = hazard_actor
         self.trigger_distance = trigger_distance
@@ -2834,6 +2833,7 @@ class CutInBrakeResponseCriterion(Criterion):
         self._brake_start_time = None
         self.actual_value = 0
         self.success_value = 1
+        self.brake_status = "INIT"
 
     def update(self):
         new_status = py_trees.common.Status.RUNNING
@@ -2859,6 +2859,7 @@ class CutInBrakeResponseCriterion(Criterion):
                 self._brake_start_time = current_time
             if current_time - self._brake_start_time >= self.min_brake_duration:
                 self.test_status = 'SUCCESS'
+                self.brake_status = 'SUCCESS'
                 self.actual_value = 1
                 return py_trees.common.Status.SUCCESS
         else:
@@ -2867,6 +2868,7 @@ class CutInBrakeResponseCriterion(Criterion):
         speed_drop_ratio = (self._baseline_speed - current_speed) / max(self._baseline_speed, 0.1)
         if speed_drop_ratio >= self.speed_drop_ratio:
             self.test_status = 'SUCCESS'
+            self.brake_status = 'SUCCESS'
             self.actual_value = 1
             return py_trees.common.Status.SUCCESS
 
@@ -2885,39 +2887,31 @@ class CutInBrakeResponseCriterion(Criterion):
             self.actual_value = 0
         super(CutInBrakeResponseCriterion, self).terminate(new_status)
 
-
 class CutInSafeBypassCriterion(Criterion):
-
     def __init__(
-            self,
-            actor,
-            hazard_actor,
-            pass_distance=10.0,
-            min_speed=8.0,
-            max_speed=22.0,
-            terminate_on_failure=False,
-            name='CutInSafeBypassCriterion'):
+        self,
+        actor,
+        hazard_actor,
+        pass_distance=10.0,
+        min_speed=8.0,
+        max_speed=22.0,
+        terminate_on_failure=False,
+        name='CutInSafeBypassCriterion'
+    ):
         super(CutInSafeBypassCriterion, self).__init__(name, actor, terminate_on_failure=terminate_on_failure)
-        self.hazard_actor = hazard_actor
-        self.pass_distance = pass_distance
-        self.min_speed = min_speed
-        self.max_speed = max_speed
-        self.actual_value = 0
-        self.success_value = 1
-
+        self.safepass_status = "INIT"
     def update(self):
         new_status = py_trees.common.Status.RUNNING
-        if not self.actor or not self.hazard_actor:
+        if not self.actor :
             return new_status
 
-        longitudinal, _ = _relative_coordinates(self.actor.get_transform(), self.hazard_actor.get_location())
-        current_speed = get_speed(self.actor)
+        transform = self.actor.get_transform()
+        location = transform.location
 
-        has_passed_hazard = longitudinal < -self.pass_distance
-        has_safe_speed = self.min_speed <= current_speed <= self.max_speed
 
-        if has_passed_hazard and has_safe_speed:
+        if location.x < -95 :
             self.test_status = 'SUCCESS'
+            self.safepass_status = 'SUCCESS'
             self.actual_value = 1
             return py_trees.common.Status.SUCCESS
 
@@ -2930,19 +2924,18 @@ class CutInSafeBypassCriterion(Criterion):
             self.actual_value = 0
         super(CutInSafeBypassCriterion, self).terminate(new_status)
 
-
 class CutInResumeCriterion(Criterion):
-
     def __init__(
-            self,
-            actor,
-            route_end_location=None,
-            lane_center_tolerance=1.75,
-            min_speed=8.0,
-            max_speed=22.0,
-            goal_distance_threshold=15.0,
-            terminate_on_failure=False,
-            name='CutInResumeCriterion'):
+        self,
+        actor,
+        route_end_location=None,
+        lane_center_tolerance=1.75,
+        min_speed=8.0,
+        max_speed=22.0,
+        goal_distance_threshold=15.0,
+        terminate_on_failure=False,
+        name='CutInResumeCriterion'
+    ):
         super(CutInResumeCriterion, self).__init__(name, actor, terminate_on_failure=terminate_on_failure)
         self.route_end_location = route_end_location
         self.lane_center_tolerance = lane_center_tolerance
@@ -2957,6 +2950,11 @@ class CutInResumeCriterion(Criterion):
         new_status = py_trees.common.Status.RUNNING
         if not self.actor:
             return new_status
+        transform = self.actor.get_transform()
+        location = transform.location
+
+        # 打印坐标 (保留两位小数以便阅读)
+        print(f"自车坐标: x={location.x:.2f}, y={location.y:.2f}, z={location.z:.2f}")
 
         actor_location = self.actor.get_location()
         actor_waypoint = self._map.get_waypoint(

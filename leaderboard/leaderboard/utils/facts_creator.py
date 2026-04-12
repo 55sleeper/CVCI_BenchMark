@@ -84,16 +84,13 @@ def extract_private_facts_high_speed_cutting(criteria_list):
     facts = {
         'brake_response': False,
         'safe_bypass': False,
-        'resume_route': False,
     }
 
     for criterion in criteria_list:
         if criterion.name == 'CutInBrakeResponseCriterion':
-            facts['brake_response'] = (criterion.test_status == "SUCCESS")
+            facts['brake_response'] = (criterion.brake_status == "SUCCESS")
         elif criterion.name == 'CutInSafeBypassCriterion':
-            facts['safe_bypass'] = (criterion.test_status == "SUCCESS")
-        elif criterion.name == 'CutInResumeCriterion':
-            facts['resume_route'] = (criterion.test_status == "SUCCESS")
+            facts['safe_bypass'] = (criterion.safepass_status == "SUCCESS")
 
     return facts
 

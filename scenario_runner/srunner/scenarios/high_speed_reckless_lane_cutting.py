@@ -4,7 +4,9 @@ import py_trees
 import carla
 import numpy as np
 
-from agents.tools.misc import get_speed
+def get_speed(actor):
+    vel = actor.get_velocity()
+    return math.sqrt(vel.x ** 2 + vel.y ** 2 + vel.z ** 2)
 
 from srunner.scenarios.basic_scenario import BasicScenario
 from srunner.scenariomanager.carla_data_provider import CarlaDataProvider
@@ -19,7 +21,14 @@ from srunner.scenariomanager.scenarioatomics.atomic_trigger_conditions import (
     InTriggerRegion,
     DriveDistance
 )
-from srunner.scenariomanager.scenarioatomics.atomic_criteria import Criterion, WrongLaneTest
+from srunner.scenariomanager.scenarioatomics.atomic_criteria import (
+    Criterion, 
+    WrongLaneTest, 
+    CutInBrakeResponseCriterion, 
+    CutInSafeBypassCriterion, 
+    CutInResumeCriterion,
+    MinTTCAutoCriterion
+    )
 
 
 def _read_param(config, name, default_value, cast_type=float):
@@ -27,199 +36,11 @@ def _read_param(config, name, default_value, cast_type=float):
         return default_value
     return cast_type(config.other_parameters[name].get('value', default_value))
 
-
-def _relative_coordinates(reference_transform, target_location):
-    offset = target_location - reference_transform.location
-    forward = reference_transform.get_forward_vector()
-    right = reference_transform.get_right_vector()
-
-    longitudinal = offset.x * forward.x + offset.y * forward.y
-    lateral = offset.x * right.x + offset.y * right.y
-    return longitudinal, lateral
-
-
 def _get_trigger_location(config):
     if getattr(config, 'trigger_points', None) and config.trigger_points[0]:
         return config.trigger_points[0].location
     return None
 
-
-class CutInBrakeResponseCriterion(Criterion):
-    def __init__(
-        self,
-        actor,
-        hazard_actor,
-        trigger_distance=20.0,
-        brake_threshold=0.15,
-        speed_drop_ratio=0.25,
-        min_brake_duration=0.2,
-        max_response_time=4.0,
-        lateral_limit=7.5,
-        terminate_on_failure=False,
-        name='CutInBrakeResponseCriterion'
-    ):
-        super(CutInBrakeResponseCriterion, self).__init__(name, actor, terminate_on_failure=terminate_on_failure)
-        self.hazard_actor = hazard_actor
-        self.trigger_distance = trigger_distance
-        self.brake_threshold = brake_threshold
-        self.speed_drop_ratio = speed_drop_ratio
-        self.min_brake_duration = min_brake_duration
-        self.max_response_time = max_response_time
-        self.lateral_limit = lateral_limit
-
-        self._activated = False
-        self._start_time = None
-        self._baseline_speed = None
-        self._brake_start_time = None
-        self.actual_value = 0
-        self.success_value = 1
-
-    def update(self):
-        new_status = py_trees.common.Status.RUNNING
-        if not self.actor or not self.hazard_actor:
-            return new_status
-
-        longitudinal, lateral = _relative_coordinates(self.actor.get_transform(), self.hazard_actor.get_location())
-        if not self._activated and 0.0 < longitudinal <= self.trigger_distance and abs(lateral) <= self.lateral_limit:
-            self._activated = True
-            self._start_time = GameTime.get_time()
-            self._baseline_speed = max(get_speed(self.actor), 0.1)
-
-        if not self._activated:
-            self.test_status = 'RUNNING'
-            return new_status
-
-        current_time = GameTime.get_time()
-        current_speed = get_speed(self.actor)
-        control = self.actor.get_control()
-
-        if control.brake >= self.brake_threshold:
-            if self._brake_start_time is None:
-                self._brake_start_time = current_time
-            if current_time - self._brake_start_time >= self.min_brake_duration:
-                self.test_status = 'SUCCESS'
-                self.actual_value = 1
-                return py_trees.common.Status.SUCCESS
-        else:
-            self._brake_start_time = None
-
-        speed_drop_ratio = (self._baseline_speed - current_speed) / max(self._baseline_speed, 0.1)
-        if speed_drop_ratio >= self.speed_drop_ratio:
-            self.test_status = 'SUCCESS'
-            self.actual_value = 1
-            return py_trees.common.Status.SUCCESS
-
-        if current_time - self._start_time > self.max_response_time:
-            self.test_status = 'FAILURE'
-            self.actual_value = 0
-            if self._terminate_on_failure:
-                return py_trees.common.Status.FAILURE
-
-        self.test_status = 'RUNNING'
-        return new_status
-
-    def terminate(self, new_status):
-        if self.test_status != 'SUCCESS':
-            self.test_status = 'FAILURE'
-            self.actual_value = 0
-        super(CutInBrakeResponseCriterion, self).terminate(new_status)
-
-
-class CutInSafeRecoveryCriterion(Criterion):
-    def __init__(
-        self,
-        actor,
-        hazard_actor,
-        route_end_location=None,
-        pass_distance=10.0,
-        min_speed=8.0,
-        max_speed=22.0,
-        lane_center_tolerance=1.75,
-        goal_distance_threshold=15.0,
-        terminate_on_failure=False,
-        name='CutInSafeRecoveryCriterion'
-    ):
-        super(CutInSafeRecoveryCriterion, self).__init__(name, actor, terminate_on_failure=terminate_on_failure)
-        self.hazard_actor = hazard_actor
-        self.route_end_location = route_end_location
-        self.pass_distance = pass_distance
-        self.min_speed = min_speed
-        self.max_speed = max_speed
-        self.lane_center_tolerance = lane_center_tolerance
-        self.goal_distance_threshold = goal_distance_threshold
-        self._map = CarlaDataProvider.get_map()
-        self.actual_value = 0
-        self.success_value = 1
-
-    def update(self):
-        new_status = py_trees.common.Status.RUNNING
-        if not self.actor or not self.hazard_actor:
-            return new_status
-
-        actor_location = self.actor.get_location()
-        actor_waypoint = self._map.get_waypoint(
-            actor_location,
-            project_to_road=True,
-            lane_type=carla.LaneType.Driving
-        )
-        if actor_waypoint is None:
-            self.test_status = 'RUNNING'
-            return new_status
-
-        longitudinal, _ = _relative_coordinates(self.actor.get_transform(), self.hazard_actor.get_location())
-        current_speed = get_speed(self.actor)
-        lane_center_error = actor_location.distance(actor_waypoint.transform.location)
-        reached_goal_zone = False
-
-        if self.route_end_location is not None:
-            reached_goal_zone = actor_location.distance(self.route_end_location) <= self.goal_distance_threshold
-
-        has_recovered = longitudinal < -self.pass_distance and lane_center_error <= self.lane_center_tolerance
-        has_safe_speed = self.min_speed <= current_speed <= self.max_speed
-
-        if (has_recovered or reached_goal_zone) and has_safe_speed:
-            self.test_status = 'SUCCESS'
-            self.actual_value = 1
-            return py_trees.common.Status.SUCCESS
-
-        self.test_status = 'RUNNING'
-        return new_status
-
-    def terminate(self, new_status):
-        if self.test_status != 'SUCCESS':
-            self.test_status = 'FAILURE'
-            self.actual_value = 0
-        super(CutInSafeRecoveryCriterion, self).terminate(new_status)
-
-# class EgoSpeedControl(py_trees.behaviour.Behaviour):
-#     """
-#     二合一节点：管理主车速度。若检测到人为接管（刹车/油门 > 0.05），则停止控制并返回 SUCCESS。
-#     """
-#     def __init__(self, ego_vehicle, target_velocity=10.0, name="EgoSpeedControl"):
-#         super(EgoSpeedControl, self).__init__(name)
-#         self.ego_vehicle = ego_vehicle
-#         self.target_velocity = target_velocity
-#         self._taken_over = False
-
-#     def update(self):
-#         if not self.ego_vehicle or not self.ego_vehicle.is_alive:
-#             return py_trees.common.Status.FAILURE
-        
-#         if self._taken_over:
-#             return py_trees.common.Status.SUCCESS
-
-#         control = self.ego_vehicle.get_control()
-#         if control.throttle > 0.05 or control.brake > 0.05:
-#             self._taken_over = True
-#             return py_trees.common.Status.SUCCESS
-
-#         # 保持目标速度
-#         transform = self.ego_vehicle.get_transform()
-#         yaw = math.radians(transform.rotation.yaw)
-#         velocity = carla.Vector3D(math.cos(yaw) * self.target_velocity, 
-#                                   math.sin(yaw) * self.target_velocity, 0)
-#         self.ego_vehicle.set_target_velocity(velocity)
-#         return py_trees.common.Status.RUNNING
 
 class EgoSpeedControl(py_trees.behaviour.Behaviour):
     """
@@ -305,75 +126,6 @@ class EgoSpeedControl(py_trees.behaviour.Behaviour):
 
         self.ego_vehicle.apply_control(new_control)
         return py_trees.common.Status.RUNNING
-
-class MinTTCAutoCriterion(Criterion):
-    def __init__(
-        self,
-        actor,
-        other_actors,
-        distance_threshold=40.0,
-        forward_angle_deg=140.0,
-        safety_buffer=4.0,
-        terminate_on_failure=False,
-        name='MinTTCAutoCriterion'
-    ):
-        super(MinTTCAutoCriterion, self).__init__(name, actor, terminate_on_failure=terminate_on_failure)
-        self.other_actors = other_actors
-        self.distance_threshold = distance_threshold
-        self.forward_angle_deg = forward_angle_deg
-        self.safety_buffer = safety_buffer
-        self.actual_value = float('inf')
-        self.success_value = 2.0
-        self.units = 's'
-
-    def update(self):
-        new_status = py_trees.common.Status.RUNNING
-        if not self.actor:
-            return new_status
-
-        ego_location = self.actor.get_location()
-        ego_transform = self.actor.get_transform()
-        ego_velocity = self.actor.get_velocity()
-        ego_forward = ego_transform.get_forward_vector()
-        ego_forward_norm = math.sqrt(ego_forward.x * ego_forward.x + ego_forward.y * ego_forward.y)
-
-        min_ttc = self.actual_value
-        for other_actor in self.other_actors:
-            if not other_actor or not other_actor.is_alive or other_actor.id == self.actor.id:
-                continue
-
-            other_location = other_actor.get_location()
-            offset_x = other_location.x - ego_location.x
-            offset_y = other_location.y - ego_location.y
-            distance = math.sqrt(offset_x * offset_x + offset_y * offset_y)
-            if distance <= 0.1 or distance > self.distance_threshold:
-                continue
-
-            rel_norm = math.sqrt(offset_x * offset_x + offset_y * offset_y)
-            cosine = ((ego_forward.x * offset_x) + (ego_forward.y * offset_y)) / max(ego_forward_norm * rel_norm, 1e-6)
-            cosine = max(min(cosine, 1.0), -1.0)
-            angle_deg = math.degrees(math.acos(cosine))
-            if angle_deg > self.forward_angle_deg / 2.0:
-                continue
-
-            rel_dir_x = offset_x / rel_norm
-            rel_dir_y = offset_y / rel_norm
-            other_velocity = other_actor.get_velocity()
-            closing_speed = (
-                (ego_velocity.x - other_velocity.x) * rel_dir_x +
-                (ego_velocity.y - other_velocity.y) * rel_dir_y
-            )
-            if closing_speed <= 0.05:
-                continue
-
-            ttc = max(distance - self.safety_buffer, 0.1) / closing_speed
-            min_ttc = min(min_ttc, ttc)
-
-        self.actual_value = min_ttc
-        self.test_status = 'SUCCESS'
-        return new_status
-
-
 
 class CutInCollision(BasicScenario):
     """
@@ -610,23 +362,13 @@ class CutInCollision(BasicScenario):
                 speed_drop_ratio=self._speed_drop_ratio,
                 max_response_time=self._response_timeout,
             ),
-            CutInSafeRecoveryCriterion(
+            CutInSafeBypassCriterion(
                 actor=ego,
                 hazard_actor=cutin_vehicle,
-                route_end_location=self._route_end_location,
                 pass_distance=self._pass_distance,
                 min_speed=self._recovery_min_speed,
                 max_speed=self._recovery_max_speed,
-                lane_center_tolerance=self._lane_center_tolerance,
-                goal_distance_threshold=self._goal_distance_threshold,
-            ),
-            MinTTCAutoCriterion(
-                actor=ego,
-                other_actors=[straight_vehicle, cutin_vehicle],
-                distance_threshold=max(self._trigger_distance + 10.0, 40.0),
-                forward_angle_deg=140.0,
-            ),
-            WrongLaneTest(ego),
+            )
         ]
 
     def __del__(self):
