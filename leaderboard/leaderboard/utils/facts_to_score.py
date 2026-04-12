@@ -109,7 +109,7 @@ def score_high_speed_cutting(common_facts, private_facts):
             'safe_bypass': 1.0 if private_facts.get('safe_bypass') else 0.0,
             'resume_route': 1.0 if private_facts.get('resume_route') else 0.0,
             'safe_progress': 20.0 if has_safe_progress else 0.0,
-        }
+        }}
 
 # Highway accident vehicle
 def score_high_speed_accident(common_facts, private_facts):
