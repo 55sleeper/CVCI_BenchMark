@@ -100,7 +100,6 @@ def score_high_speed_cutting(common_facts, private_facts):
         'gate': round(gate, 6),
         'penalty': round(penalty, 6),
         'final_score': round(final_score, 6)}
-
 # Highway accident vehicle
 def score_high_speed_accident(common_facts, private_facts):
     """计算高速深夜事故场景得分"""
@@ -130,20 +129,20 @@ def compute_lane_closure_score(common_facts, private_facts):
     base_score = 0.0
 
     # 1. 减速得分 (90分)
-    if private_facts.get("deceleration_detected", False) and not common_facts.get("collision", False):
-        base_score += 90.0  # 识别障碍并减速避撞
+    if private_facts.get("deceleration_detected", False) :
+        base_score += 80.0  # 识别障碍并减速避撞
         # print(f"[DEBUG Score] Added 90 for deceleration & collision free", flush=True)
 
     # 2. 路段通过得分 (10分) - 按完成度比例给分
     distance_traveled = private_facts.get("distance_traveled", 0.0)
-    target_distance = 95.0  # 目标距离 95m (过卡车40m)
+    target_distance = 64  # 目标距离 95m (过卡车40m)
     completion_ratio = min(distance_traveled / target_distance, 1.0)
 
     if completion_ratio >= 1.0:
-        base_score += 10.0  # 完成整个路段
+        base_score += 20.0  # 完成整个路段
         # print(f"[DEBUG Score] Added 10 for full route completion ({distance_traveled:.1f}m)", flush=True)
     elif completion_ratio >= 0.5:
-        partial_score = 10.0 * completion_ratio
+        partial_score = 20.0 * completion_ratio
         base_score += partial_score
         # print(f"[DEBUG Score] Added {partial_score:.1f} for partial route completion ({distance_traveled:.1f}m, {completion_ratio*100:.1f}%)", flush=True)
     else:
