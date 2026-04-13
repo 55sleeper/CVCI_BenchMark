@@ -290,11 +290,11 @@ def score_reverse_vehicle(common_facts, private_facts):
 def score_crazy_bike(common_facts, private_facts):
     base_score = 0.0
 
-    if private_facts.get("decelerate_response", False):
-        base_score += 35.0
-    if private_facts.get("no_collision", False):
-        base_score += 40.0
-    if private_facts.get("resume_route", False):
+    if private_facts["decelerate_response"]:
+        base_score += 55.0
+    if private_facts["no_collision"]:
+        base_score += 20.0
+    if private_facts["resume_route"]:
         base_score += 25.0
 
     gate = compute_gate(common_facts)

@@ -4595,6 +4595,94 @@ class ReverseVehicleResumeCriterion(Criterion):
         return new_status
     
 # ==========================crazy motor criterion==========================
+class CrazyBikeDecelerateCriterion(Criterion):
+    """Check whether ego starts deceleration before getting too close to the cutting-in bike."""
+
+    def __init__(self, actor, bike_actor, name="CrazyBikeDecelerateCriterion",
+                 route_start_location=None, route_end_location=None,
+                 trigger_distance=24.0, latest_reaction_distance=10.0,
+                 min_speed_drop=2.0, brake_threshold=0.15,
+                 min_brake_duration=0.3, pass_buffer=1.5,
+                 terminate_on_failure=False):
+        super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
+        self.bike_actor = bike_actor
+        self.route_start_location = route_start_location
+        self.route_end_location = route_end_location
+        self.trigger_distance = trigger_distance
+        self.latest_reaction_distance = latest_reaction_distance
+        self.min_speed_drop = min_speed_drop
+        self.brake_threshold = brake_threshold
+        self.min_brake_duration = min_brake_duration
+        self.pass_buffer = pass_buffer
+
+        fallback_transform = bike_actor.get_transform() if bike_actor is not None else None
+        self._forward_xy, self._right_xy = _build_route_frame(
+            route_start_location, route_end_location, fallback_transform=fallback_transform)
+
+        self._activated = False
+        self._activation_speed = None
+        self._reaction_start_time = None
+        self._has_valid_deceleration = False
+
+        self.actual_value = 0.0
+        self.success_value = min_speed_drop
+        self.units = "m/s"
+        self.test_status = "FAILURE"
+
+    def update(self):
+        new_status = py_trees.common.Status.RUNNING
+        if not self.actor or not self.bike_actor:
+            return new_status
+
+        if self.test_status == "SUCCESS":
+            return new_status
+
+        ego_loc = self.actor.get_location()
+        bike_loc = self.bike_actor.get_location()
+        longitudinal_dist, _ = _project_to_axis(
+            ego_loc, bike_loc, self._forward_xy, self._right_xy)
+        ego_speed = _get_actor_speed_mps(self.actor)
+        ego_control = self.actor.get_control()
+
+        if not self._activated and 0.0 <= longitudinal_dist <= self.trigger_distance:
+            self._activated = True
+            self._activation_speed = ego_speed
+            self._reaction_start_time = None
+
+        if not self._activated:
+            return new_status
+
+        speed_drop = max(0.0, (self._activation_speed or ego_speed) - ego_speed)
+        self.actual_value = max(self.actual_value, speed_drop)
+
+        reaction_detected = (
+            speed_drop >= self.min_speed_drop or
+            ego_control.brake >= self.brake_threshold
+        )
+
+        if reaction_detected:
+            current_time = GameTime.get_time()
+            if self._reaction_start_time is None:
+                self._reaction_start_time = current_time
+            elif current_time - self._reaction_start_time >= self.min_brake_duration:
+                self._has_valid_deceleration = True
+                self.test_status = "SUCCESS"
+        else:
+            self._reaction_start_time = None
+
+        if longitudinal_dist <= self.latest_reaction_distance and not self._has_valid_deceleration:
+            self.test_status = "FAILURE"
+            if self._terminate_on_failure:
+                return py_trees.common.Status.FAILURE
+            return new_status
+
+        if longitudinal_dist < -self.pass_buffer and not self._has_valid_deceleration:
+            self.test_status = "FAILURE"
+            if self._terminate_on_failure:
+                return py_trees.common.Status.FAILURE
+
+        return new_status
+
 class CrazyBikeNoCollisionCriterion(Criterion):
     """Check whether ego avoids colliding with the cutting-in bike."""
 
@@ -4639,72 +4727,11 @@ class CrazyBikeNoCollisionCriterion(Criterion):
 
     def update(self):
         new_status = py_trees.common.Status.RUNNING
-
-        if self._completed:
-            if self.resume_status == "SUCCESS":
-                return py_trees.common.Status.SUCCESS
+        if self.test_status != "FAILURE":
+            self.test_status = "SUCCESS"
+        elif self._terminate_on_failure:
             return py_trees.common.Status.FAILURE
-
-        if not self.actor:
-            return new_status
-
-        ego_loc = self.actor.get_location()
-        ego_speed = get_actor_speed(self.actor)
-        dist_to_goal = ego_loc.distance(self.goal_location)
-
-        if dist_to_goal <= self.goal_dist_threshold and ego_speed >= self.min_resume_speed:
-            self.resume_status = "SUCCESS"
-            self.actual_value = 1
-            self._completed = True
-            self.was_resumed = True
-            print(f"[恢复通行] ✅ 到达终点")
-            return py_trees.common.Status.SUCCESS
-
         return new_status
-
-class CrazyBikeDecelerateCriterion(Criterion):
-    """Check whether ego starts deceleration before getting too close to the cutting-in bike."""
-
-    def __init__(self, actor, bike_actor, name="CrazyBikeDecelerateCriterion",
-                 route_start_location=None, route_end_location=None,
-                 trigger_distance=24.0, latest_reaction_distance=10.0,
-                 min_speed_drop=2.0, brake_threshold=0.15,
-                 min_brake_duration=0.3, pass_buffer=1.5,
-                 terminate_on_failure=False):
-        super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
-        self.bike_actor = bike_actor
-        self.route_start_location = route_start_location
-        self.route_end_location = route_end_location
-        self.trigger_distance = trigger_distance
-        self.latest_reaction_distance = latest_reaction_distance
-        self.min_speed_drop = min_speed_drop
-        self.brake_threshold = brake_threshold
-        self.min_brake_duration = min_brake_duration
-        self.pass_buffer = pass_buffer
-
-    def update(self):
-
-        ego_loc = self.actor.get_location()
-        current_time = GameTime.get_time()
-
-        # 触发逻辑
-        if not self._activated and ego_loc.y <= self.trigger_y:
-            self._activated = True
-
-        if self._activated and self.test_status != "SUCCESS":
-            control = self.actor.get_control()
-            if control.brake >= self.brake_threshold:
-                if self._brake_start_time is None:
-                    self._brake_start_time = current_time
-                
-                # 判定成功
-                if (current_time - self._brake_start_time) >= self.min_brake_duration:
-                    self.test_status = "SUCCESS" # 记录结果，但不 return SUCCESS
-            else:
-                self._brake_start_time = None
-
-        # 始终返回 RUNNING，确保它能一直 Tick 到底，直到 Parallel 节点整体结束
-        return py_trees.common.Status.RUNNING
 
 class CrazyBikeResumeCriterion(Criterion):
     """Check whether ego safely resumes cruising after passing the bike."""

@@ -141,6 +141,8 @@ class CrazyBikeScenario(BasicScenario):
                 bike_forward.y * self._bike_speed,
                 bike_forward.z * self._bike_speed
             ))
+        else:
+            raise RuntimeError("CrazyBikeScenario adversary actor spawn failed")
 
     def _spawn_actor_with_debug(self, actor_config):
         spawn_transform = actor_config.transform
@@ -249,7 +251,7 @@ class CrazyBikeScenario(BasicScenario):
         criteria = []
         route_start_loc, route_end_loc = self._get_route_anchor_locations()
         if self._bike_actor is None:
-            return criteria
+            raise RuntimeError("CrazyBikeScenario bike actor is None when creating criteria")
 
         criteria.append(CrazyBikeDecelerateCriterion(
             actor=self.ego_vehicles[0],
