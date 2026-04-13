@@ -12,9 +12,9 @@ from srunner.scenariomanager.scenarioatomics.atomic_behaviors import (
     LaneChange,
 )
 from srunner.scenariomanager.scenarioatomics.atomic_criteria import (
-    StaticObstacleSlowDownCriterion,
-    StaticObstacleNoCollisionCriterion,
+    StaticObstacleBrakeSlowDownCriterion,
     StaticObstacleSafePassCriterion,
+    ReachEndPointCriterion
 )
 
 
@@ -282,8 +282,9 @@ class CarDisappearDiagonalAccident(BasicScenario):
         if not self.ego_vehicle or not self.accident_vehicle:
             return criteria
 
+        # 规则1：刹车减速
         criteria.append(
-            StaticObstacleSlowDownCriterion(
+            StaticObstacleBrakeSlowDownCriterion(
                 actor=self.ego_vehicle,
                 hazard_actor=self.accident_vehicle,
                 trigger_distance=15.0,
@@ -291,19 +292,28 @@ class CarDisappearDiagonalAccident(BasicScenario):
                 min_speed_after=5.0,
             )
         )
-        criteria.append(
-            StaticObstacleNoCollisionCriterion(
-                actor=self.ego_vehicle,
-                hazard_actor=self.accident_vehicle,
-            )
-        )
+
+        # 规则2：绕行通过（开过事故车 + 偏移1.5米）
         criteria.append(
             StaticObstacleSafePassCriterion(
                 actor=self.ego_vehicle,
                 hazard_actor=self.accident_vehicle,
+                lateral_safe_threshold=1.5,
                 route_center_y=self.global_y,
             )
         )
+
+        # 规则3：到达终点 (396.2, 42)
+        criteria.append(
+            ReachEndPointCriterion(
+                actor=self.ego_vehicle,
+                end_x=396.2,
+                end_y=42.0,
+                end_z=0.0,
+                distance_threshold=5.0
+            )
+        )
+
         return criteria
 
     def __del__(self):
