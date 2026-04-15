@@ -35,10 +35,64 @@ def extract_common_facts(criteria_list):
     return common_facts
 
 # missing car_private_facats extracts
+def extract_private_facts_frontcar_disappearance(criteria_list):
+    facts = {
+        "slow_down": False,          # 条件1：刹车减速成功
+        "safe_bypass": False,        # 条件2：安全绕行成功
+        "reach_end_point": False     # 条件3：到达终点
+    }
 
+    for criterion in criteria_list:
+        # 减速成功（新规则）
+        if criterion.name == "StaticObstacleSlowDownCriterion":
+            facts["slow_down"] = (criterion.test_status == "SUCCESS")
+
+        # 安全绕行成功（新规则）
+        if criterion.name == "StaticObstacleSafePassCriterion":
+            facts["safe_bypass"] = (criterion.test_status == "SUCCESS")
+
+        # 到达终点成功（新规则）
+        if criterion.name == "ReachEndPointCriterion":
+            facts["reach_end_point"] = (criterion.test_status == "SUCCESS")
+
+    return facts
 # High speed temporary construction_private_facats extracts
+def extract_private_facts_static_barrier(criteria_list):
+    facts = {
+        "barrier_slow_down": False,
+        "detour": False,
+        "reach_goal": False
+    }
 
+    for criterion in criteria_list:
+        # 1. 减速
+        if criterion.name == "BarrierSlowDownCriterion":
+            facts["barrier_slow_down"] = (criterion.test_status == "SUCCESS")
+
+        # 2. 绕行（变道无碰撞）
+        if criterion.name == "BarrierDetourCriterion":
+            facts["detour"] = (criterion.test_status == "SUCCESS")
+
+        # 3. 到达终点
+        if criterion.name == "BarrierReachGoalCriterion":
+            facts["reach_goal"] = (criterion.test_status == "SUCCESS")
+
+    return facts
 # High-speed reckless lane cutting_private_facats extracts
+def extract_private_facts_high_speed_cutting(criteria_list):
+    """提取高速切入场景的私有事实"""
+    facts = {
+        'brake_response': False,
+        'safe_bypass': False,
+    }
+
+    for criterion in criteria_list:
+        if criterion.name == 'CutInBrakeResponseCriterion':
+            facts['brake_response'] = (criterion.brake_status == "SUCCESS")
+        elif criterion.name == 'CutInSafeBypassCriterion':
+            facts['safe_bypass'] = (criterion.safepass_status == "SUCCESS")
+
+    return facts
 
 # Highway accident vehicle_private_facats extracts
 def extract_private_facts_high_speed_accident(criteria_list):
@@ -57,9 +111,47 @@ def extract_private_facts_high_speed_accident(criteria_list):
             facts["resume_route"] = (criterion.test_status == "SUCCESS")
     return facts
 # Trucks encountered during construction_private_facats extracts
+def extract_private_facts_lane_closure(criteria_list):
+    """提取车道封闭场景的私有事实"""
+    facts = {
+        "deceleration_detected": False,  # 识别障碍并减速
+        "speed_reduction": 0.0,          # 减速幅度
+        "distance_traveled": 0.0,        # 行驶距离
+    }
+    for criterion in criteria_list:
+        if criterion.name == "DecelerationForConstructionTest":
 
+            speed_reduction = criterion.actual_value
+            facts["speed_reduction"] = speed_reduction
+
+            # 如果减速 ≥ 30 km/h（认为是有效的减速行为），或者 test_status 是 SUCCESS
+            if speed_reduction >= 30.0 or criterion.test_status == "SUCCESS":
+                facts["deceleration_detected"] = True
+
+            # print(f"[DEBUG Facts Extract] DecelerationForConstructionTest: status={criterion.test_status}, actual_value={criterion.actual_value}, deceleration_detected={facts['deceleration_detected']}", flush=True)
+        elif criterion.name == "RoutePassCompletionTest":
+            facts["distance_traveled"] = criterion.actual_value
+            # print(f"[DEBUG Facts Extract] RoutePassCompletionTest: status={criterion.test_status}, actual_value={criterion.actual_value}", flush=True)
+    return facts
 # Drive into the roundabout_private_facats extracts
+def extract_private_facts_roundabout_merge_conflict(criteria_list):
+    facts = {
+        "decelerate_response": False,
+        "yield_convoy": False,
+        "safe_pass": False,
+    }
 
+    for criterion in criteria_list:
+        if criterion.name == "RoundaboutDecelerateCriterion":
+            facts["decelerate_response"] = (criterion.decelerate_status == "SUCCESS")
+
+        elif criterion.name == "RoundaboutYieldConvoyCriterion":
+            facts["yield_convoy"] = (criterion.yield_status == "SUCCESS")
+
+        elif criterion.name == "RoundaboutSafePassCriterion":
+            facts["safe_pass"] = (criterion.safe_pass_status == "SUCCESS")
+
+    return facts
 # Four students crossing the road_private_facats extracts
 def extract_private_facts_ghost_probe(criteria_root):
     """提取鬼探头场景的私有事实"""
@@ -81,9 +173,49 @@ def extract_private_facts_ghost_probe(criteria_root):
                 facts["pedestrian_resume"] = (criterion.test_status == "SUCCESS")
 
     return facts
+
 # avoid a disabled vehicle_private_facats extracts
+def extract_private_facts_broken_down_vehicle(criteria_list):
+    facts = {
+        "brake_response": False,
+        "safe_bypass": False,
+        "resume_route": False,
+    }
+
+    for criterion in criteria_list:
+        if criterion.name == "BrakeCriterion":
+            facts["brake_response"] = (criterion.test_status == "SUCCESS")
+
+        elif criterion.name == "BypassCriterion":
+            facts["safe_bypass"] = (criterion.test_status == "SUCCESS")
+
+        elif criterion.name == "ResumeCriterion":
+            facts["resume_route"] = (criterion.test_status == "SUCCESS")
+
+    return facts
 
 # Slanted motor and children_private_facats extracts
+def extract_private_facts_ebike_pedestrian_cross(criteria_list):
+    """
+    提取 EbikeAndPedestrianCross 场景的私有事实
+    """
+    facts = {
+        "ebike_decelerate": False,      # 识别电瓶车并减速
+        "pedestrian_stop": False,       # 识别行人并刹车
+        "resume_route": False,          # 离开风险区并恢复通行
+    }
+
+    for criterion in criteria_list:
+        if criterion.name == "EbikeDetectionAndDecelerateCriterion":
+            facts["ebike_decelerate"] = (criterion.test_status == "SUCCESS")
+
+        elif criterion.name == "PedestrianDetectionAndStopCriterion":
+            facts["pedestrian_stop"] = (criterion.test_status == "SUCCESS")
+
+        elif criterion.name == "ResumeAfterPedestrianCriterion":
+            facts["resume_route"] = (criterion.test_status == "SUCCESS")
+
+    return facts
 
 # reverse vehicle_private_facats extracts
 def extract_private_facts_reverse_vehicle(criteria_list):
@@ -106,20 +238,39 @@ def extract_private_facts_reverse_vehicle(criteria_list):
     return facts
 
 # crazy motor_private_facats extracts
+def extract_private_facts_crazy_bike(criteria_list):
+    facts = {
+        "decelerate_response": False,     
+        "no_collision": False,          
+        "resume_route": False,         
+    }
+
+    for criterion in criteria_list:
+        if criterion.name == "CrazyMotorDecelerateCriterion":
+            facts["decelerate_response"] = (criterion.test_status == "SUCCESS")
+
+        elif criterion.name == "CrazyMotorSafeBypassCriterion":
+            facts["no_collision"] = (criterion.test_status == "SUCCESS")
+
+        elif criterion.name == "CrazyMotorResumeCriterion":
+            facts["resume_route"] = (criterion.test_status == "SUCCESS")
+
+    return facts
 
 # Blind spot hidden car_private_facats extracts
 def extract_private_facts_left_turn(criteria_list):
     facts = {
         "brake_response": False,
         "safe_bypass": False,
-        "resume_route": False,
     }
 
     for criterion in criteria_list:
         if criterion.name == "IntersectionCollisionLeftTurnBrakeCriterion":
-            facts["brake_response"] = (criterion.test_status == "SUCCESS")
+            facts["brake_response"] = (criterion.brake_status == "SUCCESS")
 
         elif criterion.name == "IntersectionCollisionLeftTurnResumeCriterion":
-            facts["resume_route"] = (criterion.test_status == "SUCCESS")
+            facts["safe_bypass"] = (criterion.safepass_status == "SUCCESS")
 
     return facts
+
+
