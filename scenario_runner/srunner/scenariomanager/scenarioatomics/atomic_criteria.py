@@ -2414,6 +2414,7 @@ class StaticObstacleBrakeSlowDownCriterion(Criterion):
 
         self._activated = False
         self._initial_speed = None
+        self.brake_status = "INIT"
 
     def get_speed(self, actor):
         if not actor:
@@ -2425,45 +2426,34 @@ class StaticObstacleBrakeSlowDownCriterion(Criterion):
         if not self.actor or not self.hazard_actor:
             return py_trees.common.Status.RUNNING
 
-        try:
-            ego_loc = self.actor.get_location()
-            hz_loc = self.hazard_actor.get_location()
-            distance = ego_loc.distance(hz_loc)
-            ego_speed = self.get_speed(self.actor)
-            control = self.actor.get_control()
-            brake_val = control.brake
-            brake_active = brake_val > 0.1
-        except:
-            return py_trees.common.Status.RUNNING
 
-        # 日志
-        if brake_active:
-            print(f"[规则1] 刹车 detected: brake={brake_val:.2f}")
-        else:
-            print(f"[规则1] 无刹车: brake={brake_val:.2f}")
+        ego_loc = self.actor.get_location()
+        hz_loc = self.hazard_actor.get_location()
+        distance = ego_loc.distance(hz_loc)
+        ego_speed = self.get_speed(self.actor)
+        control = self.actor.get_control()
+        brake_val = control.brake
+        brake_active = brake_val > 0.1
+        
 
         # 进入15米激活
         if distance <= self.trigger_distance and not self._activated:
             self._activated = True
             self._initial_speed = ego_speed
-            print(f"[规则1] 进入考核区，初始速度={self._initial_speed:.2f}")
 
         if self._activated:
             delta = self._initial_speed - ego_speed
-            print(f"[规则1] 速度={ego_speed:.2f} 减速={delta:.2f}")
 
             # ==============================
             # 【核心硬规则】
             # 没刹车 → 直接不允许成功
             # ==============================
             if not brake_active:
-                print("[规则1] ❌ 未踩刹车，本条规则永远不通过")
                 return py_trees.common.Status.RUNNING
 
             # 有刹车，再判断减速
-            if delta >= self.decel_threshold or ego_speed <= self.min_speed_after:
-                print("[规则1] ✅ 刹车减速成功！！")
-                print("[规则1] 最终状态：SUCCESS")
+            if delta >= self.decel_threshold :
+                self.brake_status = "SUCCESS"
                 return py_trees.common.Status.SUCCESS
 
         # 默认永远不通过
@@ -2481,6 +2471,7 @@ class StaticObstacleSafePassCriterion(Criterion):
         route_center_y=41.85,
         name="StaticObstacleSafePassCriterion",
         terminate_on_failure=False
+        self.safepass_status = "INIT"
     ):
         super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
         self.hazard_actor = hazard_actor
@@ -2504,6 +2495,7 @@ class StaticObstacleSafePassCriterion(Criterion):
         # 横向偏移 > 1.5米
         lateral_offset = abs(ego_loc.y - self.route_center_y)
         if lateral_offset >= self.lateral_safe_threshold:
+            self.safepass_status = "SUCCESS"
             return py_trees.common.Status.SUCCESS
 
         return py_trees.common.Status.RUNNING
@@ -2525,6 +2517,7 @@ class ReachEndPointCriterion(Criterion):
         super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
         self.end_location = carla.Location(end_x, end_y, end_z)
         self.distance_threshold = distance_threshold
+        self.reach_status = "INIT"
 
     def update(self):
         if not self.actor:
@@ -2534,6 +2527,7 @@ class ReachEndPointCriterion(Criterion):
             ego_loc = self.actor.get_location()
             dist = ego_loc.distance(self.end_location)
             if dist < self.distance_threshold:
+                self.reach_status = "SUCCESS"
                 return py_trees.common.Status.SUCCESS
         except:
             pass

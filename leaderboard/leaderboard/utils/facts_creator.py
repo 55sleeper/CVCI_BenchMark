@@ -44,16 +44,16 @@ def extract_private_facts_frontcar_disappearance(criteria_list):
 
     for criterion in criteria_list:
         # 减速成功（新规则）
-        if criterion.name == "StaticObstacleSlowDownCriterion":
-            facts["slow_down"] = (criterion.test_status == "SUCCESS")
+        if criterion.name == "StaticObstacleBrakeSlowDownCriterion":
+            facts["slow_down"] = (criterion.brake_status == "SUCCESS")
 
         # 安全绕行成功（新规则）
         if criterion.name == "StaticObstacleSafePassCriterion":
-            facts["safe_bypass"] = (criterion.test_status == "SUCCESS")
+            facts["safe_bypass"] = (criterion.safepass_status == "SUCCESS")
 
         # 到达终点成功（新规则）
         if criterion.name == "ReachEndPointCriterion":
-            facts["reach_end_point"] = (criterion.test_status == "SUCCESS")
+            facts["reach_end_point"] = (criterion.reach_status == "SUCCESS")
 
     return facts
 # High speed temporary construction_private_facats extracts
