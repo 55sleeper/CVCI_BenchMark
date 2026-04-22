@@ -2216,21 +2216,12 @@ class MinTTCAutoCriterion(Criterion):
         )
 
         self.other_actors = other_actors if other_actors is not None else []
-
-        # 只考虑一定距离内的目标，避免太远的 actor 干扰
         self.distance_threshold = distance_threshold
-
-        # 只考虑 ego 前方一定视角内的目标
         self.forward_angle_deg = forward_angle_deg
 
-        # 输出：全程最小 TTC
         self.actual_value = float("inf")
         self.units = "s"
-
-        # 记录是谁造成了最小 TTC
         self.closest_actor = None
-
-        # 记录当前 tick 的最危险 actor
         self.current_target = None
         self.current_ttc = float("inf")
 
@@ -2265,36 +2256,28 @@ class MinTTCAutoCriterion(Criterion):
         fv = actor.get_transform().get_forward_vector()
         return (fv.x, fv.y, fv.z)
 
+    @staticmethod
+    def _get_actor_extent(actor):
+        """获取 actor 的边界框半长和半宽 (x, y)"""
+        if hasattr(actor, 'bounding_box'):
+            return (actor.bounding_box.extent.x, actor.bounding_box.extent.y)
+        # 如果获取不到（例如某些特殊行人），使用默认标准轿车尺寸的一半
+        return (2.4, 1.0)
+
     def _is_candidate_valid(self, candidate):
-        """
-        过滤无效候选目标：
-        1. 不是自己
-        2. actor 存活
-        3. 在距离阈值内
-        4. 大致在 ego 前方视野内
-        """
-        if candidate is None:
-            return False
-
-        if candidate.id == self.actor.id:
-            return False
-
-        if not candidate.is_alive:
+        """初筛候选目标：剔除距离太远或明显在身后的目标"""
+        if candidate is None or candidate.id == self.actor.id or not candidate.is_alive:
             return False
 
         ego_pos = self._get_location(self.actor)
         tgt_pos = self._get_location(candidate)
-
-        rel_pos = (
-            tgt_pos[0] - ego_pos[0],
-            tgt_pos[1] - ego_pos[1],
-            tgt_pos[2] - ego_pos[2]
-        )
+        rel_pos = (tgt_pos[0] - ego_pos[0], tgt_pos[1] - ego_pos[1], tgt_pos[2] - ego_pos[2])
 
         dist = self._norm(rel_pos)
         if dist < 1e-6 or dist > self.distance_threshold:
             return False
 
+        # 粗略的角度过滤，保留前方 forward_angle_deg 视野内的目标
         ego_forward = self._get_forward_vector(self.actor)
         ego_forward_norm = self._norm(ego_forward)
         if ego_forward_norm < 1e-6:
@@ -2302,8 +2285,6 @@ class MinTTCAutoCriterion(Criterion):
 
         rel_dir = (rel_pos[0] / dist, rel_pos[1] / dist, rel_pos[2] / dist)
         cos_theta = self._dot(ego_forward, rel_dir) / ego_forward_norm
-
-        # 数值截断
         cos_theta = max(-1.0, min(1.0, cos_theta))
         theta_deg = math.degrees(math.acos(cos_theta))
 
@@ -2314,48 +2295,54 @@ class MinTTCAutoCriterion(Criterion):
 
     def _compute_pair_ttc(self, target_actor):
         """
-        计算 ego 与单个 target_actor 的 TTC。
+        计算纵向投影 TTC（保险杠到保险杠）
         """
         ego_pos = self._get_location(self.actor)
         tgt_pos = self._get_location(target_actor)
+        ego_forward = self._get_forward_vector(self.actor)
 
-        rel_pos = (
-            tgt_pos[0] - ego_pos[0],
-            tgt_pos[1] - ego_pos[1],
-            tgt_pos[2] - ego_pos[2]
-        )
-        distance = self._norm(rel_pos)
+        # 相对位置
+        rel_pos = (tgt_pos[0] - ego_pos[0], tgt_pos[1] - ego_pos[1], tgt_pos[2] - ego_pos[2])
 
-        if distance < 1e-6:
-            return 0.0
+        # 1. 纵向距离：将相对位置投影到自车的正前方向量上
+        lon_dist = self._dot(rel_pos, ego_forward)
 
-        los_dir = (
-            rel_pos[0] / distance,
-            rel_pos[1] / distance,
-            rel_pos[2] / distance
-        )
+        # 如果目标中心点在自车后方，TTC 无效
+        if lon_dist <= 0:
+            return float("inf")
 
+        # 2. 横向距离检测（过滤掉在隔壁车道但纵向距离很近的车）
+        lon_proj = (ego_forward[0] * lon_dist, ego_forward[1] * lon_dist, ego_forward[2] * lon_dist)
+        lat_vec = (rel_pos[0] - lon_proj[0], rel_pos[1] - lon_proj[1], rel_pos[2] - lon_proj[2])
+        lat_dist = self._norm(lat_vec)
+
+        ego_extent = self._get_actor_extent(self.actor)
+        tgt_extent = self._get_actor_extent(target_actor)
+
+        # 如果横向距离大于两车半宽之和外加安全余量(0.5m)，说明不在同一轨迹，不会相撞
+        lat_margin = 0.5
+        if lat_dist > (ego_extent[1] + tgt_extent[1] + lat_margin):
+            return float("inf")
+
+        # 3. 计算“保险杠到保险杠”的纵向距离
+        # 用中心纵向距离减去两车的半长
+        bumper_dist = max(0.0, lon_dist - ego_extent[0] - tgt_extent[0])
+
+        # 4. 计算相对速度投影到自车前方的“接近率” (Closing speed)
         ego_vel = self._get_velocity(self.actor)
         tgt_vel = self._get_velocity(target_actor)
+        rel_vel = (tgt_vel[0] - ego_vel[0], tgt_vel[1] - ego_vel[1], tgt_vel[2] - ego_vel[2])
 
-        rel_vel = (
-            tgt_vel[0] - ego_vel[0],
-            tgt_vel[1] - ego_vel[1],
-            tgt_vel[2] - ego_vel[2]
-        )
+        # 只有相对速度投影在 ego_forward 上的方向与前方相反，才说明在靠近
+        closing_speed = -self._dot(rel_vel, ego_forward)
 
-        distance_rate = self._dot(rel_vel, los_dir)
-        closing_speed = -distance_rate
-
+        # 如果前车比我们快，或者速度相同，则不会碰撞
         if closing_speed <= 1e-6:
             return float("inf")
 
-        return distance / closing_speed
+        return bumper_dist / closing_speed
 
     def _find_most_dangerous_target(self):
-        """
-        在候选列表中寻找当前 TTC 最小的目标。
-        """
         best_actor = None
         best_ttc = float("inf")
 
@@ -2374,22 +2361,23 @@ class MinTTCAutoCriterion(Criterion):
         new_status = py_trees.common.Status.RUNNING
         if self.actor is None or not self.actor.is_alive:
             return new_status
+        
         self.current_target, self.current_ttc = self._find_most_dangerous_target()
+        
         if self.current_ttc < self.actual_value:
             self.actual_value = self.current_ttc
             self.closest_actor = self.current_target
 
-        # 这个类主要用于“记录 min_ttc”，不承担失败判定
         self.test_status = "SUCCESS"
-
         return new_status
 
     def terminate(self, new_status):
         if self.test_status in ('RUNNING', 'INIT'):
             self.test_status = "SUCCESS"
 
-        self.logger.debug("%s.terminate()[%s->%s]" % (
-            self.__class__.__name__, self.status, new_status))
+        if hasattr(self, 'logger'):
+            self.logger.debug("%s.terminate()[%s->%s]" % (
+                self.__class__.__name__, self.status, new_status))
 
 # ==========================missing car criterion==========================
 class StaticObstacleBrakeSlowDownCriterion(Criterion):
