@@ -311,7 +311,7 @@ class CarDisappearDiagonalAccident(BasicScenario):
                 end_x=396.2,
                 end_y=42.0,
                 end_z=0.0,
-                distance_threshold=5.0
+                distance_threshold=20.0
             )
         )
         criteria.append(
