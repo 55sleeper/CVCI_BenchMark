@@ -7933,7 +7933,7 @@
                 <reverse_speed value="4"/>
                 <trigger_distance value="40.0"/>
                 <other_actor x="73.820679" y="142.535721" z="1.0" yaw="90.0" model="vehicle.tesla.model3"/>
-                <other_actor x="68.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
+                <other_actor x="66.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
                 <other_actor x="75.500000" y="129.572815" z="0.5" yaw="180.0" model="vehicle.tesla.model3"/>
             </scenario>
         </scenarios>
@@ -7997,7 +7997,7 @@
                 <reverse_speed value="4"/>
                 <trigger_distance value="40.0"/>
                 <other_actor x="73.820679" y="142.535721" z="1.0" yaw="90.0" model="vehicle.tesla.model3"/>
-                <other_actor x="68.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
+                <other_actor x="66.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
                 <other_actor x="75.500000" y="129.572815" z="0.5" yaw="180.0" model="vehicle.tesla.model3"/>
             </scenario>
         </scenarios>
@@ -8061,7 +8061,7 @@
                 <reverse_speed value="4"/>
                 <trigger_distance value="40.0"/>
                 <other_actor x="73.820679" y="142.535721" z="1.0" yaw="90.0" model="vehicle.tesla.model3"/>
-                <other_actor x="68.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
+                <other_actor x="66.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
                 <other_actor x="75.500000" y="129.572815" z="0.5" yaw="180.0" model="vehicle.tesla.model3"/>
             </scenario>
         </scenarios>
@@ -8125,7 +8125,7 @@
                 <reverse_speed value="4"/>
                 <trigger_distance value="40.0"/>
                 <other_actor x="73.820679" y="142.535721" z="1.0" yaw="90.0" model="vehicle.tesla.model3"/>
-                <other_actor x="68.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
+                <other_actor x="66.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
                 <other_actor x="75.500000" y="129.572815" z="0.5" yaw="180.0" model="vehicle.tesla.model3"/>
             </scenario>
         </scenarios>
@@ -8190,7 +8190,7 @@
                 <reverse_speed value="3"/>
                 <trigger_distance value="40.0"/>
                 <other_actor x="73.820679" y="142.535721" z="1.0" yaw="90.0" model="vehicle.tesla.model3"/>
-                <other_actor x="68.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
+                <other_actor x="66.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
                 <other_actor x="75.500000" y="129.572815" z="0.5" yaw="180.0" model="vehicle.tesla.model3"/>
             </scenario>
         </scenarios>
@@ -8254,7 +8254,7 @@
                 <reverse_speed value="3"/>
                 <trigger_distance value="40.0"/>
                 <other_actor x="73.820679" y="142.535721" z="1.0" yaw="90.0" model="vehicle.tesla.model3"/>
-                <other_actor x="68.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
+                <other_actor x="66.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
                 <other_actor x="75.500000" y="129.572815" z="0.5" yaw="180.0" model="vehicle.tesla.model3"/>
             </scenario>
         </scenarios>
@@ -8318,7 +8318,7 @@
                 <reverse_speed value="3"/>
                 <trigger_distance value="40.0"/>
                 <other_actor x="73.820679" y="142.535721" z="1.0" yaw="90.0" model="vehicle.tesla.model3"/>
-                <other_actor x="68.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
+                <other_actor x="66.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
                 <other_actor x="75.500000" y="129.572815" z="0.5" yaw="180.0" model="vehicle.tesla.model3"/>
             </scenario>
         </scenarios>
@@ -8382,7 +8382,7 @@
                 <reverse_speed value="3"/>
                 <trigger_distance value="40.0"/>
                 <other_actor x="73.820679" y="142.535721" z="1.0" yaw="90.0" model="vehicle.tesla.model3"/>
-                <other_actor x="68.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
+                <other_actor x="66.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
                 <other_actor x="75.500000" y="129.572815" z="0.5" yaw="180.0" model="vehicle.tesla.model3"/>
             </scenario>
         </scenarios>
@@ -8447,7 +8447,7 @@
                 <reverse_speed value="2.5"/>
                 <trigger_distance value="40.0"/>
                 <other_actor x="73.820679" y="142.535721" z="1.0" yaw="90.0" model="vehicle.tesla.model3"/>
-                <other_actor x="68.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
+                <other_actor x="66.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
                 <other_actor x="75.500000" y="129.572815" z="0.5" yaw="180.0" model="vehicle.tesla.model3"/>
             </scenario>
         </scenarios>
@@ -8511,7 +8511,7 @@
                 <reverse_speed value="2.5"/>
                 <trigger_distance value="40.0"/>
                 <other_actor x="73.820679" y="142.535721" z="1.0" yaw="90.0" model="vehicle.tesla.model3"/>
-                <other_actor x="68.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
+                <other_actor x="66.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
                 <other_actor x="75.500000" y="129.572815" z="0.5" yaw="180.0" model="vehicle.tesla.model3"/>
             </scenario>
         </scenarios>
@@ -8575,7 +8575,7 @@
                 <reverse_speed value="2.5"/>
                 <trigger_distance value="40.0"/>
                 <other_actor x="73.820679" y="142.535721" z="1.0" yaw="90.0" model="vehicle.tesla.model3"/>
-                <other_actor x="68.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
+                <other_actor x="66.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
                 <other_actor x="75.500000" y="129.572815" z="0.5" yaw="180.0" model="vehicle.tesla.model3"/>
             </scenario>
         </scenarios>
@@ -8639,7 +8639,7 @@
                 <reverse_speed value="2.5"/>
                 <trigger_distance value="40.0"/>
                 <other_actor x="73.820679" y="142.535721" z="1.0" yaw="90.0" model="vehicle.tesla.model3"/>
-                <other_actor x="68.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
+                <other_actor x="66.561050" y="129.572815" z="0.5" yaw="180.0" model="vehicle.bh.crossbike"/>
                 <other_actor x="75.500000" y="129.572815" z="0.5" yaw="180.0" model="vehicle.tesla.model3"/>
             </scenario>
         </scenarios>
