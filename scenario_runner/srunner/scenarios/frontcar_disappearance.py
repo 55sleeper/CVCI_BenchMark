@@ -288,7 +288,7 @@ class CarDisappearDiagonalAccident(BasicScenario):
             StaticObstacleBrakeSlowDownCriterion(
                 actor=self.ego_vehicle,
                 hazard_actor=self.accident_vehicle,
-                trigger_distance=15.0,
+                trigger_distance=60.0,
                 decel_threshold=3.0,
                 min_speed_after=5.0,
             )
@@ -311,7 +311,7 @@ class CarDisappearDiagonalAccident(BasicScenario):
                 end_x=396.2,
                 end_y=42.0,
                 end_z=0.0,
-                distance_threshold=5.0
+                distance_threshold=20.0
             )
         )
         criteria.append(

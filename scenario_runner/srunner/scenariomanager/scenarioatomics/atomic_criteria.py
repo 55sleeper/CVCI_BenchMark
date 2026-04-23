@@ -2216,21 +2216,12 @@ class MinTTCAutoCriterion(Criterion):
         )
 
         self.other_actors = other_actors if other_actors is not None else []
-
-        # 只考虑一定距离内的目标，避免太远的 actor 干扰
         self.distance_threshold = distance_threshold
-
-        # 只考虑 ego 前方一定视角内的目标
         self.forward_angle_deg = forward_angle_deg
 
-        # 输出：全程最小 TTC
         self.actual_value = float("inf")
         self.units = "s"
-
-        # 记录是谁造成了最小 TTC
         self.closest_actor = None
-
-        # 记录当前 tick 的最危险 actor
         self.current_target = None
         self.current_ttc = float("inf")
 
@@ -2265,36 +2256,28 @@ class MinTTCAutoCriterion(Criterion):
         fv = actor.get_transform().get_forward_vector()
         return (fv.x, fv.y, fv.z)
 
+    @staticmethod
+    def _get_actor_extent(actor):
+        """获取 actor 的边界框半长和半宽 (x, y)"""
+        if hasattr(actor, 'bounding_box'):
+            return (actor.bounding_box.extent.x, actor.bounding_box.extent.y)
+        # 如果获取不到（例如某些特殊行人），使用默认标准轿车尺寸的一半
+        return (2.4, 1.0)
+
     def _is_candidate_valid(self, candidate):
-        """
-        过滤无效候选目标：
-        1. 不是自己
-        2. actor 存活
-        3. 在距离阈值内
-        4. 大致在 ego 前方视野内
-        """
-        if candidate is None:
-            return False
-
-        if candidate.id == self.actor.id:
-            return False
-
-        if not candidate.is_alive:
+        """初筛候选目标：剔除距离太远或明显在身后的目标"""
+        if candidate is None or candidate.id == self.actor.id or not candidate.is_alive:
             return False
 
         ego_pos = self._get_location(self.actor)
         tgt_pos = self._get_location(candidate)
-
-        rel_pos = (
-            tgt_pos[0] - ego_pos[0],
-            tgt_pos[1] - ego_pos[1],
-            tgt_pos[2] - ego_pos[2]
-        )
+        rel_pos = (tgt_pos[0] - ego_pos[0], tgt_pos[1] - ego_pos[1], tgt_pos[2] - ego_pos[2])
 
         dist = self._norm(rel_pos)
         if dist < 1e-6 or dist > self.distance_threshold:
             return False
 
+        # 粗略的角度过滤，保留前方 forward_angle_deg 视野内的目标
         ego_forward = self._get_forward_vector(self.actor)
         ego_forward_norm = self._norm(ego_forward)
         if ego_forward_norm < 1e-6:
@@ -2302,8 +2285,6 @@ class MinTTCAutoCriterion(Criterion):
 
         rel_dir = (rel_pos[0] / dist, rel_pos[1] / dist, rel_pos[2] / dist)
         cos_theta = self._dot(ego_forward, rel_dir) / ego_forward_norm
-
-        # 数值截断
         cos_theta = max(-1.0, min(1.0, cos_theta))
         theta_deg = math.degrees(math.acos(cos_theta))
 
@@ -2314,48 +2295,54 @@ class MinTTCAutoCriterion(Criterion):
 
     def _compute_pair_ttc(self, target_actor):
         """
-        计算 ego 与单个 target_actor 的 TTC。
+        计算纵向投影 TTC（保险杠到保险杠）
         """
         ego_pos = self._get_location(self.actor)
         tgt_pos = self._get_location(target_actor)
+        ego_forward = self._get_forward_vector(self.actor)
 
-        rel_pos = (
-            tgt_pos[0] - ego_pos[0],
-            tgt_pos[1] - ego_pos[1],
-            tgt_pos[2] - ego_pos[2]
-        )
-        distance = self._norm(rel_pos)
+        # 相对位置
+        rel_pos = (tgt_pos[0] - ego_pos[0], tgt_pos[1] - ego_pos[1], tgt_pos[2] - ego_pos[2])
 
-        if distance < 1e-6:
-            return 0.0
+        # 1. 纵向距离：将相对位置投影到自车的正前方向量上
+        lon_dist = self._dot(rel_pos, ego_forward)
 
-        los_dir = (
-            rel_pos[0] / distance,
-            rel_pos[1] / distance,
-            rel_pos[2] / distance
-        )
+        # 如果目标中心点在自车后方，TTC 无效
+        if lon_dist <= 0:
+            return float("inf")
 
+        # 2. 横向距离检测（过滤掉在隔壁车道但纵向距离很近的车）
+        lon_proj = (ego_forward[0] * lon_dist, ego_forward[1] * lon_dist, ego_forward[2] * lon_dist)
+        lat_vec = (rel_pos[0] - lon_proj[0], rel_pos[1] - lon_proj[1], rel_pos[2] - lon_proj[2])
+        lat_dist = self._norm(lat_vec)
+
+        ego_extent = self._get_actor_extent(self.actor)
+        tgt_extent = self._get_actor_extent(target_actor)
+
+        # 如果横向距离大于两车半宽之和外加安全余量(0.5m)，说明不在同一轨迹，不会相撞
+        lat_margin = 0.5
+        if lat_dist > (ego_extent[1] + tgt_extent[1] + lat_margin):
+            return float("inf")
+
+        # 3. 计算“保险杠到保险杠”的纵向距离
+        # 用中心纵向距离减去两车的半长
+        bumper_dist = max(0.0, lon_dist - ego_extent[0] - tgt_extent[0])
+
+        # 4. 计算相对速度投影到自车前方的“接近率” (Closing speed)
         ego_vel = self._get_velocity(self.actor)
         tgt_vel = self._get_velocity(target_actor)
+        rel_vel = (tgt_vel[0] - ego_vel[0], tgt_vel[1] - ego_vel[1], tgt_vel[2] - ego_vel[2])
 
-        rel_vel = (
-            tgt_vel[0] - ego_vel[0],
-            tgt_vel[1] - ego_vel[1],
-            tgt_vel[2] - ego_vel[2]
-        )
+        # 只有相对速度投影在 ego_forward 上的方向与前方相反，才说明在靠近
+        closing_speed = -self._dot(rel_vel, ego_forward)
 
-        distance_rate = self._dot(rel_vel, los_dir)
-        closing_speed = -distance_rate
-
+        # 如果前车比我们快，或者速度相同，则不会碰撞
         if closing_speed <= 1e-6:
             return float("inf")
 
-        return distance / closing_speed
+        return bumper_dist / closing_speed
 
     def _find_most_dangerous_target(self):
-        """
-        在候选列表中寻找当前 TTC 最小的目标。
-        """
         best_actor = None
         best_ttc = float("inf")
 
@@ -2374,22 +2361,23 @@ class MinTTCAutoCriterion(Criterion):
         new_status = py_trees.common.Status.RUNNING
         if self.actor is None or not self.actor.is_alive:
             return new_status
+        
         self.current_target, self.current_ttc = self._find_most_dangerous_target()
+        
         if self.current_ttc < self.actual_value:
             self.actual_value = self.current_ttc
             self.closest_actor = self.current_target
 
-        # 这个类主要用于“记录 min_ttc”，不承担失败判定
         self.test_status = "SUCCESS"
-
         return new_status
 
     def terminate(self, new_status):
         if self.test_status in ('RUNNING', 'INIT'):
             self.test_status = "SUCCESS"
 
-        self.logger.debug("%s.terminate()[%s->%s]" % (
-            self.__class__.__name__, self.status, new_status))
+        if hasattr(self, 'logger'):
+            self.logger.debug("%s.terminate()[%s->%s]" % (
+                self.__class__.__name__, self.status, new_status))
 
 # ==========================missing car criterion==========================
 class StaticObstacleBrakeSlowDownCriterion(Criterion):
@@ -2414,6 +2402,7 @@ class StaticObstacleBrakeSlowDownCriterion(Criterion):
 
         self._activated = False
         self._initial_speed = None
+        self.brake_status = "INIT"
 
     def get_speed(self, actor):
         if not actor:
@@ -2425,45 +2414,34 @@ class StaticObstacleBrakeSlowDownCriterion(Criterion):
         if not self.actor or not self.hazard_actor:
             return py_trees.common.Status.RUNNING
 
-        try:
-            ego_loc = self.actor.get_location()
-            hz_loc = self.hazard_actor.get_location()
-            distance = ego_loc.distance(hz_loc)
-            ego_speed = self.get_speed(self.actor)
-            control = self.actor.get_control()
-            brake_val = control.brake
-            brake_active = brake_val > 0.1
-        except:
-            return py_trees.common.Status.RUNNING
 
-        # 日志
-        if brake_active:
-            print(f"[规则1] 刹车 detected: brake={brake_val:.2f}")
-        else:
-            print(f"[规则1] 无刹车: brake={brake_val:.2f}")
+        ego_loc = self.actor.get_location()
+        hz_loc = self.hazard_actor.get_location()
+        distance = ego_loc.distance(hz_loc)
+        ego_speed = self.get_speed(self.actor)
+        control = self.actor.get_control()
+        brake_val = control.brake
+        brake_active = brake_val > 0.1
+        
 
         # 进入15米激活
         if distance <= self.trigger_distance and not self._activated:
             self._activated = True
             self._initial_speed = ego_speed
-            print(f"[规则1] 进入考核区，初始速度={self._initial_speed:.2f}")
 
         if self._activated:
             delta = self._initial_speed - ego_speed
-            print(f"[规则1] 速度={ego_speed:.2f} 减速={delta:.2f}")
 
             # ==============================
             # 【核心硬规则】
             # 没刹车 → 直接不允许成功
             # ==============================
             if not brake_active:
-                print("[规则1] ❌ 未踩刹车，本条规则永远不通过")
                 return py_trees.common.Status.RUNNING
 
             # 有刹车，再判断减速
-            if delta >= self.decel_threshold or ego_speed <= self.min_speed_after:
-                print("[规则1] ✅ 刹车减速成功！！")
-                print("[规则1] 最终状态：SUCCESS")
+            if delta >= self.decel_threshold :
+                self.brake_status = "SUCCESS"
                 return py_trees.common.Status.SUCCESS
 
         # 默认永远不通过
@@ -2486,7 +2464,7 @@ class StaticObstacleSafePassCriterion(Criterion):
         self.hazard_actor = hazard_actor
         self.lateral_safe_threshold = lateral_safe_threshold
         self.route_center_y = route_center_y
-
+        self.safepass_status = "INIT"
     def update(self):
         if not self.actor or not self.hazard_actor:
             return py_trees.common.Status.RUNNING
@@ -2504,6 +2482,7 @@ class StaticObstacleSafePassCriterion(Criterion):
         # 横向偏移 > 1.5米
         lateral_offset = abs(ego_loc.y - self.route_center_y)
         if lateral_offset >= self.lateral_safe_threshold:
+            self.safepass_status = "SUCCESS"
             return py_trees.common.Status.SUCCESS
 
         return py_trees.common.Status.RUNNING
@@ -2525,6 +2504,7 @@ class ReachEndPointCriterion(Criterion):
         super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
         self.end_location = carla.Location(end_x, end_y, end_z)
         self.distance_threshold = distance_threshold
+        self.reach_status = "INIT"
 
     def update(self):
         if not self.actor:
@@ -2534,6 +2514,7 @@ class ReachEndPointCriterion(Criterion):
             ego_loc = self.actor.get_location()
             dist = ego_loc.distance(self.end_location)
             if dist < self.distance_threshold:
+                self.reach_status = "SUCCESS"
                 return py_trees.common.Status.SUCCESS
         except:
             pass
@@ -2694,13 +2675,6 @@ class CutInBrakeResponseCriterion(Criterion):
                 return py_trees.common.Status.SUCCESS
         else:
             self._brake_start_time = None
-
-        speed_drop_ratio = (self._baseline_speed - current_speed) / max(self._baseline_speed, 0.1)
-        if speed_drop_ratio >= self.speed_drop_ratio:
-            self.test_status = 'SUCCESS'
-            self.brake_status = 'SUCCESS'
-            self.actual_value = 1
-            return py_trees.common.Status.SUCCESS
 
         if current_time - self._start_time > self.max_response_time:
             self.test_status = 'FAILURE'
@@ -3631,7 +3605,7 @@ class ScooterDecelerateCriterion(Criterion):
     def __init__(self, actor, scooter_actor, name="ScooterDecelerateCriterion",
                  route_start_location=None, route_end_location=None,
                  trigger_distance=35.0, min_speed_drop=3.0, brake_threshold=0.2,
-                 min_brake_duration=0.4, pass_buffer=2.0, latest_reaction_distance=8.0,
+                 min_brake_duration=0.4, pass_buffer=2.0, latest_reaction_distance=1.0,
                  terminate_on_failure=False):
         super().__init__(name, actor, terminate_on_failure=terminate_on_failure)
         self.scooter_actor = scooter_actor
@@ -3659,6 +3633,7 @@ class ScooterDecelerateCriterion(Criterion):
         self.success_value = min_speed_drop
         self.units = "m/s"
         self.test_status = "FAILURE"
+        self.brake_status = "INIT"
 
     def update(self):
         new_status = py_trees.common.Status.RUNNING
@@ -3695,43 +3670,23 @@ class ScooterDecelerateCriterion(Criterion):
         if meaningful_slowdown and self._first_meaningful_slowdown_distance is None:
             self._first_meaningful_slowdown_distance = longitudinal_dist
 
-        slowdown_started_too_late = (
-            self._first_meaningful_slowdown_distance is not None and
-            self._first_meaningful_slowdown_distance <= self.latest_reaction_distance
-        )
-
-        if slowdown_started_too_late:
-            self.test_status = "FAILURE"
-            if self._terminate_on_failure:
-                return py_trees.common.Status.FAILURE
-            return new_status
-
-        if longitudinal_dist <= self.latest_reaction_distance and self._first_meaningful_slowdown_distance is None:
-            self.test_status = "FAILURE"
-            if self._terminate_on_failure:
-                return py_trees.common.Status.FAILURE
-            return new_status
-
-        if longitudinal_dist <= self.latest_reaction_distance and speed_drop < self.min_speed_drop:
-            self.test_status = "FAILURE"
-            if self._terminate_on_failure:
-                return py_trees.common.Status.FAILURE
-            return new_status
-
         reaction_detected = speed_drop >= self.min_speed_drop
-        if reaction_detected:
-            current_time = GameTime.get_time()
-            if self._reaction_start_time is None:
-                self._reaction_start_time = current_time
-            elif current_time - self._reaction_start_time >= self.min_brake_duration:
-                self._has_valid_slowdown = True
-                if self._first_meaningful_slowdown_distance is not None and \
-                        self._first_meaningful_slowdown_distance > self.latest_reaction_distance:
+
+        control = self.actor.get_control()
+
+
+        if control.brake >= self.brake_threshold:
+            if reaction_detected :
+                current_time = GameTime.get_time()
+                if self._reaction_start_time is None:
+                    self._reaction_start_time = current_time
+                if current_time - self._reaction_start_time >= self.min_brake_duration:
                     self.test_status = "SUCCESS"
-                else:
-                    self.test_status = "FAILURE"
-        else:
-            self._reaction_start_time = None
+                    self.brake_status = "SUCCESS"
+
+
+            else:
+                self._reaction_start_time = None
 
         if longitudinal_dist < -self.pass_buffer and not self._has_valid_slowdown:
             self.test_status = "FAILURE"

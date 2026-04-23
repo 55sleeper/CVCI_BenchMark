@@ -56,7 +56,7 @@ class EgoSpeedControl(py_trees.behaviour.Behaviour):
         target_speed=10.0,
         throttle_gain=0.20,
         brake_gain=0.10,
-        max_throttle=0.4,
+        max_throttle=0.1,
         max_brake=0.50,
         takeover_steer_threshold=0.02,
         takeover_throttle_threshold=0.02,
@@ -136,7 +136,7 @@ class CutInCollision(BasicScenario):
                  debug_mode=False, criteria_enable=True, timeout=150):
 
         self.timeout = timeout
-        self._trigger_location = _get_trigger_location(config)
+        self._trigger_location = None
 
         # 场景行为参数
         self._trigger_distance = _read_param(config, 'trigger_distance', 35.0)
@@ -177,24 +177,6 @@ class CutInCollision(BasicScenario):
             ego.set_target_velocity(carla.Vector3D(math.cos(yaw) * (self._straight_speed-5), math.sin(yaw) * (self._straight_speed-5)))
 
     def _create_space_trigger(self, ego, cutin_vehicle):
-        if self._trigger_location is not None:
-            if self._trigger_region_x > 0.0 and self._trigger_region_y > 0.0:
-                return InTriggerRegion(
-                    ego,
-                    self._trigger_location.x - self._trigger_region_x,
-                    self._trigger_location.x + self._trigger_region_x,
-                    self._trigger_location.y - self._trigger_region_y,
-                    self._trigger_location.y + self._trigger_region_y,
-                    name="Trigger_CutInRegion"
-                )
-
-            return InTriggerDistanceToLocation(
-                ego,
-                self._trigger_location,
-                self._trigger_distance,
-                name="Trigger_CutInLocation"
-            )
-
         return InTriggerDistanceToVehicle(
             cutin_vehicle,
             ego,
@@ -343,7 +325,7 @@ class CutInCollision(BasicScenario):
         root_1.add_child(main_actions)
         root.add_child(EgoSpeedControl(ego, target_speed=self._straight_speed))
         root.add_child(root_1)
-        return root
+        return root_1
 
     def _create_test_criteria(self):
         if not self.ego_vehicles or len(self.other_actors) < 2:

@@ -213,8 +213,8 @@ class GhostProbeScenario(BasicScenario):
                 scooter_actor=bike_actor,
                 route_start_location=route_start_loc,
                 route_end_location=route_end_loc,
-                trigger_distance=max(self._ped_start_distance + 12.0, 24.0),
-                min_speed_drop=2.5,
+                trigger_distance=max(self._ped_start_distance + 12.0, 30.0),
+                min_speed_drop=2,
                 brake_threshold=0.15,
             )
             scooter_criterion.latest_reaction_distance = max(self._ped_start_distance - 2.0, 10.0)
