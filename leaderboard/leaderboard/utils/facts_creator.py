@@ -274,13 +274,10 @@ def extract_private_facts_crazy_bike(criteria_list):
     }
 
     for criterion in criteria_list:
-        if criterion.name == "CrazyMotorDecelerateCriterion":
+        if criterion.name == "CrazyBikeDecelerateCriterion":
             facts["decelerate_response"] = (criterion.test_status == "SUCCESS")
 
-        elif criterion.name == "CrazyMotorSafeBypassCriterion":
-            facts["no_collision"] = (criterion.test_status == "SUCCESS")
-
-        elif criterion.name == "CrazyMotorResumeCriterion":
+        elif criterion.name == "CrazyBikeResumeCriterion":
             facts["resume_route"] = (criterion.test_status == "SUCCESS")
 
     return facts

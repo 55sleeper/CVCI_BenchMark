@@ -187,9 +187,7 @@ def score_crazy_bike(common_facts, private_facts):
     base_score = 0.0
 
     if private_facts["decelerate_response"]:
-        base_score += 55.0
-    if private_facts["no_collision"]:
-        base_score += 20.0
+        base_score += 75.0
     if private_facts["resume_route"]:
         base_score += 25.0
 

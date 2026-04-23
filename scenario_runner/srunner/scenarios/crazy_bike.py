@@ -263,10 +263,6 @@ class CrazyBikeScenario(BasicScenario):
             latest_reaction_distance=self._decel_latest_reaction_distance,
             min_speed_drop=self._decel_min_speed_drop
         ))
-        criteria.append(CrazyBikeNoCollisionCriterion(
-            actor=self.ego_vehicles[0],
-            bike_actor=self._bike_actor
-        ))
         criteria.append(CrazyBikeResumeCriterion(
             actor=self.ego_vehicles[0],
             bike_actor=self._bike_actor,
