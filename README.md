@@ -1,34 +1,25 @@
 # CVCI_BenchMark
 
 <p align="center">
-  <img src="./assets/CVCI_2026_Benchmark_Poster_v2.png" alt="CVCI 2026 Benchmark Poster" width="900">
+  <a href="./assets/CVCI_2026_Benchmark_Poster_1.pdf">
+    <img src="./assets/CVCI_2026_Benchmark_Poster_1.png" alt="CVCI 2026 Benchmark Poster" width="1100">
+  </a>
 </p>
 
-CVCI_BenchMark is an enhanced benchmark suite built on top of Bench2Drive for the CVCI 2026 challenge.  
-It focuses on closed-loop evaluation of end-to-end autonomous driving models under safety-critical, long-tail scenarios.
+CVCI_BenchMark (Bench2InterActDrive) is a closed-loop benchmark for end-to-end autonomous driving at CVCI 2026.  
+Built on Bench2Drive and CARLA, it is designed for safety-critical, long-tail, and highly interactive traffic scenarios.
+
+This repository provides the complete benchmark routes, scenario implementations, and evaluation pipeline used in CVCI 2026.  
+For a full overview of motivation, benchmark design, and protocol details, please read [introduction.pdf](./assets/introduction.pdf).  
+The benchmark description referenced on the poster is available as [web_description.docx](./assets/web_description.docx).  
 
 ## Highlights
 
-- Built on the Bench2Drive closed-loop protocol.
+- Closed-loop online evaluation in CARLA.
 - 12 scenario categories and 144 scenario instances.
-- Scenario-specific parameter settings define three progressive difficulty levels.
-- Multi-difficulty design with weather variants: `night&rain`, `night&sunny`, `day&rain`, `day&sunny`.
-- Scenario-aware criteria and customized scoring for safety, task completion, and behavior quality.
-
-## Repository Structure
-
-```text
-CVCI_BenchMark/
-  assets/
-  docs/
-  leaderboard/
-  scenario_runner/
-  tools/
-```
-
-Main benchmark routes file:
-
-- `scenario_runner/srunner/data/CVCI_BenchMark.xml`
+- Scenario-specific parameters define three progressive difficulty levels.
+- Four weather/lighting variants: `night&rain`, `night&sunny`, `day&rain`, `day&sunny`.
+- Dual-score protocol: Bench2Drive route score + CVCI scenario-aware score (weighted fusion).
 
 ## Environment Setup
 
@@ -51,7 +42,7 @@ cd ..
 bash ImportAssets.sh
 ```
 
-### 3. Install Python Dependencies
+### 3. Install Dependencies
 
 ```bash
 cd /path/to/CVCI_BenchMark
@@ -59,7 +50,7 @@ pip install -r scenario_runner/requirements.txt
 pip install -r leaderboard/requirements.txt
 ```
 
-### 4. Export Required Environment Variables
+### 4. Export Environment Variables
 
 ```bash
 export CARLA_ROOT=/path/to/CARLA_0.9.15
@@ -74,22 +65,6 @@ export PYTHONPATH=$PYTHONPATH:scenario_runner
 
 ## Evaluation
 
-### Quick Start (bash)
-
-```bash
-chmod +x leaderboard/scripts/run_cvci_eval.sh
-bash leaderboard/scripts/run_cvci_eval.sh
-```
-
-Default script behavior:
-
-- Routes: `scenario_runner/srunner/data/CVCI_BenchMark.xml`
-- Route subset: `0-143` (all 144 routes)
-- Agent: `leaderboard/leaderboard/autoagents/human_agent.py`
-- Checkpoint: `./evaluation_results/cvci_benchmark.json`
-
-### Equivalent Python Command
-
 ```bash
 python leaderboard/leaderboard/leaderboard_evaluator.py \
   --routes scenario_runner/srunner/data/CVCI_BenchMark.xml \
@@ -100,43 +75,38 @@ python leaderboard/leaderboard/leaderboard_evaluator.py \
 
 ## Metrics and Result Processing
 
-Raw route-level output is written to the `--checkpoint` JSON file.
-
 ```bash
 python tools/merge_route_json.py -f /path/to/json_folder/
 python tools/ability_benchmark.py -r merge.json
 python tools/efficiency_smoothness_benchmark.py -f merge.json -m /path/to/metric_folder/
 ```
 
+## Scoring System
+
+The final score is computed by weighted fusion of:
+
+1. Bench2Drive route-level driving score.
+2. CVCI scenario-aware score on interactive risk scenarios.
+
+For the CVCI scenario-aware part:
+
+- Scenario score starts from criterion-level evaluation aligned with scenario intent (for example, deceleration, avoidance, and safe resume).
+- Safety gates/penalties are applied for severe violations (for example, collisions and critical infractions).
+- Final scenario score balances safety, task completion, and behavior quality.
+
+This protocol reduces over-rewarding of overly conservative "stop-only" policies.
+
 ## Data Download
 
-### A. Bench2Drive Public Dataset (for training/validation)
+Benchmark data is available at:
 
-<!-- Fill with your own data download links -->
+https://huggingface.co/datasets/55sleeper/CVCI_BENCHmark/tree/main
 
-### B. CVCI 2026 Challenge Package
+## CVCI 2026 Timeline
 
-<!-- Fill with your own challenge package access info -->
-
-## CVCI 2026 Challenge Timeline
-
-- Open benchmark and data: April 15, 2026
-- Paper and challenge result submission: July 1, 2026
-- Final result submission: September 1, 2026
-
-## Challenge Procedure
-
-1. Download the challenge description and benchmark documents released by organizers.
-2. Complete registration and request benchmark access from the organizing committee.
-3. Receive and run the official benchmark package and scenario configuration.
-4. Submit model outputs and required result files before the deadline.
-5. Organizer performs final official scoring and ranking.
-
-## Notes
-
-- CARLA can be unstable; use `tools/clean_carla.sh` if CARLA processes are not fully released.
-- Avoid port conflicts (`--port`, `--traffic-manager-port`) when running multiple evaluations.
-- If CARLA exits immediately, check Vulkan and GPU driver compatibility first.
+- Benchmark and data release: April 15, 2026.
+- Paper + challenge result submission: July 1, 2026.
+- Final result submission: September 1, 2026.
 
 ## License
 
