@@ -105,14 +105,29 @@ export PYTHONPATH=$PYTHONPATH:scenario_runner
 
 ## Running Evaluation
 
-```bash
-python leaderboard/leaderboard/leaderboard_evaluator.py \
-  --routes scenario_runner/srunner/data/CVCI_BenchMark.xml \
-  --routes-subset 0-143 \
-  --agent leaderboard/leaderboard/autoagents/human_agent.py \
-  --checkpoint ./evaluation_results/cvci_benchmark.json
-```
-
+- Add your agent to leaderboard/team_code/your_agent.py & Link your model folder under the Bench2Drive directory.
+  ```bash
+      Bench2Drive\ 
+        assets\
+        docs\
+        leaderboard\
+          team_code\
+            --> Please add your agent HEAR
+        scenario_runner\
+        tools\
+        --> Please link your model folder HEAR
+    ```
+- Ealuate your agent：
+  ```bash
+  python leaderboard/leaderboard/leaderboard_evaluator.py \
+    --routes scenario_runner/srunner/data/CVCI_BenchMark.xml \
+    --routes-subset 0-143 \
+    --agent leaderboard/leaderboard/autoagents/your_agent.py \
+    --agent-config /path_to_your_agent_config_file \
+    --checkpoint ./evaluation_results/cvci_benchmark.json
+    --resume True
+  ```
+   Note: Please ensure the --resume parameter is set to True. If the evaluation process crashes for any reason, you can use the same command to resume from the last breakpoint without restarting.
 ---
 
 ## Metrics and Result Processing
