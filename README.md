@@ -64,8 +64,8 @@ The CVCI extension further introduces scenario-aware behavioral scoring for inte
 ### 1. Create Python Environment
 
 ```bash
-conda create -n CVCI_Benchmark python=3.7 -y
-conda activate CVCI_Benchmark
+conda create -n cvci_py310 python=3.10 -y
+conda activate cvci_py310
 ```
 
 ### 2. Install CARLA 0.9.15
@@ -84,9 +84,12 @@ bash ImportAssets.sh
 
 ```bash
 cd /path/to/CVCI_BenchMark
+pip install "setuptools<70"
+pip install carla==0.9.15
 pip install -r scenario_runner/requirements.txt
 pip install -r leaderboard/requirements.txt
 ```
+> Note: `setuptools>=70` removed `pkg_resources`; pinning `<70` ensures compatibility with the scenario_runner and leaderboard code.
 
 ### 4. Export Environment Variables
 
@@ -96,10 +99,10 @@ export SCENARIO_RUNNER_ROOT=scenario_runner
 export LEADERBOARD_ROOT=leaderboard
 export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI
 export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla
-export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.15-py3.7-linux-x86_64.egg
 export PYTHONPATH=$PYTHONPATH:leaderboard
 export PYTHONPATH=$PYTHONPATH:scenario_runner
 ```
+> Note: CARLA Python API is installed via `pip install carla==0.9.15`, no longer requires the `.egg` file in PYTHONPATH.
 
 ---
 
