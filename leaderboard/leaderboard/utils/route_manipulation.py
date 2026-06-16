@@ -133,31 +133,56 @@ def downsample_route(route, sample_factor):
     return ids_to_sample
 
 
-def interpolate_trajectory(waypoints_trajectory, hop_resolution=1.0):
+def interpolate_trajectory(waypoints_trajectory, hop_resolution=1.0, direct_dense=False):
     """
     Given some raw keypoints interpolate a full dense trajectory to be used by the user.
     returns the full interpolated route both in GPS coordinates and also in its original form.
-    
+
     Args:
         - waypoints_trajectory: the current coarse trajectory
         - hop_resolution: distance between the trajectory's waypoints
+        - direct_dense: if True, consecutive keypoints that are close (<= 10 m, i.e.
+          an already-dense, pre-defined path like the CVCI routes) are snapped
+          directly to a lane instead of being re-routed with A*. A* between nearby
+          keypoints loops on multi-level maps (e.g. Town04's interchange) and
+          corrupts the route into a kilometres-long one (route completion ~2%).
+          Sparse keypoints (> 10 m apart) still fall back to A*.
     """
 
     grp = GlobalRoutePlanner(CarlaDataProvider.get_map(), hop_resolution)
+    carla_map = CarlaDataProvider.get_map()
     # Obtain route plan
     lat_ref, lon_ref = _get_latlon_ref(CarlaDataProvider.get_world())
 
     route = []
     gps_route = []
 
-    for i in range(len(waypoints_trajectory) - 1):
+    dense_segment_max = 10.0
+    n = len(waypoints_trajectory)
+
+    def _append_direct(location, connection):
+        wp = carla_map.get_waypoint(location)
+        route.append((wp.transform, connection))
+        gps_route.append(
+            (_location_to_gps(lat_ref, lon_ref, wp.transform.location), connection),
+        )
+
+    for i in range(n - 1):
 
         waypoint = waypoints_trajectory[i]
         waypoint_next = waypoints_trajectory[i + 1]
-        interpolated_trace = grp.trace_route(waypoint, waypoint_next)
-        for wp, connection in interpolated_trace:
-            route.append((wp.transform, connection))
-            gps_coord = _location_to_gps(lat_ref, lon_ref, wp.transform.location)
-            gps_route.append((gps_coord, connection))
+
+        if direct_dense and waypoint.distance(waypoint_next) <= dense_segment_max:
+            # Pre-defined dense path: follow the keypoints directly (snapped to a
+            # lane), no A* re-routing. Add the final keypoint on the last segment.
+            _append_direct(waypoint, RoadOption.LANEFOLLOW)
+            if i == n - 2:
+                _append_direct(waypoint_next, RoadOption.LANEFOLLOW)
+        else:
+            interpolated_trace = grp.trace_route(waypoint, waypoint_next)
+            for wp, connection in interpolated_trace:
+                route.append((wp.transform, connection))
+                gps_coord = _location_to_gps(lat_ref, lon_ref, wp.transform.location)
+                gps_route.append((gps_coord, connection))
 
     return gps_route, route
