@@ -2493,6 +2493,12 @@ class LaneChange(WaypointFollower):
         # get start position
         position_actor = CarlaDataProvider.get_map().get_waypoint(self._actor.get_location())
 
+        # Seed "position before the lane change" so update() never hits a None when
+        # the actor is already on the target lane on the first tick (a fast actor
+        # snapping straight to it). Otherwise Location.distance(None) raises and
+        # crashes the whole simulation.
+        self._pos_before_lane_change = position_actor.transform.location
+
         # calculate plan with scenario_helper function
         self._plan, self._target_lane_id = generate_target_waypoint_list_multilane(
             position_actor, self._direction, self._distance_same_lane,

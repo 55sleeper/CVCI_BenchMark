@@ -118,8 +118,12 @@ class RouteScenario(BasicScenario):
         - debug_mode: boolean to decide whether or not the route poitns are printed
         """
 
-        # Prepare route's trajectory (interpolate and add the GPS route)
-        self.gps_route, self.route = interpolate_trajectory(config.keypoints)
+        # Prepare route's trajectory (interpolate and add the GPS route).
+        # direct_dense=True: the CVCI routes are already dense pre-defined paths;
+        # follow the keypoints directly instead of A*-rerouting between them, which
+        # loops on multi-level maps (e.g. Town04) and inflates route_length to
+        # ~18 km, making a near-complete route score ~2%. Sparse keypoints still A*.
+        self.gps_route, self.route = interpolate_trajectory(config.keypoints, direct_dense=True)
         return self.route
 
     def _filter_scenarios(self, scenario_configs):
@@ -402,6 +406,13 @@ class RouteScenario(BasicScenario):
 
         # Add the Background Activity
         # behavior.add_child(BackgroundBehavior(self.ego_vehicles[0], self.route, name="BackgroundActivity"))
+        # BackgroundActivity is the never-ending child that keeps this SUCCESS_ON_ALL
+        # "Route Behavior" alive so the route ends only via the RouteCompletionTest
+        # criterion (see docstring). CVCI disables it, so without a substitute the
+        # parallel succeeds/fails as soon as a scenario behaviour finishes (e.g. a
+        # bike completing/failing its cut-in), truncating the route at ~50%. Add a
+        # never-ending Idle to preserve the "behavior never ends" invariant.
+        behavior.add_child(Idle(name="KeepRouteAlive"))
 
         behavior.add_children(scenario_behaviors)
         return behavior

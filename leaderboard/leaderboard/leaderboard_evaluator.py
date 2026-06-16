@@ -63,7 +63,10 @@ def find_free_port(starting_port):
 
 def get_weather_id(weather_conditions):
     from xml.etree import ElementTree as ET
-    tree = ET.parse('leaderboard/data/weather.xml')
+    # Resolve weather.xml relative to this file so it works regardless of cwd
+    # (lead runs the subprocess from its own workspace root, not the CVCI root).
+    _weather_xml = os.path.join(os.path.dirname(__file__), '..', 'data', 'weather.xml')
+    tree = ET.parse(_weather_xml)
     root = tree.getroot()
     def conditions_match(weather, conditions):
         for (key, value) in weather:
@@ -209,7 +212,7 @@ class LeaderboardEvaluator(object):
         self.server = subprocess.Popen(cmd1, shell=True, preexec_fn=os.setsid)
         print(cmd1, self.server.returncode, flush=True)
         atexit.register(os.killpg, self.server.pid, signal.SIGKILL)
-        time.sleep(30)
+        time.sleep(15)
             
         attempts = 0
         num_max_restarts = 20

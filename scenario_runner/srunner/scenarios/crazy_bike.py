@@ -196,7 +196,17 @@ class CrazyBikeScenario(BasicScenario):
             )
 
         if self._bike_actor is not None:
-            bike_cut_in = py_trees.composites.Sequence("BikeCutIn")
+            # The bike's API LaneChange can return FAILURE (e.g. "couldn't perform
+            # the expected lane change" when it can't find a target lane at the
+            # faster tiers). In py_trees a FAILURE in ANY child fails the whole
+            # parallel chain, which propagates up to the route behaviour and ends
+            # the route at ~50%. Wrap the bike sequence so its failure becomes
+            # SUCCESS -> the bike just stops being driven, the route is NOT killed,
+            # and the ego's route completion ends it normally.
+            fail_safe_sequence = py_trees.meta.failure_is_success(
+                py_trees.composites.Sequence
+            )
+            bike_cut_in = fail_safe_sequence(name="BikeCutIn")
 
             approach_stage = py_trees.composites.Parallel(
                 "BikeApproachAndTrigger",
