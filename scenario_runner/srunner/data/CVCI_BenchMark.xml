@@ -9982,23 +9982,9 @@
             <weather cloudiness="90.0" fog_density="20.0" precipitation="60" precipitation_deposits="50" wetness="70" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100"/></weathers>
     </route>
 
-    <!-- level-2 -->
-    <route id="136" town="Town05"> 
+    <route id="132" town="Town05">
         <waypoints>
-            <position x="-56.0" y="205.1" z="4.6"/>
-            <position x="-54.0" y="205.1" z="4.5"/>
-            <position x="-52.0" y="205.1" z="4.3"/>
-            <position x="-50.0" y="205.1" z="4.1"/>
-            <position x="-48.0" y="205.1" z="3.9"/>
-            <position x="-46.1" y="205.1" z="3.7"/>
-            <position x="-44.1" y="205.1" z="3.6"/>
-            <position x="-42.1" y="205.1" z="3.4"/>
-            <position x="-40.1" y="205.1" z="3.2"/>
-            <position x="-38.1" y="205.1" z="3.0"/>
-            <position x="-36.1" y="205.1" z="2.8"/>
-            <position x="-34.1" y="205.1" z="2.7"/>
-            <position x="-32.1" y="205.1" z="2.5"/>
-            <position x="-30.1" y="205.1" z="2.3"/>
+            <position x="-32.1" y="205.1" z="2.3"/>
             <position x="-28.1" y="205.1" z="2.1"/>
             <position x="-26.1" y="205.1" z="2.0"/>
             <position x="-24.1" y="205.1" z="1.8"/>
@@ -10013,7 +9999,7 @@
             <position x="-6.0" y="205.1" z="0.5"/>
             <position x="-4.0" y="205.1" z="0.5"/>
             <position x="-2.0" y="205.1" z="0.5"/>
-            <position x="-0.0" y="205.1" z="0.5"/>
+            <position x="0.0" y="205.1" z="0.5"/>
             <position x="2.0" y="205.1" z="0.5"/>
             <position x="4.0" y="205.1" z="0.5"/>
             <position x="6.0" y="205.2" z="0.5"/>
@@ -10041,10 +10027,361 @@
         </waypoints>
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
-                <init_speed value="13.89"/>
-                <npc_speed value="11.0"/>
-                
+                <trigger_point x="-24.1" y="205.1" z="1.8" yaw="0.0"/>
+                <init_speed value="11.1"/>
+                <ego_initial_speed_duration value="0.0"/>
+                <ego_speed_control value="true"/>
+                <ego_speed_control_takeover_detection value="true"/>
+                <ego_speed_hold_method value="target_velocity"/>
+                <ego_takeover_steer_threshold value="0.001"/>
+                <ego_takeover_throttle_threshold value="0.001"/>
+                <ego_takeover_brake_threshold value="0.001"/>
+                <npc_speed value="20.0"/>
+                <adaptive_npc_speed value="true"/>
+                <npc_trigger_x value="-23.2"/>
+                <npc_trigger_y value="205.1"/>
+                <npc_trigger_z value="1.6"/>
+                <npc_trigger_distance value="4.0"/>
+                <npc_enable_passed_trigger value="true"/>
+                <npc_trigger_lateral_tolerance value="5.0"/>
+                <npc_ttc_trigger_threshold value="5.2"/>
+                <collision_x value="43.2"/>
+                <collision_y value="205.3"/>
+                <collision_z value="0.5"/>
+                <conflict_trigger_distance value="0.0"/>
+                <min_ego_speed value="0.5"/>
+                <npc_min_speed value="2.0"/>
+                <npc_max_speed value="105.0"/>
+                <npc_speed_scale value="10.0"/>
+                <npc_arrival_time_margin value="0.0"/>
+                <npc_startup_time_compensation value="0.8"/>
+                <npc_set_initial_velocity value="true"/>
+                <npc_initial_velocity_boost value="1.0"/>
+                <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <weather cloudiness="90.0" fog_density="20.0" precipitation="60.0" precipitation_deposits="50.0" wetness="70.0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100"/></weathers>
+    </route>
+    <route id="133" town="Town05">
+        <waypoints>
+            <position x="-32.1" y="205.1" z="2.3"/>
+            <position x="-28.1" y="205.1" z="2.1"/>
+            <position x="-26.1" y="205.1" z="2.0"/>
+            <position x="-24.1" y="205.1" z="1.8"/>
+            <position x="-22.2" y="205.1" z="1.6"/>
+            <position x="-20.2" y="205.1" z="1.4"/>
+            <position x="-18.2" y="205.1" z="1.2"/>
+            <position x="-16.2" y="205.1" z="1.1"/>
+            <position x="-14.2" y="205.1" z="0.9"/>
+            <position x="-12.2" y="205.1" z="0.7"/>
+            <position x="-10.0" y="205.1" z="0.5"/>
+            <position x="-8.0" y="205.1" z="0.5"/>
+            <position x="-6.0" y="205.1" z="0.5"/>
+            <position x="-4.0" y="205.1" z="0.5"/>
+            <position x="-2.0" y="205.1" z="0.5"/>
+            <position x="0.0" y="205.1" z="0.5"/>
+            <position x="2.0" y="205.1" z="0.5"/>
+            <position x="4.0" y="205.1" z="0.5"/>
+            <position x="6.0" y="205.2" z="0.5"/>
+            <position x="8.0" y="205.2" z="0.5"/>
+            <position x="10.0" y="205.2" z="0.5"/>
+            <position x="12.0" y="205.2" z="0.5"/>
+            <position x="14.0" y="205.2" z="0.5"/>
+            <position x="16.0" y="205.2" z="0.5"/>
+            <position x="18.0" y="205.2" z="0.5"/>
+            <position x="20.0" y="205.2" z="0.5"/>
+            <position x="22.0" y="205.2" z="0.5"/>
+            <position x="24.0" y="205.2" z="0.5"/>
+            <position x="26.0" y="205.2" z="0.5"/>
+            <position x="28.0" y="205.2" z="0.5"/>
+            <position x="30.0" y="205.2" z="0.5"/>
+            <position x="32.0" y="205.2" z="0.5"/>
+            <position x="34.0" y="205.2" z="0.5"/>
+            <position x="36.0" y="205.3" z="0.5"/>
+            <position x="38.0" y="205.3" z="0.5"/>
+            <position x="40.0" y="205.3" z="0.5"/>
+            <position x="42.0" y="205.3" z="0.5"/>
+            <position x="44.0" y="205.3" z="0.5"/>
+            <position x="46.0" y="205.3" z="0.5"/>
+            <position x="48.0" y="205.3" z="0.5"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
+                <trigger_point x="-24.1" y="205.1" z="1.8" yaw="0.0"/>
+                <init_speed value="11.1"/>
+                <ego_initial_speed_duration value="0.0"/>
+                <ego_speed_control value="true"/>
+                <ego_speed_control_takeover_detection value="true"/>
+                <ego_speed_hold_method value="target_velocity"/>
+                <ego_takeover_steer_threshold value="0.001"/>
+                <ego_takeover_throttle_threshold value="0.001"/>
+                <ego_takeover_brake_threshold value="0.001"/>
+                <npc_speed value="20.0"/>
+                <adaptive_npc_speed value="true"/>
+                <npc_trigger_x value="-23.2"/>
+                <npc_trigger_y value="205.1"/>
+                <npc_trigger_z value="1.6"/>
+                <npc_trigger_distance value="4.0"/>
+                <npc_enable_passed_trigger value="true"/>
+                <npc_trigger_lateral_tolerance value="5.0"/>
+                <npc_ttc_trigger_threshold value="5.2"/>
+                <collision_x value="43.2"/>
+                <collision_y value="205.3"/>
+                <collision_z value="0.5"/>
+                <conflict_trigger_distance value="0.0"/>
+                <min_ego_speed value="0.5"/>
+                <npc_min_speed value="2.0"/>
+                <npc_max_speed value="105.0"/>
+                <npc_speed_scale value="10.0"/>
+                <npc_arrival_time_margin value="0.0"/>
+                <npc_startup_time_compensation value="0.8"/>
+                <npc_set_initial_velocity value="true"/>
+                <npc_initial_velocity_boost value="1.0"/>
+                <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <weather cloudiness="0.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100"/></weathers>
+    </route>
+    <route id="134" town="Town05">
+        <waypoints>
+            <position x="-32.1" y="205.1" z="2.3"/>
+            <position x="-28.1" y="205.1" z="2.1"/>
+            <position x="-26.1" y="205.1" z="2.0"/>
+            <position x="-24.1" y="205.1" z="1.8"/>
+            <position x="-22.2" y="205.1" z="1.6"/>
+            <position x="-20.2" y="205.1" z="1.4"/>
+            <position x="-18.2" y="205.1" z="1.2"/>
+            <position x="-16.2" y="205.1" z="1.1"/>
+            <position x="-14.2" y="205.1" z="0.9"/>
+            <position x="-12.2" y="205.1" z="0.7"/>
+            <position x="-10.0" y="205.1" z="0.5"/>
+            <position x="-8.0" y="205.1" z="0.5"/>
+            <position x="-6.0" y="205.1" z="0.5"/>
+            <position x="-4.0" y="205.1" z="0.5"/>
+            <position x="-2.0" y="205.1" z="0.5"/>
+            <position x="0.0" y="205.1" z="0.5"/>
+            <position x="2.0" y="205.1" z="0.5"/>
+            <position x="4.0" y="205.1" z="0.5"/>
+            <position x="6.0" y="205.2" z="0.5"/>
+            <position x="8.0" y="205.2" z="0.5"/>
+            <position x="10.0" y="205.2" z="0.5"/>
+            <position x="12.0" y="205.2" z="0.5"/>
+            <position x="14.0" y="205.2" z="0.5"/>
+            <position x="16.0" y="205.2" z="0.5"/>
+            <position x="18.0" y="205.2" z="0.5"/>
+            <position x="20.0" y="205.2" z="0.5"/>
+            <position x="22.0" y="205.2" z="0.5"/>
+            <position x="24.0" y="205.2" z="0.5"/>
+            <position x="26.0" y="205.2" z="0.5"/>
+            <position x="28.0" y="205.2" z="0.5"/>
+            <position x="30.0" y="205.2" z="0.5"/>
+            <position x="32.0" y="205.2" z="0.5"/>
+            <position x="34.0" y="205.2" z="0.5"/>
+            <position x="36.0" y="205.3" z="0.5"/>
+            <position x="38.0" y="205.3" z="0.5"/>
+            <position x="40.0" y="205.3" z="0.5"/>
+            <position x="42.0" y="205.3" z="0.5"/>
+            <position x="44.0" y="205.3" z="0.5"/>
+            <position x="46.0" y="205.3" z="0.5"/>
+            <position x="48.0" y="205.3" z="0.5"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
+                <trigger_point x="-24.1" y="205.1" z="1.8" yaw="0.0"/>
+                <init_speed value="11.1"/>
+                <ego_initial_speed_duration value="0.0"/>
+                <ego_speed_control value="true"/>
+                <ego_speed_control_takeover_detection value="true"/>
+                <ego_speed_hold_method value="target_velocity"/>
+                <ego_takeover_steer_threshold value="0.001"/>
+                <ego_takeover_throttle_threshold value="0.001"/>
+                <ego_takeover_brake_threshold value="0.001"/>
+                <npc_speed value="20.0"/>
+                <adaptive_npc_speed value="true"/>
+                <npc_trigger_x value="-23.2"/>
+                <npc_trigger_y value="205.1"/>
+                <npc_trigger_z value="1.6"/>
+                <npc_trigger_distance value="4.0"/>
+                <npc_enable_passed_trigger value="true"/>
+                <npc_trigger_lateral_tolerance value="5.0"/>
+                <npc_ttc_trigger_threshold value="5.2"/>
+                <collision_x value="43.2"/>
+                <collision_y value="205.3"/>
+                <collision_z value="0.5"/>
+                <conflict_trigger_distance value="0.0"/>
+                <min_ego_speed value="0.5"/>
+                <npc_min_speed value="2.0"/>
+                <npc_max_speed value="105.0"/>
+                <npc_speed_scale value="10.0"/>
+                <npc_arrival_time_margin value="0.0"/>
+                <npc_startup_time_compensation value="0.8"/>
+                <npc_set_initial_velocity value="true"/>
+                <npc_initial_velocity_boost value="1.0"/>
+                <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <weather cloudiness="0.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100"/></weathers>
+    </route>
+    <route id="135" town="Town05">
+        <waypoints>
+            <position x="-32.1" y="205.1" z="2.3"/>
+            <position x="-28.1" y="205.1" z="2.1"/>
+            <position x="-26.1" y="205.1" z="2.0"/>
+            <position x="-24.1" y="205.1" z="1.8"/>
+            <position x="-22.2" y="205.1" z="1.6"/>
+            <position x="-20.2" y="205.1" z="1.4"/>
+            <position x="-18.2" y="205.1" z="1.2"/>
+            <position x="-16.2" y="205.1" z="1.1"/>
+            <position x="-14.2" y="205.1" z="0.9"/>
+            <position x="-12.2" y="205.1" z="0.7"/>
+            <position x="-10.0" y="205.1" z="0.5"/>
+            <position x="-8.0" y="205.1" z="0.5"/>
+            <position x="-6.0" y="205.1" z="0.5"/>
+            <position x="-4.0" y="205.1" z="0.5"/>
+            <position x="-2.0" y="205.1" z="0.5"/>
+            <position x="0.0" y="205.1" z="0.5"/>
+            <position x="2.0" y="205.1" z="0.5"/>
+            <position x="4.0" y="205.1" z="0.5"/>
+            <position x="6.0" y="205.2" z="0.5"/>
+            <position x="8.0" y="205.2" z="0.5"/>
+            <position x="10.0" y="205.2" z="0.5"/>
+            <position x="12.0" y="205.2" z="0.5"/>
+            <position x="14.0" y="205.2" z="0.5"/>
+            <position x="16.0" y="205.2" z="0.5"/>
+            <position x="18.0" y="205.2" z="0.5"/>
+            <position x="20.0" y="205.2" z="0.5"/>
+            <position x="22.0" y="205.2" z="0.5"/>
+            <position x="24.0" y="205.2" z="0.5"/>
+            <position x="26.0" y="205.2" z="0.5"/>
+            <position x="28.0" y="205.2" z="0.5"/>
+            <position x="30.0" y="205.2" z="0.5"/>
+            <position x="32.0" y="205.2" z="0.5"/>
+            <position x="34.0" y="205.2" z="0.5"/>
+            <position x="36.0" y="205.3" z="0.5"/>
+            <position x="38.0" y="205.3" z="0.5"/>
+            <position x="40.0" y="205.3" z="0.5"/>
+            <position x="42.0" y="205.3" z="0.5"/>
+            <position x="44.0" y="205.3" z="0.5"/>
+            <position x="46.0" y="205.3" z="0.5"/>
+            <position x="48.0" y="205.3" z="0.5"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
+                <trigger_point x="-24.1" y="205.1" z="1.8" yaw="0.0"/>
+                <init_speed value="11.1"/>
+                <ego_initial_speed_duration value="0.0"/>
+                <ego_speed_control value="true"/>
+                <ego_speed_control_takeover_detection value="true"/>
+                <ego_speed_hold_method value="target_velocity"/>
+                <ego_takeover_steer_threshold value="0.001"/>
+                <ego_takeover_throttle_threshold value="0.001"/>
+                <ego_takeover_brake_threshold value="0.001"/>
+                <npc_speed value="20.0"/>
+                <adaptive_npc_speed value="true"/>
+                <npc_trigger_x value="-23.2"/>
+                <npc_trigger_y value="205.1"/>
+                <npc_trigger_z value="1.6"/>
+                <npc_trigger_distance value="4.0"/>
+                <npc_enable_passed_trigger value="true"/>
+                <npc_trigger_lateral_tolerance value="5.0"/>
+                <npc_ttc_trigger_threshold value="5.2"/>
+                <collision_x value="43.2"/>
+                <collision_y value="205.3"/>
+                <collision_z value="0.5"/>
+                <conflict_trigger_distance value="0.0"/>
+                <min_ego_speed value="0.5"/>
+                <npc_min_speed value="2.0"/>
+                <npc_max_speed value="105.0"/>
+                <npc_speed_scale value="10.0"/>
+                <npc_arrival_time_margin value="0.0"/>
+                <npc_startup_time_compensation value="0.8"/>
+                <npc_set_initial_velocity value="true"/>
+                <npc_initial_velocity_boost value="1.0"/>
+                <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
+            </scenario>
+        </scenarios>
+        <weathers>
+            <weather cloudiness="90.0" fog_density="20.0" precipitation="60" precipitation_deposits="50" wetness="70" wind_intensity="80.0" sun_altitude_angle="90" sun_azimuth_angle="0" route_percentage="100"/></weathers>
+    </route>
+    <!-- level-2 -->
+    <route id="136" town="Town05">
+        <waypoints>
+            <position x="-32.1" y="205.1" z="2.3"/>
+            <position x="-28.1" y="205.1" z="2.1"/>
+            <position x="-26.1" y="205.1" z="2.0"/>
+            <position x="-24.1" y="205.1" z="1.8"/>
+            <position x="-22.2" y="205.1" z="1.6"/>
+            <position x="-20.2" y="205.1" z="1.4"/>
+            <position x="-18.2" y="205.1" z="1.2"/>
+            <position x="-16.2" y="205.1" z="1.1"/>
+            <position x="-14.2" y="205.1" z="0.9"/>
+            <position x="-12.2" y="205.1" z="0.7"/>
+            <position x="-10.0" y="205.1" z="0.5"/>
+            <position x="-8.0" y="205.1" z="0.5"/>
+            <position x="-6.0" y="205.1" z="0.5"/>
+            <position x="-4.0" y="205.1" z="0.5"/>
+            <position x="-2.0" y="205.1" z="0.5"/>
+            <position x="0.0" y="205.1" z="0.5"/>
+            <position x="2.0" y="205.1" z="0.5"/>
+            <position x="4.0" y="205.1" z="0.5"/>
+            <position x="6.0" y="205.2" z="0.5"/>
+            <position x="8.0" y="205.2" z="0.5"/>
+            <position x="10.0" y="205.2" z="0.5"/>
+            <position x="12.0" y="205.2" z="0.5"/>
+            <position x="14.0" y="205.2" z="0.5"/>
+            <position x="16.0" y="205.2" z="0.5"/>
+            <position x="18.0" y="205.2" z="0.5"/>
+            <position x="20.0" y="205.2" z="0.5"/>
+            <position x="22.0" y="205.2" z="0.5"/>
+            <position x="24.0" y="205.2" z="0.5"/>
+            <position x="26.0" y="205.2" z="0.5"/>
+            <position x="28.0" y="205.2" z="0.5"/>
+            <position x="30.0" y="205.2" z="0.5"/>
+            <position x="32.0" y="205.2" z="0.5"/>
+            <position x="34.0" y="205.2" z="0.5"/>
+            <position x="36.0" y="205.3" z="0.5"/>
+            <position x="38.0" y="205.3" z="0.5"/>
+            <position x="40.0" y="205.3" z="0.5"/>
+            <position x="42.0" y="205.3" z="0.5"/>
+            <position x="44.0" y="205.3" z="0.5"/>
+            <position x="46.0" y="205.3" z="0.5"/>
+            <position x="48.0" y="205.3" z="0.5"/>
+        </waypoints>
+        <scenarios>
+            <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
+                <trigger_point x="-24.1" y="205.1" z="1.8" yaw="0.0"/>
+                <init_speed value="12.5"/>
+                <ego_initial_speed_duration value="0.0"/>
+                <ego_speed_control value="true"/>
+                <ego_speed_control_takeover_detection value="true"/>
+                <ego_speed_hold_method value="target_velocity"/>
+                <ego_takeover_steer_threshold value="0.001"/>
+                <ego_takeover_throttle_threshold value="0.001"/>
+                <ego_takeover_brake_threshold value="0.001"/>
+                <npc_speed value="10.0"/>
+                <adaptive_npc_speed value="true"/>
+                <npc_trigger_x value="-20.2"/>
+                <npc_trigger_y value="205.1"/>
+                <npc_trigger_z value="1.6"/>
+                <npc_trigger_distance value="4.0"/>
+                <npc_enable_passed_trigger value="true"/>
+                <npc_trigger_lateral_tolerance value="5.0"/>
+                <npc_ttc_trigger_threshold value="5.2"/>
+                <collision_x value="43.2"/>
+                <collision_y value="205.3"/>
+                <collision_z value="0.5"/>
+                <conflict_trigger_distance value="0.0"/>
+                <min_ego_speed value="0.5"/>
+                <npc_min_speed value="2.0"/>
+                <npc_max_speed value="105.0"/>
+                <npc_speed_scale value="1.2"/>
+                <npc_arrival_time_margin value="0.0"/>
+                <npc_startup_time_compensation value="0.8"/>
+                <npc_set_initial_velocity value="true"/>
+                <npc_initial_velocity_boost value="1.0"/>
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
         </scenarios>
@@ -10053,20 +10390,7 @@
     </route>
     <route id="137" town="Town05">
         <waypoints>
-            <position x="-56.0" y="205.1" z="4.6"/>
-            <position x="-54.0" y="205.1" z="4.5"/>
-            <position x="-52.0" y="205.1" z="4.3"/>
-            <position x="-50.0" y="205.1" z="4.1"/>
-            <position x="-48.0" y="205.1" z="3.9"/>
-            <position x="-46.1" y="205.1" z="3.7"/>
-            <position x="-44.1" y="205.1" z="3.6"/>
-            <position x="-42.1" y="205.1" z="3.4"/>
-            <position x="-40.1" y="205.1" z="3.2"/>
-            <position x="-38.1" y="205.1" z="3.0"/>
-            <position x="-36.1" y="205.1" z="2.8"/>
-            <position x="-34.1" y="205.1" z="2.7"/>
-            <position x="-32.1" y="205.1" z="2.5"/>
-            <position x="-30.1" y="205.1" z="2.3"/>
+            <position x="-32.1" y="205.1" z="2.3"/>
             <position x="-28.1" y="205.1" z="2.1"/>
             <position x="-26.1" y="205.1" z="2.0"/>
             <position x="-24.1" y="205.1" z="1.8"/>
@@ -10081,7 +10405,7 @@
             <position x="-6.0" y="205.1" z="0.5"/>
             <position x="-4.0" y="205.1" z="0.5"/>
             <position x="-2.0" y="205.1" z="0.5"/>
-            <position x="-0.0" y="205.1" z="0.5"/>
+            <position x="0.0" y="205.1" z="0.5"/>
             <position x="2.0" y="205.1" z="0.5"/>
             <position x="4.0" y="205.1" z="0.5"/>
             <position x="6.0" y="205.2" z="0.5"/>
@@ -10109,10 +10433,36 @@
         </waypoints>
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
-                <init_speed value="13.89"/>
-                <npc_speed value="11.0"/>
-                
+                <trigger_point x="-24.1" y="205.1" z="1.8" yaw="0.0"/>
+                <init_speed value="12.5"/>
+                <ego_initial_speed_duration value="0.0"/>
+                <ego_speed_control value="true"/>
+                <ego_speed_control_takeover_detection value="true"/>
+                <ego_speed_hold_method value="target_velocity"/>
+                <ego_takeover_steer_threshold value="0.001"/>
+                <ego_takeover_throttle_threshold value="0.001"/>
+                <ego_takeover_brake_threshold value="0.001"/>
+                <npc_speed value="10.0"/>
+                <adaptive_npc_speed value="true"/>
+                <npc_trigger_x value="-20.2"/>
+                <npc_trigger_y value="205.1"/>
+                <npc_trigger_z value="1.6"/>
+                <npc_trigger_distance value="4.0"/>
+                <npc_enable_passed_trigger value="true"/>
+                <npc_trigger_lateral_tolerance value="5.0"/>
+                <npc_ttc_trigger_threshold value="5.2"/>
+                <collision_x value="43.2"/>
+                <collision_y value="205.3"/>
+                <collision_z value="0.5"/>
+                <conflict_trigger_distance value="0.0"/>
+                <min_ego_speed value="0.5"/>
+                <npc_min_speed value="2.0"/>
+                <npc_max_speed value="105.0"/>
+                <npc_speed_scale value="1.2"/>
+                <npc_arrival_time_margin value="0.0"/>
+                <npc_startup_time_compensation value="0.8"/>
+                <npc_set_initial_velocity value="true"/>
+                <npc_initial_velocity_boost value="1.0"/>
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
         </scenarios>
@@ -10121,20 +10471,7 @@
     </route>
     <route id="138" town="Town05">
         <waypoints>
-            <position x="-56.0" y="205.1" z="4.6"/>
-            <position x="-54.0" y="205.1" z="4.5"/>
-            <position x="-52.0" y="205.1" z="4.3"/>
-            <position x="-50.0" y="205.1" z="4.1"/>
-            <position x="-48.0" y="205.1" z="3.9"/>
-            <position x="-46.1" y="205.1" z="3.7"/>
-            <position x="-44.1" y="205.1" z="3.6"/>
-            <position x="-42.1" y="205.1" z="3.4"/>
-            <position x="-40.1" y="205.1" z="3.2"/>
-            <position x="-38.1" y="205.1" z="3.0"/>
-            <position x="-36.1" y="205.1" z="2.8"/>
-            <position x="-34.1" y="205.1" z="2.7"/>
-            <position x="-32.1" y="205.1" z="2.5"/>
-            <position x="-30.1" y="205.1" z="2.3"/>
+            <position x="-32.1" y="205.1" z="2.3"/>
             <position x="-28.1" y="205.1" z="2.1"/>
             <position x="-26.1" y="205.1" z="2.0"/>
             <position x="-24.1" y="205.1" z="1.8"/>
@@ -10149,7 +10486,7 @@
             <position x="-6.0" y="205.1" z="0.5"/>
             <position x="-4.0" y="205.1" z="0.5"/>
             <position x="-2.0" y="205.1" z="0.5"/>
-            <position x="-0.0" y="205.1" z="0.5"/>
+            <position x="0.0" y="205.1" z="0.5"/>
             <position x="2.0" y="205.1" z="0.5"/>
             <position x="4.0" y="205.1" z="0.5"/>
             <position x="6.0" y="205.2" z="0.5"/>
@@ -10177,10 +10514,36 @@
         </waypoints>
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
-                <init_speed value="13.89"/>
-                <npc_speed value="11.0"/>
-                
+                <trigger_point x="-24.1" y="205.1" z="1.8" yaw="0.0"/>
+                <init_speed value="12.5"/>
+                <ego_initial_speed_duration value="0.0"/>
+                <ego_speed_control value="true"/>
+                <ego_speed_control_takeover_detection value="true"/>
+                <ego_speed_hold_method value="target_velocity"/>
+                <ego_takeover_steer_threshold value="0.001"/>
+                <ego_takeover_throttle_threshold value="0.001"/>
+                <ego_takeover_brake_threshold value="0.001"/>
+                <npc_speed value="10.0"/>
+                <adaptive_npc_speed value="true"/>
+                <npc_trigger_x value="-20.2"/>
+                <npc_trigger_y value="205.1"/>
+                <npc_trigger_z value="1.6"/>
+                <npc_trigger_distance value="4.0"/>
+                <npc_enable_passed_trigger value="true"/>
+                <npc_trigger_lateral_tolerance value="5.0"/>
+                <npc_ttc_trigger_threshold value="5.2"/>
+                <collision_x value="43.2"/>
+                <collision_y value="205.3"/>
+                <collision_z value="0.5"/>
+                <conflict_trigger_distance value="0.0"/>
+                <min_ego_speed value="0.5"/>
+                <npc_min_speed value="2.0"/>
+                <npc_max_speed value="105.0"/>
+                <npc_speed_scale value="1.2"/>
+                <npc_arrival_time_margin value="0.0"/>
+                <npc_startup_time_compensation value="0.8"/>
+                <npc_set_initial_velocity value="true"/>
+                <npc_initial_velocity_boost value="1.0"/>
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
         </scenarios>
@@ -10189,20 +10552,7 @@
     </route>
     <route id="139" town="Town05">
         <waypoints>
-            <position x="-56.0" y="205.1" z="4.6"/>
-            <position x="-54.0" y="205.1" z="4.5"/>
-            <position x="-52.0" y="205.1" z="4.3"/>
-            <position x="-50.0" y="205.1" z="4.1"/>
-            <position x="-48.0" y="205.1" z="3.9"/>
-            <position x="-46.1" y="205.1" z="3.7"/>
-            <position x="-44.1" y="205.1" z="3.6"/>
-            <position x="-42.1" y="205.1" z="3.4"/>
-            <position x="-40.1" y="205.1" z="3.2"/>
-            <position x="-38.1" y="205.1" z="3.0"/>
-            <position x="-36.1" y="205.1" z="2.8"/>
-            <position x="-34.1" y="205.1" z="2.7"/>
-            <position x="-32.1" y="205.1" z="2.5"/>
-            <position x="-30.1" y="205.1" z="2.3"/>
+            <position x="-32.1" y="205.1" z="2.3"/>
             <position x="-28.1" y="205.1" z="2.1"/>
             <position x="-26.1" y="205.1" z="2.0"/>
             <position x="-24.1" y="205.1" z="1.8"/>
@@ -10217,7 +10567,7 @@
             <position x="-6.0" y="205.1" z="0.5"/>
             <position x="-4.0" y="205.1" z="0.5"/>
             <position x="-2.0" y="205.1" z="0.5"/>
-            <position x="-0.0" y="205.1" z="0.5"/>
+            <position x="0.0" y="205.1" z="0.5"/>
             <position x="2.0" y="205.1" z="0.5"/>
             <position x="4.0" y="205.1" z="0.5"/>
             <position x="6.0" y="205.2" z="0.5"/>
@@ -10245,10 +10595,36 @@
         </waypoints>
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
-                <init_speed value="13.89"/>
-                <npc_speed value="11.0"/>
-                
+                <trigger_point x="-24.1" y="205.1" z="1.8" yaw="0.0"/>
+                <init_speed value="12.5"/>
+                <ego_initial_speed_duration value="0.0"/>
+                <ego_speed_control value="true"/>
+                <ego_speed_control_takeover_detection value="true"/>
+                <ego_speed_hold_method value="target_velocity"/>
+                <ego_takeover_steer_threshold value="0.001"/>
+                <ego_takeover_throttle_threshold value="0.001"/>
+                <ego_takeover_brake_threshold value="0.001"/>
+                <npc_speed value="10.0"/>
+                <adaptive_npc_speed value="true"/>
+                <npc_trigger_x value="-20.2"/>
+                <npc_trigger_y value="205.1"/>
+                <npc_trigger_z value="1.6"/>
+                <npc_trigger_distance value="4.0"/>
+                <npc_enable_passed_trigger value="true"/>
+                <npc_trigger_lateral_tolerance value="5.0"/>
+                <npc_ttc_trigger_threshold value="5.2"/>
+                <collision_x value="43.2"/>
+                <collision_y value="205.3"/>
+                <collision_z value="0.5"/>
+                <conflict_trigger_distance value="0.0"/>
+                <min_ego_speed value="0.5"/>
+                <npc_min_speed value="2.0"/>
+                <npc_max_speed value="105.0"/>
+                <npc_speed_scale value="1.2"/>
+                <npc_arrival_time_margin value="0.0"/>
+                <npc_startup_time_compensation value="0.8"/>
+                <npc_set_initial_velocity value="true"/>
+                <npc_initial_velocity_boost value="1.0"/>
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
         </scenarios>
@@ -10257,22 +10633,9 @@
     </route>
 
     <!-- level-3 -->
-    <route id="140" town="Town05"> 
+    <route id="140" town="Town05">
         <waypoints>
-            <position x="-56.0" y="205.1" z="4.6"/>
-            <position x="-54.0" y="205.1" z="4.5"/>
-            <position x="-52.0" y="205.1" z="4.3"/>
-            <position x="-50.0" y="205.1" z="4.1"/>
-            <position x="-48.0" y="205.1" z="3.9"/>
-            <position x="-46.1" y="205.1" z="3.7"/>
-            <position x="-44.1" y="205.1" z="3.6"/>
-            <position x="-42.1" y="205.1" z="3.4"/>
-            <position x="-40.1" y="205.1" z="3.2"/>
-            <position x="-38.1" y="205.1" z="3.0"/>
-            <position x="-36.1" y="205.1" z="2.8"/>
-            <position x="-34.1" y="205.1" z="2.7"/>
-            <position x="-32.1" y="205.1" z="2.5"/>
-            <position x="-30.1" y="205.1" z="2.3"/>
+            <position x="-32.1" y="205.1" z="2.3"/>
             <position x="-28.1" y="205.1" z="2.1"/>
             <position x="-26.1" y="205.1" z="2.0"/>
             <position x="-24.1" y="205.1" z="1.8"/>
@@ -10287,7 +10650,7 @@
             <position x="-6.0" y="205.1" z="0.5"/>
             <position x="-4.0" y="205.1" z="0.5"/>
             <position x="-2.0" y="205.1" z="0.5"/>
-            <position x="-0.0" y="205.1" z="0.5"/>
+            <position x="0.0" y="205.1" z="0.5"/>
             <position x="2.0" y="205.1" z="0.5"/>
             <position x="4.0" y="205.1" z="0.5"/>
             <position x="6.0" y="205.2" z="0.5"/>
@@ -10315,9 +10678,36 @@
         </waypoints>
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
-                <init_speed value="16.67"/>
-                <npc_speed value="30.0"/>
+                <trigger_point x="-24.1" y="205.1" z="1.8" yaw="0.0"/>
+                <init_speed value="13.8"/>
+                <ego_initial_speed_duration value="0.0"/>
+                <ego_speed_control value="true"/>
+                <ego_speed_control_takeover_detection value="true"/>
+                <ego_speed_hold_method value="target_velocity"/>
+                <ego_takeover_steer_threshold value="0.001"/>
+                <ego_takeover_throttle_threshold value="0.001"/>
+                <ego_takeover_brake_threshold value="0.001"/>
+                <npc_speed value="20.0"/>
+                <adaptive_npc_speed value="true"/>
+                <npc_trigger_x value="-23.2"/>
+                <npc_trigger_y value="205.1"/>
+                <npc_trigger_z value="1.6"/>
+                <npc_trigger_distance value="4.0"/>
+                <npc_enable_passed_trigger value="true"/>
+                <npc_trigger_lateral_tolerance value="5.0"/>
+                <npc_ttc_trigger_threshold value="5.2"/>
+                <collision_x value="43.2"/>
+                <collision_y value="205.3"/>
+                <collision_z value="0.5"/>
+                <conflict_trigger_distance value="0.0"/>
+                <min_ego_speed value="0.5"/>
+                <npc_min_speed value="2.0"/>
+                <npc_max_speed value="105.0"/>
+                <npc_speed_scale value="10.0"/>
+                <npc_arrival_time_margin value="0.0"/>
+                <npc_startup_time_compensation value="0.8"/>
+                <npc_set_initial_velocity value="true"/>
+                <npc_initial_velocity_boost value="1.0"/>
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
         </scenarios>
@@ -10326,20 +10716,7 @@
     </route>
     <route id="141" town="Town05">
         <waypoints>
-            <position x="-56.0" y="205.1" z="4.6"/>
-            <position x="-54.0" y="205.1" z="4.5"/>
-            <position x="-52.0" y="205.1" z="4.3"/>
-            <position x="-50.0" y="205.1" z="4.1"/>
-            <position x="-48.0" y="205.1" z="3.9"/>
-            <position x="-46.1" y="205.1" z="3.7"/>
-            <position x="-44.1" y="205.1" z="3.6"/>
-            <position x="-42.1" y="205.1" z="3.4"/>
-            <position x="-40.1" y="205.1" z="3.2"/>
-            <position x="-38.1" y="205.1" z="3.0"/>
-            <position x="-36.1" y="205.1" z="2.8"/>
-            <position x="-34.1" y="205.1" z="2.7"/>
-            <position x="-32.1" y="205.1" z="2.5"/>
-            <position x="-30.1" y="205.1" z="2.3"/>
+            <position x="-32.1" y="205.1" z="2.3"/>
             <position x="-28.1" y="205.1" z="2.1"/>
             <position x="-26.1" y="205.1" z="2.0"/>
             <position x="-24.1" y="205.1" z="1.8"/>
@@ -10354,7 +10731,7 @@
             <position x="-6.0" y="205.1" z="0.5"/>
             <position x="-4.0" y="205.1" z="0.5"/>
             <position x="-2.0" y="205.1" z="0.5"/>
-            <position x="-0.0" y="205.1" z="0.5"/>
+            <position x="0.0" y="205.1" z="0.5"/>
             <position x="2.0" y="205.1" z="0.5"/>
             <position x="4.0" y="205.1" z="0.5"/>
             <position x="6.0" y="205.2" z="0.5"/>
@@ -10382,32 +10759,45 @@
         </waypoints>
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
-                <init_speed value="16.67"/>
-                <npc_speed value="30.0"/>
+                <trigger_point x="-24.1" y="205.1" z="1.8" yaw="0.0"/>
+                <init_speed value="13.8"/>
+                <ego_initial_speed_duration value="0.0"/>
+                <ego_speed_control value="true"/>
+                <ego_speed_control_takeover_detection value="true"/>
+                <ego_speed_hold_method value="target_velocity"/>
+                <ego_takeover_steer_threshold value="0.001"/>
+                <ego_takeover_throttle_threshold value="0.001"/>
+                <ego_takeover_brake_threshold value="0.001"/>
+                <npc_speed value="20.0"/>
+                <adaptive_npc_speed value="true"/>
+                <npc_trigger_x value="-23.2"/>
+                <npc_trigger_y value="205.1"/>
+                <npc_trigger_z value="1.6"/>
+                <npc_trigger_distance value="4.0"/>
+                <npc_enable_passed_trigger value="true"/>
+                <npc_trigger_lateral_tolerance value="5.0"/>
+                <npc_ttc_trigger_threshold value="5.2"/>
+                <collision_x value="43.2"/>
+                <collision_y value="205.3"/>
+                <collision_z value="0.5"/>
+                <conflict_trigger_distance value="0.0"/>
+                <min_ego_speed value="0.5"/>
+                <npc_min_speed value="2.0"/>
+                <npc_max_speed value="105.0"/>
+                <npc_speed_scale value="10.0"/>
+                <npc_arrival_time_margin value="0.0"/>
+                <npc_startup_time_compensation value="0.8"/>
+                <npc_set_initial_velocity value="true"/>
+                <npc_initial_velocity_boost value="1.0"/>
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
         </scenarios>
         <weathers>
-            <!-- night&sunny -->
             <weather cloudiness="0.0" fog_density="10.0" precipitation="0" precipitation_deposits="0" wetness="0" wind_intensity="80.0" sun_altitude_angle="0.5" sun_azimuth_angle="-1.0" route_percentage="100"/></weathers>
     </route>
     <route id="142" town="Town05">
         <waypoints>
-            <position x="-56.0" y="205.1" z="4.6"/>
-            <position x="-54.0" y="205.1" z="4.5"/>
-            <position x="-52.0" y="205.1" z="4.3"/>
-            <position x="-50.0" y="205.1" z="4.1"/>
-            <position x="-48.0" y="205.1" z="3.9"/>
-            <position x="-46.1" y="205.1" z="3.7"/>
-            <position x="-44.1" y="205.1" z="3.6"/>
-            <position x="-42.1" y="205.1" z="3.4"/>
-            <position x="-40.1" y="205.1" z="3.2"/>
-            <position x="-38.1" y="205.1" z="3.0"/>
-            <position x="-36.1" y="205.1" z="2.8"/>
-            <position x="-34.1" y="205.1" z="2.7"/>
-            <position x="-32.1" y="205.1" z="2.5"/>
-            <position x="-30.1" y="205.1" z="2.3"/>
+            <position x="-32.1" y="205.1" z="2.3"/>
             <position x="-28.1" y="205.1" z="2.1"/>
             <position x="-26.1" y="205.1" z="2.0"/>
             <position x="-24.1" y="205.1" z="1.8"/>
@@ -10422,7 +10812,7 @@
             <position x="-6.0" y="205.1" z="0.5"/>
             <position x="-4.0" y="205.1" z="0.5"/>
             <position x="-2.0" y="205.1" z="0.5"/>
-            <position x="-0.0" y="205.1" z="0.5"/>
+            <position x="0.0" y="205.1" z="0.5"/>
             <position x="2.0" y="205.1" z="0.5"/>
             <position x="4.0" y="205.1" z="0.5"/>
             <position x="6.0" y="205.2" z="0.5"/>
@@ -10450,9 +10840,36 @@
         </waypoints>
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
-                <init_speed value="16.67"/>
-                <npc_speed value="30.0"/>
+                <trigger_point x="-24.1" y="205.1" z="1.8" yaw="0.0"/>
+                <init_speed value="13.8"/>
+                <ego_initial_speed_duration value="0.0"/>
+                <ego_speed_control value="true"/>
+                <ego_speed_control_takeover_detection value="true"/>
+                <ego_speed_hold_method value="target_velocity"/>
+                <ego_takeover_steer_threshold value="0.001"/>
+                <ego_takeover_throttle_threshold value="0.001"/>
+                <ego_takeover_brake_threshold value="0.001"/>
+                <npc_speed value="20.0"/>
+                <adaptive_npc_speed value="true"/>
+                <npc_trigger_x value="-23.2"/>
+                <npc_trigger_y value="205.1"/>
+                <npc_trigger_z value="1.6"/>
+                <npc_trigger_distance value="4.0"/>
+                <npc_enable_passed_trigger value="true"/>
+                <npc_trigger_lateral_tolerance value="5.0"/>
+                <npc_ttc_trigger_threshold value="5.2"/>
+                <collision_x value="43.2"/>
+                <collision_y value="205.3"/>
+                <collision_z value="0.5"/>
+                <conflict_trigger_distance value="0.0"/>
+                <min_ego_speed value="0.5"/>
+                <npc_min_speed value="2.0"/>
+                <npc_max_speed value="105.0"/>
+                <npc_speed_scale value="10.0"/>
+                <npc_arrival_time_margin value="0.0"/>
+                <npc_startup_time_compensation value="0.8"/>
+                <npc_set_initial_velocity value="true"/>
+                <npc_initial_velocity_boost value="1.0"/>
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
         </scenarios>
@@ -10461,20 +10878,7 @@
     </route>
     <route id="143" town="Town05">
         <waypoints>
-            <position x="-56.0" y="205.1" z="4.6"/>
-            <position x="-54.0" y="205.1" z="4.5"/>
-            <position x="-52.0" y="205.1" z="4.3"/>
-            <position x="-50.0" y="205.1" z="4.1"/>
-            <position x="-48.0" y="205.1" z="3.9"/>
-            <position x="-46.1" y="205.1" z="3.7"/>
-            <position x="-44.1" y="205.1" z="3.6"/>
-            <position x="-42.1" y="205.1" z="3.4"/>
-            <position x="-40.1" y="205.1" z="3.2"/>
-            <position x="-38.1" y="205.1" z="3.0"/>
-            <position x="-36.1" y="205.1" z="2.8"/>
-            <position x="-34.1" y="205.1" z="2.7"/>
-            <position x="-32.1" y="205.1" z="2.5"/>
-            <position x="-30.1" y="205.1" z="2.3"/>
+            <position x="-32.1" y="205.1" z="2.3"/>
             <position x="-28.1" y="205.1" z="2.1"/>
             <position x="-26.1" y="205.1" z="2.0"/>
             <position x="-24.1" y="205.1" z="1.8"/>
@@ -10489,7 +10893,7 @@
             <position x="-6.0" y="205.1" z="0.5"/>
             <position x="-4.0" y="205.1" z="0.5"/>
             <position x="-2.0" y="205.1" z="0.5"/>
-            <position x="-0.0" y="205.1" z="0.5"/>
+            <position x="0.0" y="205.1" z="0.5"/>
             <position x="2.0" y="205.1" z="0.5"/>
             <position x="4.0" y="205.1" z="0.5"/>
             <position x="6.0" y="205.2" z="0.5"/>
@@ -10517,9 +10921,36 @@
         </waypoints>
         <scenarios>
             <scenario name="IntersectionCollisionLeftTurn_1" type="IntersectionCollisionLeftTurn" town="Town05">
-                <trigger_point x="-45.0" y="205.1" z="3.5" yaw="0.0"/>
-                <init_speed value="16.67"/>
-                <npc_speed value="30.0"/>
+                <trigger_point x="-24.1" y="205.1" z="1.8" yaw="0.0"/>
+                <init_speed value="13.8"/>
+                <ego_initial_speed_duration value="0.0"/>
+                <ego_speed_control value="true"/>
+                <ego_speed_control_takeover_detection value="true"/>
+                <ego_speed_hold_method value="target_velocity"/>
+                <ego_takeover_steer_threshold value="0.001"/>
+                <ego_takeover_throttle_threshold value="0.001"/>
+                <ego_takeover_brake_threshold value="0.001"/>
+                <npc_speed value="20.0"/>
+                <adaptive_npc_speed value="true"/>
+                <npc_trigger_x value="-23.2"/>
+                <npc_trigger_y value="205.1"/>
+                <npc_trigger_z value="1.6"/>
+                <npc_trigger_distance value="4.0"/>
+                <npc_enable_passed_trigger value="true"/>
+                <npc_trigger_lateral_tolerance value="5.0"/>
+                <npc_ttc_trigger_threshold value="5.2"/>
+                <collision_x value="43.2"/>
+                <collision_y value="205.3"/>
+                <collision_z value="0.5"/>
+                <conflict_trigger_distance value="0.0"/>
+                <min_ego_speed value="0.5"/>
+                <npc_min_speed value="2.0"/>
+                <npc_max_speed value="105.0"/>
+                <npc_speed_scale value="10.0"/>
+                <npc_arrival_time_margin value="0.0"/>
+                <npc_startup_time_compensation value="0.8"/>
+                <npc_set_initial_velocity value="true"/>
+                <npc_initial_velocity_boost value="1.0"/>
                 <other_actor x="24.5" y="173.4" z="0.5" yaw="90.0" model="vehicle.audi.tt" rolename="adversary"/>
             </scenario>
         </scenarios>
